@@ -1,0 +1,676 @@
+fileFormatVersion: 2
+guid: bcb086632b613b54fa56da7e0c8d5d29
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3405891875646881637
+    second: Character_Move_Sword_0
+  - first:
+      213: 8023384376999877626
+    second: Character_Move_Sword_1
+  - first:
+      213: 1844583110722982162
+    second: Character_Move_Sword_2
+  - first:
+      213: -4448310682328453288
+    second: Character_Move_Sword_3
+  - first:
+      213: 4705822537336006516
+    second: Character_Move_Sword_4
+  - first:
+      213: 1767369251867633730
+    second: Character_Move_Sword_5
+  - first:
+      213: 4969103328287401558
+    second: Character_Move_Sword_6
+  - first:
+      213: 7971112997836984882
+    second: Character_Move_Sword_7
+  - first:
+      213: -2642351004433742985
+    second: Character_Move_Sword_8
+  - first:
+      213: -6958589323871109338
+    second: Character_Move_Sword_9
+  - first:
+      213: -2452193530734120813
+    second: Character_Move_Sword_10
+  - first:
+      213: 2821262143482562774
+    second: Character_Move_Sword_11
+  - first:
+      213: 1546349009296059244
+    second: Character_Move_Sword_12
+  - first:
+      213: -6583992170143847800
+    second: Character_Move_Sword_13
+  - first:
+      213: -2943825621131332835
+    second: Character_Move_Sword_14
+  - first:
+      213: 5132168512930751629
+    second: Character_Move_Sword_15
+  - first:
+      213: -4132491778888676745
+    second: Character_Move_Sword_16
+  - first:
+      213: 6307708097965101373
+    second: Character_Move_Sword_17
+  - first:
+      213: 7168361247206260079
+    second: Character_Move_Sword_18
+  - first:
+      213: 6754048331703862495
+    second: Character_Move_Sword_19
+  - first:
+      213: -3086117754240973822
+    second: Character_Move_Sword_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Character_Move_Sword_0
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 434
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b90cda06267dbb0d0800000000000000
+      internalID: -3405891875646881637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Sword_1
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 435
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afb1f77c499c85f60800000000000000
+      internalID: 8023384376999877626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Sword_2
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 434
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2111451f096499910800000000000000
+      internalID: 1844583110722982162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Sword_3
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 435
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85fac39a00d6442c0800000000000000
+      internalID: -4448310682328453288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Sword_4
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 436
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 477a0f94aa07e4140800000000000000
+      internalID: 4705822537336006516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Sword_5
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 435
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 248a48c78f4f68810800000000000000
+      internalID: 1767369251867633730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Sword_6
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 312
+        width: 23
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65628ce462dc5f440800000000000000
+      internalID: 4969103328287401558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Sword_7
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 310
+        width: 23
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 232929ce9051f9e60800000000000000
+      internalID: 7971112997836984882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Sword_8
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 312
+        width: 23
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77384d0e2cb745bd0800000000000000
+      internalID: -2642351004433742985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Sword_9
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 311
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62f36dcc0ef1e6f90800000000000000
+      internalID: -6958589323871109338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Sword_10
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 311
+        width: 23
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 390f410e9fe08fdd0800000000000000
+      internalID: -2452193530734120813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Sword_11
+      rect:
+        serializedVersion: 2
+        x: 690
+        y: 312
+        width: 23
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d80988c8f2272720800000000000000
+      internalID: 2821262143482562774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Sword_12
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 184
+        width: 23
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6b6ed52b3cb57510800000000000000
+      internalID: 1546349009296059244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Sword_13
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 182
+        width: 23
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88a6f963106f0a4a0800000000000000
+      internalID: -6583992170143847800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Sword_14
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 184
+        width: 23
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d13f5c3d13e6527d0800000000000000
+      internalID: -2943825621131332835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Sword_15
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 183
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d84aea43210293740800000000000000
+      internalID: 5132168512930751629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Sword_16
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 183
+        width: 23
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77a4e1a3f9076a6c0800000000000000
+      internalID: -4132491778888676745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Sword_17
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 184
+        width: 23
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d31901e681b798750800000000000000
+      internalID: 6307708097965101373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Sword_18
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 56
+        width: 8
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6db76123922b7360800000000000000
+      internalID: 7168361247206260079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Sword_19
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 57
+        width: 7
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd447075c233bbd50800000000000000
+      internalID: 6754048331703862495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Sword_20
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 59
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 204c073e048eb25d0800000000000000
+      internalID: -3086117754240973822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Character_Move_Sword_0: -3405891875646881637
+      Character_Move_Sword_1: 8023384376999877626
+      Character_Move_Sword_10: -2452193530734120813
+      Character_Move_Sword_11: 2821262143482562774
+      Character_Move_Sword_12: 1546349009296059244
+      Character_Move_Sword_13: -6583992170143847800
+      Character_Move_Sword_14: -2943825621131332835
+      Character_Move_Sword_15: 5132168512930751629
+      Character_Move_Sword_16: -4132491778888676745
+      Character_Move_Sword_17: 6307708097965101373
+      Character_Move_Sword_18: 7168361247206260079
+      Character_Move_Sword_19: 6754048331703862495
+      Character_Move_Sword_2: 1844583110722982162
+      Character_Move_Sword_20: -3086117754240973822
+      Character_Move_Sword_3: -4448310682328453288
+      Character_Move_Sword_4: 4705822537336006516
+      Character_Move_Sword_5: 1767369251867633730
+      Character_Move_Sword_6: 4969103328287401558
+      Character_Move_Sword_7: 7971112997836984882
+      Character_Move_Sword_8: -2642351004433742985
+      Character_Move_Sword_9: -6958589323871109338
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

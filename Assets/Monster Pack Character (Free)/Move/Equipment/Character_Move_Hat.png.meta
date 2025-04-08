@@ -1,0 +1,754 @@
+fileFormatVersion: 2
+guid: 0ca1831e8fb196e4795e5f0bb7857bb4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1454891220248783353
+    second: Character_Move_Hat_0
+  - first:
+      213: -5549395048817618831
+    second: Character_Move_Hat_1
+  - first:
+      213: 4530475406485961449
+    second: Character_Move_Hat_2
+  - first:
+      213: -7669709588458448272
+    second: Character_Move_Hat_3
+  - first:
+      213: 5641173329418965604
+    second: Character_Move_Hat_4
+  - first:
+      213: 5789474820093754121
+    second: Character_Move_Hat_5
+  - first:
+      213: -6177122277554050121
+    second: Character_Move_Hat_6
+  - first:
+      213: 1614366325342753681
+    second: Character_Move_Hat_7
+  - first:
+      213: 7934810341465370453
+    second: Character_Move_Hat_8
+  - first:
+      213: 4839393239382109751
+    second: Character_Move_Hat_9
+  - first:
+      213: 2523523646368886767
+    second: Character_Move_Hat_10
+  - first:
+      213: 3603415644815809480
+    second: Character_Move_Hat_11
+  - first:
+      213: -6109561227072905657
+    second: Character_Move_Hat_12
+  - first:
+      213: -6335487726960449811
+    second: Character_Move_Hat_13
+  - first:
+      213: -4929888804662909882
+    second: Character_Move_Hat_14
+  - first:
+      213: 5386260600044432453
+    second: Character_Move_Hat_15
+  - first:
+      213: -6926993442298031207
+    second: Character_Move_Hat_16
+  - first:
+      213: 4300135082628128267
+    second: Character_Move_Hat_17
+  - first:
+      213: -2503348425019235642
+    second: Character_Move_Hat_18
+  - first:
+      213: 1682211829790834954
+    second: Character_Move_Hat_19
+  - first:
+      213: -2287936227631403475
+    second: Character_Move_Hat_20
+  - first:
+      213: 1213077538989413617
+    second: Character_Move_Hat_21
+  - first:
+      213: 7502533415261588391
+    second: Character_Move_Hat_22
+  - first:
+      213: -4707412309184015931
+    second: Character_Move_Hat_23
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Character_Move_Hat_0
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 449
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f963c14bdfc03410800000000000000
+      internalID: 1454891220248783353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Hat_1
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 450
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1701ae4ea969cf2b0800000000000000
+      internalID: -5549395048817618831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Hat_2
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 450
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ea3d33f06b7fde30800000000000000
+      internalID: 4530475406485961449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Hat_3
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 451
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07ad681e3c7bf8590800000000000000
+      internalID: -7669709588458448272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Hat_4
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 451
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 462dc604149794e40800000000000000
+      internalID: 5641173329418965604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Hat_5
+      rect:
+        serializedVersion: 2
+        x: 697
+        y: 450
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90bb1c7cca8585050800000000000000
+      internalID: 5789474820093754121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Hat_6
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 323
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bb2d303404764aa0800000000000000
+      internalID: -6177122277554050121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Hat_7
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 323
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 193586f9e91676610800000000000000
+      internalID: 1614366325342753681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Hat_8
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 323
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55fa32317fb1e1e60800000000000000
+      internalID: 7934810341465370453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Hat_9
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 324
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73e2cc1d28af82340800000000000000
+      internalID: 4839393239382109751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Hat_10
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 323
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fefad1cd26b550320800000000000000
+      internalID: 2523523646368886767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Hat_11
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 323
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cbd45fef67e10230800000000000000
+      internalID: 3603415644815809480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Hat_12
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 195
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74ed1de0f6a763ba0800000000000000
+      internalID: -6109561227072905657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Hat_13
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 195
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de6ecabaa73d318a0800000000000000
+      internalID: -6335487726960449811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Hat_14
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 195
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64464e77044859bb0800000000000000
+      internalID: -4929888804662909882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Hat_15
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 196
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54ca4556a77dfba40800000000000000
+      internalID: 5386260600044432453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Hat_16
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 195
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9939d5e3a206edf90800000000000000
+      internalID: -6926993442298031207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Hat_17
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 195
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0e9e3613162dab30800000000000000
+      internalID: 4300135082628128267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Hat_18
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 66
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c2e1b9eed1524dd0800000000000000
+      internalID: -2503348425019235642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Hat_19
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 67
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0184a71fba685710800000000000000
+      internalID: 1682211829790834954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Hat_20
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 67
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2e684b7f1e9f30e0800000000000000
+      internalID: -2287936227631403475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Hat_21
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 68
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f418743897b5d010800000000000000
+      internalID: 1213077538989413617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Hat_22
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 68
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ab4a2c146a5e1860800000000000000
+      internalID: 7502533415261588391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Hat_23
+      rect:
+        serializedVersion: 2
+        x: 697
+        y: 67
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c119cb1279ebaeb0800000000000000
+      internalID: -4707412309184015931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Character_Move_Hat_0: 1454891220248783353
+      Character_Move_Hat_1: -5549395048817618831
+      Character_Move_Hat_10: 2523523646368886767
+      Character_Move_Hat_11: 3603415644815809480
+      Character_Move_Hat_12: -6109561227072905657
+      Character_Move_Hat_13: -6335487726960449811
+      Character_Move_Hat_14: -4929888804662909882
+      Character_Move_Hat_15: 5386260600044432453
+      Character_Move_Hat_16: -6926993442298031207
+      Character_Move_Hat_17: 4300135082628128267
+      Character_Move_Hat_18: -2503348425019235642
+      Character_Move_Hat_19: 1682211829790834954
+      Character_Move_Hat_2: 4530475406485961449
+      Character_Move_Hat_20: -2287936227631403475
+      Character_Move_Hat_21: 1213077538989413617
+      Character_Move_Hat_22: 7502533415261588391
+      Character_Move_Hat_23: -4707412309184015931
+      Character_Move_Hat_3: -7669709588458448272
+      Character_Move_Hat_4: 5641173329418965604
+      Character_Move_Hat_5: 5789474820093754121
+      Character_Move_Hat_6: -6177122277554050121
+      Character_Move_Hat_7: 1614366325342753681
+      Character_Move_Hat_8: 7934810341465370453
+      Character_Move_Hat_9: 4839393239382109751
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,754 @@
+fileFormatVersion: 2
+guid: 68e11e039b64efb4aa082d497e73b1f1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5684135781536570883
+    second: Character_Move_Gloves_0
+  - first:
+      213: -2986975435897516106
+    second: Character_Move_Gloves_1
+  - first:
+      213: 5038456089769507897
+    second: Character_Move_Gloves_2
+  - first:
+      213: -4888437751537622928
+    second: Character_Move_Gloves_3
+  - first:
+      213: -8056382376930109685
+    second: Character_Move_Gloves_4
+  - first:
+      213: 2443850842615567180
+    second: Character_Move_Gloves_5
+  - first:
+      213: -3318080278061434606
+    second: Character_Move_Gloves_6
+  - first:
+      213: 5840947458654987387
+    second: Character_Move_Gloves_7
+  - first:
+      213: 8754934300758816414
+    second: Character_Move_Gloves_8
+  - first:
+      213: -5192363001867201461
+    second: Character_Move_Gloves_9
+  - first:
+      213: -5165286406757184506
+    second: Character_Move_Gloves_10
+  - first:
+      213: 1548825423422411585
+    second: Character_Move_Gloves_11
+  - first:
+      213: -4543018998347843468
+    second: Character_Move_Gloves_12
+  - first:
+      213: -1144917466156316994
+    second: Character_Move_Gloves_13
+  - first:
+      213: -7432398825193958417
+    second: Character_Move_Gloves_14
+  - first:
+      213: -1984343524886674205
+    second: Character_Move_Gloves_15
+  - first:
+      213: -3340124620222215152
+    second: Character_Move_Gloves_16
+  - first:
+      213: 7541006235580154088
+    second: Character_Move_Gloves_17
+  - first:
+      213: 7447508916935495741
+    second: Character_Move_Gloves_18
+  - first:
+      213: 6043808636227015105
+    second: Character_Move_Gloves_19
+  - first:
+      213: -890384794332096368
+    second: Character_Move_Gloves_20
+  - first:
+      213: 5094734217137957012
+    second: Character_Move_Gloves_21
+  - first:
+      213: 3598441300943882443
+    second: Character_Move_Gloves_22
+  - first:
+      213: 455095750161955641
+    second: Character_Move_Gloves_23
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Character_Move_Gloves_0
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 442
+        width: 17
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 967a8646e411732478a77451411796fb
+      internalID: -1202962964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Gloves_1
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 443
+        width: 14
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcf192a3c74d34f489da0fc19ce5bcf6
+      internalID: -1617331062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Gloves_2
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 443
+        width: 17
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd2ae6ccd161db34780e3eb9d1106d4c
+      internalID: -1367113174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Gloves_3
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 442
+        width: 16
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4632aa1949dd5b6419c7afd8a02463b3
+      internalID: 1305647447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Gloves_4
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 443
+        width: 17
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c276e4d159b69c544bcbc3bdff241162
+      internalID: -1120144046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Gloves_5
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 442
+        width: 16
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b72cf480234a2654eba614d615e9b940
+      internalID: -151215622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Gloves_6
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 315
+        width: 13
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8210a03be9189a246bba15546fcd3755
+      internalID: 713431038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Gloves_7
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 315
+        width: 11
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a518272b46da93b4f8694e95df2b9f03
+      internalID: 1317011264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Gloves_8
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 315
+        width: 6
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e36951934f85004ba35c45105aa44f1
+      internalID: 1465153929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Gloves_9
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 315
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc363dbf72793a044987108c59c09bd0
+      internalID: 379232725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Gloves_10
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 315
+        width: 6
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86bf84003a6a20a40a64c33ef170a719
+      internalID: -958739940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Gloves_11
+      rect:
+        serializedVersion: 2
+        x: 698
+        y: 315
+        width: 13
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e9899811792e7a47a5c9b1b0eb279cd
+      internalID: -2080432558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Gloves_12
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 187
+        width: 13
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fea292f9f73ff074d8c4540d33285c79
+      internalID: -763484258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Gloves_13
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 187
+        width: 11
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e5ecdddab3b21d41964b9d4eee113a7
+      internalID: 1182992024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Gloves_14
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 187
+        width: 6
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b28d614229c5b64479134dd06dc99673
+      internalID: -1751862688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Gloves_15
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 187
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 423a593dd48510647ad5d7abcafefeec
+      internalID: 1425949654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Gloves_16
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 187
+        width: 6
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9e341d3f11d5be4183a4ad9d3c1a668
+      internalID: -948700573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Gloves_17
+      rect:
+        serializedVersion: 2
+        x: 697
+        y: 187
+        width: 13
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7070d964e35619498866a113de4f306
+      internalID: 1406330020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Gloves_18
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 56
+        width: 18
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84e637d7909c6bc4ebb84c2230a03dda
+      internalID: 518678900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Gloves_19
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 57
+        width: 18
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 121ac27b490416f46a8449951e051525
+      internalID: -1684196090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Gloves_20
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 58
+        width: 18
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a34a696bbd21ef459987f3636e8b872
+      internalID: 990775191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Gloves_21
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 57
+        width: 18
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83d6d7c2e8baa2945b77de7f7799bf41
+      internalID: 1969416984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Gloves_22
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 60
+        width: 18
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27915a6e1a0a99545b72cab254df4542
+      internalID: 780621271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Gloves_23
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 58
+        width: 17
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70a17828f48fcf142ba355825faf0f0b
+      internalID: -1257308085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 55c0cafe25900094e8f0bca6ddedf1e4
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Character_Move_Gloves_0: -1202962964
+      Character_Move_Gloves_1: -1617331062
+      Character_Move_Gloves_10: -958739940
+      Character_Move_Gloves_11: -2080432558
+      Character_Move_Gloves_12: -763484258
+      Character_Move_Gloves_13: 1182992024
+      Character_Move_Gloves_14: -1751862688
+      Character_Move_Gloves_15: 1425949654
+      Character_Move_Gloves_16: -948700573
+      Character_Move_Gloves_17: 1406330020
+      Character_Move_Gloves_18: 518678900
+      Character_Move_Gloves_19: -1684196090
+      Character_Move_Gloves_2: -1367113174
+      Character_Move_Gloves_20: 990775191
+      Character_Move_Gloves_21: 1969416984
+      Character_Move_Gloves_22: 780621271
+      Character_Move_Gloves_23: -1257308085
+      Character_Move_Gloves_3: 1305647447
+      Character_Move_Gloves_4: -1120144046
+      Character_Move_Gloves_5: -151215622
+      Character_Move_Gloves_6: 713431038
+      Character_Move_Gloves_7: 1317011264
+      Character_Move_Gloves_8: 1465153929
+      Character_Move_Gloves_9: 379232725
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,546 @@
+fileFormatVersion: 2
+guid: 2fed340f6bada554ebd7193f11741ee4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6860465241081834937
+    second: Character_Idle_Leggings_0
+  - first:
+      213: 5313311051495909929
+    second: Character_Idle_Leggings_1
+  - first:
+      213: 6454995212009512473
+    second: Character_Idle_Leggings_2
+  - first:
+      213: 5134425073913159833
+    second: Character_Idle_Leggings_3
+  - first:
+      213: -5933514637793058342
+    second: Character_Idle_Leggings_4
+  - first:
+      213: -4101771075924701110
+    second: Character_Idle_Leggings_5
+  - first:
+      213: -4440721033397829313
+    second: Character_Idle_Leggings_6
+  - first:
+      213: -2152516128097600468
+    second: Character_Idle_Leggings_7
+  - first:
+      213: -8739530851587608020
+    second: Character_Idle_Leggings_8
+  - first:
+      213: 38309741556298134
+    second: Character_Idle_Leggings_9
+  - first:
+      213: -3892709237308717160
+    second: Character_Idle_Leggings_10
+  - first:
+      213: 4050049074019821494
+    second: Character_Idle_Leggings_11
+  - first:
+      213: -3747537522429656670
+    second: Character_Idle_Leggings_12
+  - first:
+      213: 2355228921861355335
+    second: Character_Idle_Leggings_13
+  - first:
+      213: 7287250136776872063
+    second: Character_Idle_Leggings_14
+  - first:
+      213: -5082899833716749924
+    second: Character_Idle_Leggings_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Character_Idle_Leggings_0
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 434
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7421767263bbac0a0800000000000000
+      internalID: -6860465241081834937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Leggings_1
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 434
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92a229d004cacb940800000000000000
+      internalID: 5313311051495909929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Leggings_2
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 434
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91e9caef1ffb49950800000000000000
+      internalID: 6454995212009512473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Leggings_3
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 434
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 990e370c664214740800000000000000
+      internalID: 5134425073913159833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Leggings_4
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 306
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad1a3c0cfdbe7ada0800000000000000
+      internalID: -5933514637793058342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Leggings_5
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 306
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a40598540f49317c0800000000000000
+      internalID: -4101771075924701110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Leggings_6
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 305
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3187b18fb36f52c0800000000000000
+      internalID: -4440721033397829313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Leggings_7
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 306
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2c717b6cf9b022e0800000000000000
+      internalID: -2152516128097600468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Leggings_8
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 178
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c22bd879ef2f6b680800000000000000
+      internalID: -8739530851587608020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Leggings_9
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 178
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69176e8c18a188000800000000000000
+      internalID: 38309741556298134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Leggings_10
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 177
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8970558b2915af9c0800000000000000
+      internalID: -3892709237308717160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Leggings_11
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 178
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b7e9dbbc2aa43830800000000000000
+      internalID: 4050049074019821494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Leggings_12
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 51
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a102298a721efbc0800000000000000
+      internalID: -3747537522429656670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Leggings_13
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 51
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 747b544d9347fa020800000000000000
+      internalID: 2355228921861355335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Leggings_14
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 51
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f709000d363812560800000000000000
+      internalID: 7287250136776872063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Leggings_15
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 51
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c99cb661889e579b0800000000000000
+      internalID: -5082899833716749924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Character_Idle_Leggings_0: -6860465241081834937
+      Character_Idle_Leggings_1: 5313311051495909929
+      Character_Idle_Leggings_10: -3892709237308717160
+      Character_Idle_Leggings_11: 4050049074019821494
+      Character_Idle_Leggings_12: -3747537522429656670
+      Character_Idle_Leggings_13: 2355228921861355335
+      Character_Idle_Leggings_14: 7287250136776872063
+      Character_Idle_Leggings_15: -5082899833716749924
+      Character_Idle_Leggings_2: 6454995212009512473
+      Character_Idle_Leggings_3: 5134425073913159833
+      Character_Idle_Leggings_4: -5933514637793058342
+      Character_Idle_Leggings_5: -4101771075924701110
+      Character_Idle_Leggings_6: -4440721033397829313
+      Character_Idle_Leggings_7: -2152516128097600468
+      Character_Idle_Leggings_8: -8739530851587608020
+      Character_Idle_Leggings_9: 38309741556298134
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

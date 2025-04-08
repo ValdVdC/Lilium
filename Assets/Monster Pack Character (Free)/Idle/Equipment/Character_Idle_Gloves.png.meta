@@ -1,0 +1,570 @@
+fileFormatVersion: 2
+guid: 026ff2b1575f22443b1d8e2b89aca805
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1599411018541800203
+    second: Character_Idle_Gloves_0
+  - first:
+      213: 6587129602040428787
+    second: Character_Idle_Gloves_1
+  - first:
+      213: -4876383874065507590
+    second: Character_Idle_Gloves_2
+  - first:
+      213: -5277064161673740628
+    second: Character_Idle_Gloves_3
+  - first:
+      213: -2586437233280908899
+    second: Character_Idle_Gloves_4
+  - first:
+      213: -758696820423909970
+    second: Character_Idle_Gloves_5
+  - first:
+      213: -5200189222033305190
+    second: Character_Idle_Gloves_6
+  - first:
+      213: -4680531715047824170
+    second: Character_Idle_Gloves_7
+  - first:
+      213: -8709040345192623849
+    second: Character_Idle_Gloves_8
+  - first:
+      213: -6671648806776467893
+    second: Character_Idle_Gloves_9
+  - first:
+      213: -8938789342684260500
+    second: Character_Idle_Gloves_10
+  - first:
+      213: -6718515821892421405
+    second: Character_Idle_Gloves_11
+  - first:
+      213: -417301522840969906
+    second: Character_Idle_Gloves_12
+  - first:
+      213: 4620884837085907600
+    second: Character_Idle_Gloves_13
+  - first:
+      213: 6274541082193757483
+    second: Character_Idle_Gloves_14
+  - first:
+      213: -5287501809236964129
+    second: Character_Idle_Gloves_15
+  - first:
+      213: -7342724265371567633
+    second: Character_Idle_Gloves_16
+  - first:
+      213: 8355325685737893840
+    second: Character_Idle_Gloves_17
+  - first:
+      213: -6683395834676978323
+    second: Character_Idle_Gloves_18
+  - first:
+      213: -372993433808608026
+    second: Character_Idle_Gloves_19
+  - first:
+      213: -1590871961002930195
+    second: Character_Idle_Gloves_20
+  - first:
+      213: 9060459243361103191
+    second: Character_Idle_Gloves_21
+  - first:
+      213: 8303939553570404043
+    second: Character_Idle_Gloves_22
+  - first:
+      213: 357328299443330778
+    second: Character_Idle_Gloves_23
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Character_Idle_Gloves_0
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 440
+        width: 19
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbc366db610288743a49b5862477fa4b
+      internalID: 1396886562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Gloves_1
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 440
+        width: 19
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2b7163f2308a904a98568666e2225c9
+      internalID: 142692029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Gloves_2
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 440
+        width: 19
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eaf9225481a40e547915d6c660a966d0
+      internalID: 10852075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Gloves_3
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 441
+        width: 19
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e4d26c58ee5db24aabed2e1ced816b4
+      internalID: 1758525183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Gloves_4
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 315
+        width: 13
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08d92416f387bce4bbe2fb046647a6ae
+      internalID: -1652117618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Gloves_5
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 315
+        width: 13
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8338ea1a461d224d851b0c44d66eaa4
+      internalID: -175179444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Gloves_6
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 316
+        width: 13
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fbdaa0718bbbbf49903e539e1157c2a
+      internalID: 1890241783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Gloves_7
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 316
+        width: 13
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cb4ec56b50ddfa49899849b0381567f
+      internalID: -690473105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Gloves_8
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 187
+        width: 13
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 289407e993c6aa24da3fcb11bf4c166a
+      internalID: -46370407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Gloves_9
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 187
+        width: 13
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e144dd940e0461e4ab9e459d0d57d796
+      internalID: 270325588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Gloves_10
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 188
+        width: 13
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09670742a05744049bfd2df08b12272c
+      internalID: -1104101609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Gloves_11
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 188
+        width: 13
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e75375284ee6e3b46bf3a473099f428d
+      internalID: -1106353748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Gloves_12
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 56
+        width: 19
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19aa94cae1e944f40bc2fe4638de54c6
+      internalID: 1359242984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Gloves_13
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 56
+        width: 19
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1180334f03da75408c69a7250878a01
+      internalID: -304359197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Gloves_14
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 56
+        width: 19
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fb61469eb5d2eb4db26507bcbe4b8bb
+      internalID: -1281728018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Gloves_15
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 57
+        width: 19
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ce9591d3935576469a9f192b3ad9c53
+      internalID: 380347939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 60c80538e0be0654891ed4ef37eadfba
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Character_Idle_Gloves_0: 1396886562
+      Character_Idle_Gloves_1: 142692029
+      Character_Idle_Gloves_10: -1104101609
+      Character_Idle_Gloves_11: -1106353748
+      Character_Idle_Gloves_12: 1359242984
+      Character_Idle_Gloves_13: -304359197
+      Character_Idle_Gloves_14: -1281728018
+      Character_Idle_Gloves_15: 380347939
+      Character_Idle_Gloves_2: 10852075
+      Character_Idle_Gloves_3: 1758525183
+      Character_Idle_Gloves_4: -1652117618
+      Character_Idle_Gloves_5: -175179444
+      Character_Idle_Gloves_6: 1890241783
+      Character_Idle_Gloves_7: -690473105
+      Character_Idle_Gloves_8: -46370407
+      Character_Idle_Gloves_9: 270325588
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,930 @@
+fileFormatVersion: 2
+guid: d65f5d028e8a4dd4283cecb4c8f99bb1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 318906860104554260
+    second: Character_Attack_Gloves_0
+  - first:
+      213: -918338057280234198
+    second: Character_Attack_Gloves_1
+  - first:
+      213: 4569208918848601325
+    second: Character_Attack_Gloves_2
+  - first:
+      213: 6506697766749145806
+    second: Character_Attack_Gloves_3
+  - first:
+      213: 3799601522795864766
+    second: Character_Attack_Gloves_4
+  - first:
+      213: -9150930952298785174
+    second: Character_Attack_Gloves_5
+  - first:
+      213: 749736008573945060
+    second: Character_Attack_Gloves_6
+  - first:
+      213: 8823914460482718044
+    second: Character_Attack_Gloves_7
+  - first:
+      213: 2807146172710403476
+    second: Character_Attack_Gloves_8
+  - first:
+      213: -1433992010626200693
+    second: Character_Attack_Gloves_9
+  - first:
+      213: 4404925473242938680
+    second: Character_Attack_Gloves_10
+  - first:
+      213: -5363397814415706201
+    second: Character_Attack_Gloves_11
+  - first:
+      213: 2813971594231665702
+    second: Character_Attack_Gloves_12
+  - first:
+      213: 5124792991946931335
+    second: Character_Attack_Gloves_13
+  - first:
+      213: 7262151313482655116
+    second: Character_Attack_Gloves_14
+  - first:
+      213: 4517185489730598576
+    second: Character_Attack_Gloves_15
+  - first:
+      213: -8766763134093082718
+    second: Character_Attack_Gloves_16
+  - first:
+      213: 4694423279785370129
+    second: Character_Attack_Gloves_17
+  - first:
+      213: 3275307820501935728
+    second: Character_Attack_Gloves_18
+  - first:
+      213: 7981983906073009118
+    second: Character_Attack_Gloves_19
+  - first:
+      213: 7172616788787945442
+    second: Character_Attack_Gloves_20
+  - first:
+      213: 4971735193293028053
+    second: Character_Attack_Gloves_21
+  - first:
+      213: -6560456446229395746
+    second: Character_Attack_Gloves_22
+  - first:
+      213: -1392318969191455625
+    second: Character_Attack_Gloves_23
+  - first:
+      213: -2600525355181800922
+    second: Character_Attack_Gloves_24
+  - first:
+      213: 3197507377769081744
+    second: Character_Attack_Gloves_25
+  - first:
+      213: -4479940142230742757
+    second: Character_Attack_Gloves_26
+  - first:
+      213: 1426414861888477073
+    second: Character_Attack_Gloves_27
+  - first:
+      213: -4243121936901757584
+    second: Character_Attack_Gloves_28
+  - first:
+      213: 399567809182503771
+    second: Character_Attack_Gloves_29
+  - first:
+      213: 7665818420982228074
+    second: Character_Attack_Gloves_30
+  - first:
+      213: 3846158123750678988
+    second: Character_Attack_Gloves_31
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_0
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 444
+        width: 133
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41797f0891cfc6400800000000000000
+      internalID: 318906860104554260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_1
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 444
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2dd61807686143f0800000000000000
+      internalID: -918338057280234198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_2
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 444
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dec74809d47196f30800000000000000
+      internalID: 4569208918848601325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_3
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 443
+        width: 22
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eca09e7152f6c4a50800000000000000
+      internalID: 6506697766749145806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_4
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 445
+        width: 21
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb2e74e2475eab430800000000000000
+      internalID: 3799601522795864766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_5
+      rect:
+        serializedVersion: 2
+        x: 693
+        y: 440
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a669a1858cc510180800000000000000
+      internalID: -9150930952298785174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_6
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 441
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e48e527de8976a00800000000000000
+      internalID: 749736008573945060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_7
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 313
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5941816377d47a70800000000000000
+      internalID: 8823914460482718044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_8
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 316
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49d3009329cf4f620800000000000000
+      internalID: 2807146172710403476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_9
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 316
+        width: 17
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8b80eb2ddf691ce0800000000000000
+      internalID: -1433992010626200693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_10
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 315
+        width: 17
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83df6be2160712d30800000000000000
+      internalID: 4404925473242938680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_11
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 314
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a735a2ba126195b0800000000000000
+      internalID: -5363397814415706201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_12
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 319
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 624d732814c3d0720800000000000000
+      internalID: 2813971594231665702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_13
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 313
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78c7868e21cee1740800000000000000
+      internalID: 5124792991946931335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_14
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 317
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c852541a42858c460800000000000000
+      internalID: 7262151313482655116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_15
+      rect:
+        serializedVersion: 2
+        x: 696
+        y: 314
+        width: 18
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b6f0f3154440be30800000000000000
+      internalID: 4517185489730598576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_16
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 188
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2af346ab063365680800000000000000
+      internalID: -8766763134093082718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_17
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 185
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1126ee0d911f52140800000000000000
+      internalID: 4694423279785370129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_18
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 188
+        width: 17
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 076a3130c1b347d20800000000000000
+      internalID: 3275307820501935728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_19
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 187
+        width: 17
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edbdd5c7214b5ce60800000000000000
+      internalID: 7981983906073009118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_20
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 191
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ef55bd97f04a8360800000000000000
+      internalID: 7172616788787945442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_21
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 186
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5daf98121d62ff440800000000000000
+      internalID: 4971735193293028053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_22
+      rect:
+        serializedVersion: 2
+        x: 564
+        y: 189
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed64316fe9394f4a0800000000000000
+      internalID: -6560456446229395746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_23
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 185
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7742e4b364d7dace0800000000000000
+      internalID: -1392318969191455625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_24
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 186
+        width: 18
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6220ef6b7f319ebd0800000000000000
+      internalID: -2600525355181800922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_25
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 58
+        width: 21
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09bed9ad404df5c20800000000000000
+      internalID: 3197507377769081744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_26
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 58
+        width: 19
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b19d2572d2e04d1c0800000000000000
+      internalID: -4479940142230742757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_27
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 58
+        width: 19
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 197533962c4abc310800000000000000
+      internalID: 1426414861888477073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_28
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 58
+        width: 22
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 075ad4454176d15c0800000000000000
+      internalID: -4243121936901757584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_29
+      rect:
+        serializedVersion: 2
+        x: 564
+        y: 58
+        width: 21
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5311023ecc8b8500800000000000000
+      internalID: 399567809182503771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_30
+      rect:
+        serializedVersion: 2
+        x: 693
+        y: 57
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a64aa471d35726a60800000000000000
+      internalID: 7665818420982228074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Attack_Gloves_31
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 55
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc1642c8f6c406530800000000000000
+      internalID: 3846158123750678988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,754 @@
+fileFormatVersion: 2
+guid: ab25110c569e5cb4093852f1363f1244
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1485559693697157645
+    second: Character_Move_Boots_0
+  - first:
+      213: 6911669819759598539
+    second: Character_Move_Boots_1
+  - first:
+      213: 5929636297072581996
+    second: Character_Move_Boots_2
+  - first:
+      213: 4859104665838066077
+    second: Character_Move_Boots_3
+  - first:
+      213: -4405368921768307040
+    second: Character_Move_Boots_4
+  - first:
+      213: 3302624253104024835
+    second: Character_Move_Boots_5
+  - first:
+      213: 2844652817806972115
+    second: Character_Move_Boots_6
+  - first:
+      213: -4975640998419842746
+    second: Character_Move_Boots_7
+  - first:
+      213: -7745923651190228791
+    second: Character_Move_Boots_8
+  - first:
+      213: 8237049931920504414
+    second: Character_Move_Boots_9
+  - first:
+      213: 5952238466399560104
+    second: Character_Move_Boots_10
+  - first:
+      213: -2564060358746623241
+    second: Character_Move_Boots_11
+  - first:
+      213: -198647157921722398
+    second: Character_Move_Boots_12
+  - first:
+      213: 7376902172089945942
+    second: Character_Move_Boots_13
+  - first:
+      213: 6173882227761557432
+    second: Character_Move_Boots_14
+  - first:
+      213: 8681159926051145285
+    second: Character_Move_Boots_15
+  - first:
+      213: -2421735331492136682
+    second: Character_Move_Boots_16
+  - first:
+      213: 8496930370756171933
+    second: Character_Move_Boots_17
+  - first:
+      213: 6005049317644903611
+    second: Character_Move_Boots_18
+  - first:
+      213: 5307956842689182330
+    second: Character_Move_Boots_19
+  - first:
+      213: 6866601246363630716
+    second: Character_Move_Boots_20
+  - first:
+      213: -8625402410280290605
+    second: Character_Move_Boots_21
+  - first:
+      213: -1395729092479282199
+    second: Character_Move_Boots_22
+  - first:
+      213: 7883907496494036633
+    second: Character_Move_Boots_23
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Character_Move_Boots_0
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 431
+        width: 13
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c2bffbe54cb2724b9ba0f84b9d26ccf
+      internalID: -1485559693697157645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Boots_1
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 431
+        width: 13
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77cf0bb79fdfde84f9a0e3bb630a777a
+      internalID: 6911669819759598539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Boots_2
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 431
+        width: 13
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a67ffdf5043ca940990d47334925114
+      internalID: 5929636297072581996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Boots_3
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 431
+        width: 13
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6764253f82ec5d143bd375ce8a8a4db5
+      internalID: 4859104665838066077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Boots_4
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 431
+        width: 13
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 088f41ef8b09a1041bdc63a51cda39c8
+      internalID: -4405368921768307040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Boots_5
+      rect:
+        serializedVersion: 2
+        x: 697
+        y: 431
+        width: 13
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 186d862c369040e4ba42a73d5f640394
+      internalID: 3302624253104024835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Boots_6
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 303
+        width: 19
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76f52113b3fd2d146930022cfd1cf69c
+      internalID: 2844652817806972115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Boots_7
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 303
+        width: 14
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea413151d3d3aa04cbe8a6c9f97c70dd
+      internalID: -4975640998419842746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Boots_8
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 303
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b7bacf5063e3ff429e7a5ae5a6ba2af
+      internalID: -7745923651190228791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Boots_9
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 303
+        width: 15
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cd8a256914f160448deed3f02d9b387
+      internalID: 8237049931920504414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Boots_10
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 304
+        width: 8
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a82c97d8020b9ac4fa0c2e8dd10f1de0
+      internalID: 5952238466399560104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Boots_11
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 303
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 467762097fb87d140b71f611d194e2a3
+      internalID: -2564060358746623241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Boots_12
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 175
+        width: 19
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0abe7a2d20807a14fbc8b579927993f5
+      internalID: -198647157921722398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Boots_13
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 175
+        width: 14
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0e476670d635344b9629f6492782cef
+      internalID: 7376902172089945942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Boots_14
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 175
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42877821b756c754fb5cdce53ceb20cf
+      internalID: 6173882227761557432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Boots_15
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 175
+        width: 15
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fd08f4507b446f4591f08feee5ac7d6
+      internalID: 8681159926051145285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Boots_16
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 175
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad801b2b2a6495b449f0da7f4ed9d8cf
+      internalID: -2421735331492136682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Boots_17
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 175
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cb6de4ac1c57b64e99f5f1d2d33758f
+      internalID: 8496930370756171933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Boots_18
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 47
+        width: 13
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02404117e17525b46baa1c7ccd009efd
+      internalID: 6005049317644903611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Boots_19
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 47
+        width: 13
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 259e05b8222886c4b99c72d0fe6aca67
+      internalID: 5307956842689182330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Boots_20
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 47
+        width: 13
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abcc93586fb090740ae75da2eb202cbf
+      internalID: 6866601246363630716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Boots_21
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 47
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72ff09fd8eecb5242b5cfbcd4532a79d
+      internalID: -8625402410280290605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Boots_22
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 47
+        width: 13
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62580cdc1956a524592df66bce49629f
+      internalID: -1395729092479282199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Boots_23
+      rect:
+        serializedVersion: 2
+        x: 697
+        y: 47
+        width: 13
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16bee44a5c1bc7742a8fe8d9820da6cb
+      internalID: 7883907496494036633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: ef99c95f002eaf045898ccb7d125876e
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Character_Move_Boots_0: -1485559693697157645
+      Character_Move_Boots_1: 6911669819759598539
+      Character_Move_Boots_10: 5952238466399560104
+      Character_Move_Boots_11: -2564060358746623241
+      Character_Move_Boots_12: -198647157921722398
+      Character_Move_Boots_13: 7376902172089945942
+      Character_Move_Boots_14: 6173882227761557432
+      Character_Move_Boots_15: 8681159926051145285
+      Character_Move_Boots_16: -2421735331492136682
+      Character_Move_Boots_17: 8496930370756171933
+      Character_Move_Boots_18: 6005049317644903611
+      Character_Move_Boots_19: 5307956842689182330
+      Character_Move_Boots_2: 5929636297072581996
+      Character_Move_Boots_20: 6866601246363630716
+      Character_Move_Boots_21: -8625402410280290605
+      Character_Move_Boots_22: -1395729092479282199
+      Character_Move_Boots_23: 7883907496494036633
+      Character_Move_Boots_3: 4859104665838066077
+      Character_Move_Boots_4: -4405368921768307040
+      Character_Move_Boots_5: 3302624253104024835
+      Character_Move_Boots_6: 2844652817806972115
+      Character_Move_Boots_7: -4975640998419842746
+      Character_Move_Boots_8: -7745923651190228791
+      Character_Move_Boots_9: 8237049931920504414
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

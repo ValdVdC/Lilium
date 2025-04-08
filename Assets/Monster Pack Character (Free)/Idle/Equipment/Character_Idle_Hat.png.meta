@@ -1,0 +1,546 @@
+fileFormatVersion: 2
+guid: e0a95cb15c0f6e64296073022b620df4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6881776179288722084
+    second: Character_Idle_Hat_0
+  - first:
+      213: 3810506234743137815
+    second: Character_Idle_Hat_1
+  - first:
+      213: 7640806232208489565
+    second: Character_Idle_Hat_2
+  - first:
+      213: 6168505231492187222
+    second: Character_Idle_Hat_3
+  - first:
+      213: -7255504263794821585
+    second: Character_Idle_Hat_4
+  - first:
+      213: 2433433602029500904
+    second: Character_Idle_Hat_5
+  - first:
+      213: 2037150393007573733
+    second: Character_Idle_Hat_6
+  - first:
+      213: 2907752105015464453
+    second: Character_Idle_Hat_7
+  - first:
+      213: 5204157954674899163
+    second: Character_Idle_Hat_8
+  - first:
+      213: 6915539901573509584
+    second: Character_Idle_Hat_9
+  - first:
+      213: 3243027564868252000
+    second: Character_Idle_Hat_10
+  - first:
+      213: 8747316732119042327
+    second: Character_Idle_Hat_11
+  - first:
+      213: -4836626930036492190
+    second: Character_Idle_Hat_12
+  - first:
+      213: -5328479449881727112
+    second: Character_Idle_Hat_13
+  - first:
+      213: -428018000396490572
+    second: Character_Idle_Hat_14
+  - first:
+      213: -5597047003872258642
+    second: Character_Idle_Hat_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Character_Idle_Hat_0
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 450
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4aacf3e49faf08f50800000000000000
+      internalID: 6881776179288722084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Hat_1
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 451
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 716a6484b33a1e430800000000000000
+      internalID: 3810506234743137815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Hat_2
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 451
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5cb06419c8990a60800000000000000
+      internalID: 7640806232208489565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Hat_3
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 450
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6540b3e63deea9550800000000000000
+      internalID: 6168505231492187222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Hat_4
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 322
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f267d2a30554f4b90800000000000000
+      internalID: -7255504263794821585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Hat_5
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 323
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e9b779d7fa45c120800000000000000
+      internalID: 2433433602029500904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Hat_6
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 323
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ea83493d79654c10800000000000000
+      internalID: 2037150393007573733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Hat_7
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 322
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 502575232296a5820800000000000000
+      internalID: 2907752105015464453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Hat_8
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 194
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd8bb634612e83840800000000000000
+      internalID: 5204157954674899163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Hat_9
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 195
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d1345f76eee8ff50800000000000000
+      internalID: 6915539901573509584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Hat_10
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 195
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 061b5c0536c810d20800000000000000
+      internalID: 3243027564868252000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Hat_11
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 194
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71949cbf836b46970800000000000000
+      internalID: 8747316732119042327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Hat_12
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 67
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2683614ce69d0ecb0800000000000000
+      internalID: -4836626930036492190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Hat_13
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 68
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87fa4dcfb207d06b0800000000000000
+      internalID: -5328479449881727112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Hat_14
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 68
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b8e4e875ef5f0af0800000000000000
+      internalID: -428018000396490572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Idle_Hat_15
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 67
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea59707876b4352b0800000000000000
+      internalID: -5597047003872258642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Character_Idle_Hat_0: 6881776179288722084
+      Character_Idle_Hat_1: 3810506234743137815
+      Character_Idle_Hat_10: 3243027564868252000
+      Character_Idle_Hat_11: 8747316732119042327
+      Character_Idle_Hat_12: -4836626930036492190
+      Character_Idle_Hat_13: -5328479449881727112
+      Character_Idle_Hat_14: -428018000396490572
+      Character_Idle_Hat_15: -5597047003872258642
+      Character_Idle_Hat_2: 7640806232208489565
+      Character_Idle_Hat_3: 6168505231492187222
+      Character_Idle_Hat_4: -7255504263794821585
+      Character_Idle_Hat_5: 2433433602029500904
+      Character_Idle_Hat_6: 2037150393007573733
+      Character_Idle_Hat_7: 2907752105015464453
+      Character_Idle_Hat_8: 5204157954674899163
+      Character_Idle_Hat_9: 6915539901573509584
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

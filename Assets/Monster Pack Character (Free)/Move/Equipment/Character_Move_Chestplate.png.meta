@@ -1,0 +1,754 @@
+fileFormatVersion: 2
+guid: 932abbb0fb4554d46a38c97e384c190c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2734240772789596177
+    second: Character_Move_Chestplate_0
+  - first:
+      213: -9043416342755372892
+    second: Character_Move_Chestplate_1
+  - first:
+      213: 2188037354929021096
+    second: Character_Move_Chestplate_2
+  - first:
+      213: 3058403009930733994
+    second: Character_Move_Chestplate_3
+  - first:
+      213: -239775936697048917
+    second: Character_Move_Chestplate_4
+  - first:
+      213: -2988454194070995359
+    second: Character_Move_Chestplate_5
+  - first:
+      213: -2767400140137686517
+    second: Character_Move_Chestplate_6
+  - first:
+      213: -1913098227162267093
+    second: Character_Move_Chestplate_7
+  - first:
+      213: -1686168189236325152
+    second: Character_Move_Chestplate_8
+  - first:
+      213: 2246520813838884674
+    second: Character_Move_Chestplate_9
+  - first:
+      213: 4836589634872197095
+    second: Character_Move_Chestplate_10
+  - first:
+      213: -8025932741711780926
+    second: Character_Move_Chestplate_11
+  - first:
+      213: -1426154460847570004
+    second: Character_Move_Chestplate_12
+  - first:
+      213: 700856374120100315
+    second: Character_Move_Chestplate_13
+  - first:
+      213: -2251163078797847493
+    second: Character_Move_Chestplate_14
+  - first:
+      213: 200919137757042592
+    second: Character_Move_Chestplate_15
+  - first:
+      213: 8427278663058848587
+    second: Character_Move_Chestplate_16
+  - first:
+      213: 6862705419358771200
+    second: Character_Move_Chestplate_17
+  - first:
+      213: 1590736410575074604
+    second: Character_Move_Chestplate_18
+  - first:
+      213: -465265833824157944
+    second: Character_Move_Chestplate_19
+  - first:
+      213: 4570613913615555914
+    second: Character_Move_Chestplate_20
+  - first:
+      213: 6855338907609678085
+    second: Character_Move_Chestplate_21
+  - first:
+      213: 4972822096983692522
+    second: Character_Move_Chestplate_22
+  - first:
+      213: -2547347265304346928
+    second: Character_Move_Chestplate_23
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Character_Move_Chestplate_0
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 441
+        width: 13
+        height: 12
+      alignment: 9
+      pivot: {x: 0.5, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11073880f79f1f520800000000000000
+      internalID: 2734240772789596177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Chestplate_1
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 442
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a09a1610c45f7280800000000000000
+      internalID: -9043416342755372892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Chestplate_2
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 441
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a064dfa1687d5e10800000000000000
+      internalID: 2188037354929021096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Chestplate_3
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 442
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa928ea5551a17a20800000000000000
+      internalID: 3058403009930733994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Chestplate_4
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 442
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba06c735e052cacf0800000000000000
+      internalID: -239775936697048917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Chestplate_5
+      rect:
+        serializedVersion: 2
+        x: 697
+        y: 441
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16e3fd67eb0e686d0800000000000000
+      internalID: -2988454194070995359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Chestplate_6
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 314
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0a1abf1c383899d0800000000000000
+      internalID: -2767400140137686517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Chestplate_7
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 310
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2240956c4f4375e0800000000000000
+      internalID: -1913098227162267093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Chestplate_8
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 315
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e4510137f68998e0800000000000000
+      internalID: -1686168189236325152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Chestplate_9
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 315
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24f536117ce3d2f10800000000000000
+      internalID: 2246520813838884674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Chestplate_10
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 314
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7efb4e6c5a40f1340800000000000000
+      internalID: 4836589634872197095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Chestplate_11
+      rect:
+        serializedVersion: 2
+        x: 696
+        y: 314
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c3a713d1b82e9090800000000000000
+      internalID: -8025932741711780926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Chestplate_12
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 186
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca3875ee218453ce0800000000000000
+      internalID: -1426154460847570004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Chestplate_13
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 182
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd13ff1b821f9b900800000000000000
+      internalID: 700856374120100315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Chestplate_14
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 187
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3497c46b1342c0e0800000000000000
+      internalID: -2251163078797847493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Chestplate_15
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 187
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a7169a24eec9c200800000000000000
+      internalID: 200919137757042592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Chestplate_16
+      rect:
+        serializedVersion: 2
+        x: 572
+        y: 186
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4bf9de5b45b3f470800000000000000
+      internalID: 8427278663058848587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Chestplate_17
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 186
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 008170ff73a3d3f50800000000000000
+      internalID: 6862705419358771200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Chestplate_18
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 56
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c257b9b565e631610800000000000000
+      internalID: 1590736410575074604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Chestplate_19
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 57
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80ff8c0703b0b89f0800000000000000
+      internalID: -465265833824157944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Chestplate_20
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 58
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4d538663251e6f30800000000000000
+      internalID: 4570613913615555914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Chestplate_21
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 57
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5014df25a6e032f50800000000000000
+      internalID: 6855338907609678085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Chestplate_22
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 60
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae41ded9953030540800000000000000
+      internalID: 4972822096983692522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Move_Chestplate_23
+      rect:
+        serializedVersion: 2
+        x: 697
+        y: 58
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0deb8fb982106acd0800000000000000
+      internalID: -2547347265304346928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: edea5bcdc789e1b45a70a9fa9fcdb6a6
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Character_Move_Chestplate_0: 2734240772789596177
+      Character_Move_Chestplate_1: -9043416342755372892
+      Character_Move_Chestplate_10: 4836589634872197095
+      Character_Move_Chestplate_11: -8025932741711780926
+      Character_Move_Chestplate_12: -1426154460847570004
+      Character_Move_Chestplate_13: 700856374120100315
+      Character_Move_Chestplate_14: -2251163078797847493
+      Character_Move_Chestplate_15: 200919137757042592
+      Character_Move_Chestplate_16: 8427278663058848587
+      Character_Move_Chestplate_17: 6862705419358771200
+      Character_Move_Chestplate_18: 1590736410575074604
+      Character_Move_Chestplate_19: -465265833824157944
+      Character_Move_Chestplate_2: 2188037354929021096
+      Character_Move_Chestplate_20: 4570613913615555914
+      Character_Move_Chestplate_21: 6855338907609678085
+      Character_Move_Chestplate_22: 4972822096983692522
+      Character_Move_Chestplate_23: -2547347265304346928
+      Character_Move_Chestplate_3: 3058403009930733994
+      Character_Move_Chestplate_4: -239775936697048917
+      Character_Move_Chestplate_5: -2988454194070995359
+      Character_Move_Chestplate_6: -2767400140137686517
+      Character_Move_Chestplate_7: -1913098227162267093
+      Character_Move_Chestplate_8: -1686168189236325152
+      Character_Move_Chestplate_9: 2246520813838884674
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
