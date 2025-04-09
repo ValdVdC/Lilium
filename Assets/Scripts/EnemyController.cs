@@ -17,18 +17,18 @@ public class EnemyController : MonoBehaviour
     }
 
     public EquipmentSprites body;
-    public EquipmentSprites helmet;
-    public EquipmentSprites chestplate;
-    public EquipmentSprites gloves;
-    public EquipmentSprites sword;
-    public EquipmentSprites leggings;
-    public EquipmentSprites boots;
 
     public float frameRate = 0.15f;
 
     private float animationTimer = 0f;
     private int currentFrame = 0;
     private EnemyAI ai;
+
+    [Header("Footstep Audio")]
+    public AudioSource footstepAudioSource;
+    public AudioClip[] footstepClips;
+    public float footstepDelay = 0.3f;
+    private float footstepTimer = 0f;
 
     void Start()
     {
@@ -46,6 +46,12 @@ public class EnemyController : MonoBehaviour
         {
             if (ai.isMoving)
             {
+                footstepTimer -= frameRate;
+                if (footstepTimer <= 0f)
+                {
+                     PlayFootstepSound();
+                     footstepTimer = footstepDelay;
+                }
                 return ai.currentDirection switch
                 {
                     EnemyAI.FacingDirection.Down => part.walkDown,
@@ -77,12 +83,6 @@ public class EnemyController : MonoBehaviour
 
             // Atualiza cada parte
             UpdatePart(body, GetSprites(body));
-            UpdatePart(helmet, GetSprites(helmet));
-            UpdatePart(chestplate, GetSprites(chestplate));
-            UpdatePart(gloves, GetSprites(gloves));
-            UpdatePart(sword, GetSprites(sword));
-            UpdatePart(leggings, GetSprites(leggings));
-            UpdatePart(boots, GetSprites(boots));
         }
     }
 
@@ -92,6 +92,14 @@ public class EnemyController : MonoBehaviour
         {
             int frameIndex = currentFrame % frames.Length;
             part.renderer.sprite = frames[frameIndex];
+        }
+    }
+    void PlayFootstepSound()
+    {
+        if (footstepClips.Length > 0 && footstepAudioSource != null)
+        {
+            int index = Random.Range(0, footstepClips.Length);
+            footstepAudioSource.PlayOneShot(footstepClips[index]);
         }
     }
 }
