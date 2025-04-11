@@ -23,6 +23,7 @@ public class TorchLightSpawner : MonoBehaviour
                 {
                     // Instancia a luz no centro do tile
                     Vector3 worldPos = torchTilemap.GetCellCenterWorld(tilePos);
+                    worldPos.y -= 12f;
                     Instantiate(lightPrefab, worldPos, Quaternion.identity);
                 }
             }

@@ -44,6 +44,9 @@ TagManager:
   - name: Player
     uniqueID: 763256059
     locked: 0
+  - name: Enemy
+    uniqueID: 4106610449
+    locked: 0
   - name: TopStructures
     uniqueID: 1423374437
     locked: 0
