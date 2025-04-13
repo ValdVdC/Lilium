@@ -2,25 +2,22 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [System.Serializable]
-    public class EquipmentSprites
-    {
-        public SpriteRenderer renderer;
-        public Sprite[] idleDown;
-        public Sprite[] walkDown;
-        public Sprite[] idleUp;
-        public Sprite[] walkUp;
-        public Sprite[] idleLeft;
-        public Sprite[] walkLeft;
-        public Sprite[] idleRight;
-        public Sprite[] walkRight;
-        public Sprite[] attackDown;
-        public Sprite[] attackUp;
-        public Sprite[] attackLeft;
-        public Sprite[] attackRight;
-    }
-
-    public EquipmentSprites body;
+    // Sprites de animação diretamente no controller, similar ao PlayerController
+    public SpriteRenderer spriteRenderer;
+    
+    // Sprites para cada animação
+    public Sprite[] idleDownSprites;
+    public Sprite[] walkDownSprites;
+    public Sprite[] idleUpSprites;
+    public Sprite[] walkUpSprites;
+    public Sprite[] idleLeftSprites;
+    public Sprite[] walkLeftSprites;
+    public Sprite[] idleRightSprites;
+    public Sprite[] walkRightSprites;
+    public Sprite[] attackDownSprites;
+    public Sprite[] attackUpSprites;
+    public Sprite[] attackLeftSprites;
+    public Sprite[] attackRightSprites;
 
     public float frameRate = 0.15f;
     public float attackFrameRate = 0.1f;
@@ -53,6 +50,10 @@ public class EnemyController : MonoBehaviour
     {
         ai = GetComponent<EnemyAI>();
         footstepTimer = footstepDelay;
+        
+        // Obter o SpriteRenderer se não estiver atribuído
+        if (spriteRenderer == null)
+            spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -79,7 +80,7 @@ public class EnemyController : MonoBehaviour
         if (currentAnimationSprites != null && currentAnimationSprites.Length > 0)
         {
             int frameIndex = Mathf.Min(currentFrame, currentAnimationSprites.Length - 1);
-            body.renderer.sprite = currentAnimationSprites[frameIndex];
+            spriteRenderer.sprite = currentAnimationSprites[frameIndex];
         }
     }
     
@@ -100,11 +101,11 @@ public class EnemyController : MonoBehaviour
             // Seleciona a animação de ataque baseada na direção
             currentAnimationSprites = ai.currentDirection switch
             {
-                EnemyAI.FacingDirection.Down => body.attackDown,
-                EnemyAI.FacingDirection.Up => body.attackUp,
-                EnemyAI.FacingDirection.Left => body.attackLeft,
-                EnemyAI.FacingDirection.Right => body.attackRight,
-                _ => body.attackDown
+                EnemyAI.FacingDirection.Down => attackDownSprites,
+                EnemyAI.FacingDirection.Up => attackUpSprites,
+                EnemyAI.FacingDirection.Left => attackLeftSprites,
+                EnemyAI.FacingDirection.Right => attackRightSprites,
+                _ => attackDownSprites
             };
         }
         // Lógica para animação de movimento/idle
@@ -116,22 +117,22 @@ public class EnemyController : MonoBehaviour
             {
                 currentAnimationSprites = ai.currentDirection switch
                 {
-                    EnemyAI.FacingDirection.Down => body.walkDown,
-                    EnemyAI.FacingDirection.Up => body.walkUp,
-                    EnemyAI.FacingDirection.Left => body.walkLeft,
-                    EnemyAI.FacingDirection.Right => body.walkRight,
-                    _ => body.walkDown
+                    EnemyAI.FacingDirection.Down => walkDownSprites,
+                    EnemyAI.FacingDirection.Up => walkUpSprites,
+                    EnemyAI.FacingDirection.Left => walkLeftSprites,
+                    EnemyAI.FacingDirection.Right => walkRightSprites,
+                    _ => walkDownSprites
                 };
             }
             else
             {
                 currentAnimationSprites = ai.currentDirection switch
                 {
-                    EnemyAI.FacingDirection.Down => body.idleDown,
-                    EnemyAI.FacingDirection.Up => body.idleUp,
-                    EnemyAI.FacingDirection.Left => body.idleLeft,
-                    EnemyAI.FacingDirection.Right => body.idleRight,
-                    _ => body.idleDown
+                    EnemyAI.FacingDirection.Down => idleDownSprites,
+                    EnemyAI.FacingDirection.Up => idleUpSprites,
+                    EnemyAI.FacingDirection.Left => idleLeftSprites,
+                    EnemyAI.FacingDirection.Right => idleRightSprites,
+                    _ => idleDownSprites
                 };
             }
         }

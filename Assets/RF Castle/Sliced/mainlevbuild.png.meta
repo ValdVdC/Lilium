@@ -9258,28 +9258,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SimplePillar_0
-      rect:
-        serializedVersion: 2
-        x: 336
-        y: 512
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2a485172db532f24c96efc828ed9652c
-      internalID: 21300570
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: mainlevbuild_286
       rect:
         serializedVersion: 2
@@ -9874,28 +9852,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SimplePillar_1
-      rect:
-        serializedVersion: 2
-        x: 336
-        y: 496
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a87c1f3db9aae094cb7780ef343d057c
-      internalID: 21300626
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: mainlevbuild_314
       rect:
         serializedVersion: 2
@@ -10424,28 +10380,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SimplePillar_2
-      rect:
-        serializedVersion: 2
-        x: 336
-        y: 480
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: db0808d610182804eb0ea223443d9ed9
-      internalID: 21300676
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: mainlevbuild_339
       rect:
         serializedVersion: 2
@@ -10842,13 +10776,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SimplePillar_3
+      name: SimplePillar
       rect:
         serializedVersion: 2
         x: 336
-        y: 464
+        y: 448
         width: 16
-        height: 16
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -11255,28 +11189,6 @@ TextureImporter:
       bones: []
       spriteID: 6741ec30130ecbf44a6f031c56857148
       internalID: 21300750
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SimplePillar_4
-      rect:
-        serializedVersion: 2
-        x: 336
-        y: 448
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 626475d5076af904e91f0703ef7e892c
-      internalID: 21300752
       vertices: []
       indices: 
       edges: []
@@ -24055,11 +23967,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      SimplePillar_0: 21300570
-      SimplePillar_1: 21300626
+      SimplePillar: 21300714
+      SimplePillar_1: 21300752
       SimplePillar_2: 21300676
-      SimplePillar_3: 21300714
-      SimplePillar_4: 21300752
       brownmediumfloor_0: 21300866
       brownmediumfloor_1: 21300868
       brownmediumfloor_10: 21300986
