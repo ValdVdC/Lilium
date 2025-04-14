@@ -3208,7 +3208,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_10
+      name: FancyWall_0
       rect:
         serializedVersion: 2
         x: 368
@@ -3230,7 +3230,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_11
+      name: FancyWall_2
       rect:
         serializedVersion: 2
         x: 384
@@ -3252,7 +3252,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_12
+      name: FancyWall_3
       rect:
         serializedVersion: 2
         x: 400
@@ -3274,7 +3274,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_13
+      name: FancyWall_4
       rect:
         serializedVersion: 2
         x: 416
@@ -3296,7 +3296,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_14
+      name: FancyWall_5
       rect:
         serializedVersion: 2
         x: 432
@@ -3318,7 +3318,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_15
+      name: FancyWall_6
       rect:
         serializedVersion: 2
         x: 448
@@ -3340,7 +3340,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_16
+      name: FancyWall_7
       rect:
         serializedVersion: 2
         x: 464
@@ -3362,7 +3362,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_17
+      name: FancyWall_8
       rect:
         serializedVersion: 2
         x: 480
@@ -3780,7 +3780,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_36
+      name: FancyWall_9
       rect:
         serializedVersion: 2
         x: 368
@@ -3802,7 +3802,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_37
+      name: FancyWall_10
       rect:
         serializedVersion: 2
         x: 384
@@ -3824,7 +3824,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_38
+      name: FancyWall_11
       rect:
         serializedVersion: 2
         x: 400
@@ -3846,7 +3846,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_39
+      name: FancyWall_12
       rect:
         serializedVersion: 2
         x: 416
@@ -3868,7 +3868,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_40
+      name: FancyWall_13
       rect:
         serializedVersion: 2
         x: 432
@@ -3890,7 +3890,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_41
+      name: FancyWall_14
       rect:
         serializedVersion: 2
         x: 448
@@ -3912,7 +3912,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_42
+      name: FancyWall_15
       rect:
         serializedVersion: 2
         x: 464
@@ -3934,7 +3934,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_43
+      name: FancyWall_16
       rect:
         serializedVersion: 2
         x: 480
@@ -4352,7 +4352,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_62
+      name: FancyWall_17
       rect:
         serializedVersion: 2
         x: 368
@@ -4374,7 +4374,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_63
+      name: FancyWall_18
       rect:
         serializedVersion: 2
         x: 384
@@ -4396,7 +4396,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_64
+      name: FancyWall_19
       rect:
         serializedVersion: 2
         x: 400
@@ -4418,7 +4418,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_65
+      name: FancyWall_20
       rect:
         serializedVersion: 2
         x: 416
@@ -4440,7 +4440,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_66
+      name: FancyWall_21
       rect:
         serializedVersion: 2
         x: 432
@@ -4462,7 +4462,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_67
+      name: FancyWall_22
       rect:
         serializedVersion: 2
         x: 448
@@ -4484,7 +4484,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_68
+      name: FancyWall_23
       rect:
         serializedVersion: 2
         x: 464
@@ -4506,7 +4506,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_69
+      name: FancyWall_24
       rect:
         serializedVersion: 2
         x: 480
@@ -4968,7 +4968,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_90
+      name: FancyWall_25
       rect:
         serializedVersion: 2
         x: 368
@@ -4990,7 +4990,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_91
+      name: FancyWall_26
       rect:
         serializedVersion: 2
         x: 384
@@ -5012,7 +5012,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_92
+      name: FancyWall_27
       rect:
         serializedVersion: 2
         x: 400
@@ -5034,7 +5034,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_93
+      name: FancyWall_28
       rect:
         serializedVersion: 2
         x: 416
@@ -5056,7 +5056,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_94
+      name: FancyWall_29
       rect:
         serializedVersion: 2
         x: 432
@@ -5078,7 +5078,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_95
+      name: FancyWall_30
       rect:
         serializedVersion: 2
         x: 448
@@ -5100,7 +5100,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_96
+      name: FancyWall_31
       rect:
         serializedVersion: 2
         x: 464
@@ -5122,7 +5122,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mainlevbuild_97
+      name: FancyWall_32
       rect:
         serializedVersion: 2
         x: 480
@@ -23967,6 +23967,43 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      1: 21300126
+      FancyWall_0: 21300020
+      FancyWall_10: 21300074
+      FancyWall_11: 21300076
+      FancyWall_12: 21300078
+      FancyWall_13: 21300080
+      FancyWall_14: 21300082
+      FancyWall_15: 21300084
+      FancyWall_16: 21300086
+      FancyWall_17: 21300124
+      FancyWall_18: 21300126
+      FancyWall_19: 21300128
+      FancyWall_2: 21300022
+      FancyWall_20: 21300130
+      FancyWall_21: 21300132
+      FancyWall_22: 21300134
+      FancyWall_23: 21300136
+      FancyWall_24: 21300138
+      FancyWall_25: 21300180
+      FancyWall_26: 21300182
+      FancyWall_27: 21300184
+      FancyWall_28: 21300186
+      FancyWall_29: 21300188
+      FancyWall_3: 21300024
+      FancyWall_30: 21300190
+      FancyWall_31: 21300192
+      FancyWall_319: 21300078
+      FancyWall_32: 21300194
+      FancyWall_4: 21300026
+      FancyWall_5: 21300028
+      FancyWall_6: 21300030
+      FancyWall_7: 21300032
+      FancyWall_8: 21300034
+      FancyWall_9: 21300072
+      FancyWallmainlevbuild_17: 21300034
+      FancyWallmainlevbuild_65: 21300130
+      FancyWallmainlevbuild_68: 21300136
       SimplePillar: 21300714
       SimplePillar_1: 21300752
       SimplePillar_2: 21300676
@@ -23988,7 +24025,6 @@ TextureImporter:
       brownmediumfloor_9: 21300984
       mainlevbuild_0: 21300000
       mainlevbuild_1: 21300002
-      mainlevbuild_10: 21300020
       mainlevbuild_100: 21300200
       mainlevbuild_101: 21300202
       mainlevbuild_102: 21300204
@@ -23999,7 +24035,6 @@ TextureImporter:
       mainlevbuild_107: 21300214
       mainlevbuild_108: 21300216
       mainlevbuild_109: 21300218
-      mainlevbuild_11: 21300022
       mainlevbuild_110: 21300220
       mainlevbuild_111: 21300222
       mainlevbuild_112: 21300224
@@ -24010,7 +24045,6 @@ TextureImporter:
       mainlevbuild_117: 21300234
       mainlevbuild_118: 21300236
       mainlevbuild_119: 21300238
-      mainlevbuild_12: 21300024
       mainlevbuild_120: 21300240
       mainlevbuild_121: 21300242
       mainlevbuild_122: 21300244
@@ -24021,7 +24055,6 @@ TextureImporter:
       mainlevbuild_127: 21300254
       mainlevbuild_128: 21300256
       mainlevbuild_129: 21300258
-      mainlevbuild_13: 21300026
       mainlevbuild_130: 21300260
       mainlevbuild_131: 21300262
       mainlevbuild_132: 21300264
@@ -24032,7 +24065,6 @@ TextureImporter:
       mainlevbuild_137: 21300274
       mainlevbuild_138: 21300276
       mainlevbuild_139: 21300278
-      mainlevbuild_14: 21300028
       mainlevbuild_140: 21300280
       mainlevbuild_141: 21300282
       mainlevbuild_142: 21300284
@@ -24043,7 +24075,6 @@ TextureImporter:
       mainlevbuild_147: 21300294
       mainlevbuild_148: 21300296
       mainlevbuild_149: 21300298
-      mainlevbuild_15: 21300030
       mainlevbuild_150: 21300300
       mainlevbuild_151: 21300302
       mainlevbuild_152: 21300304
@@ -24054,7 +24085,6 @@ TextureImporter:
       mainlevbuild_157: 21300314
       mainlevbuild_158: 21300316
       mainlevbuild_159: 21300318
-      mainlevbuild_16: 21300032
       mainlevbuild_160: 21300320
       mainlevbuild_161: 21300322
       mainlevbuild_162: 21300324
@@ -24065,7 +24095,6 @@ TextureImporter:
       mainlevbuild_167: 21300334
       mainlevbuild_168: 21300336
       mainlevbuild_169: 21300338
-      mainlevbuild_17: 21300034
       mainlevbuild_170: 21300340
       mainlevbuild_171: 21300342
       mainlevbuild_172: 21300344
@@ -24272,7 +24301,6 @@ TextureImporter:
       mainlevbuild_356: 21300712
       mainlevbuild_358: 21300716
       mainlevbuild_359: 21300718
-      mainlevbuild_36: 21300072
       mainlevbuild_360: 21300720
       mainlevbuild_361: 21300722
       mainlevbuild_362: 21300724
@@ -24283,7 +24311,6 @@ TextureImporter:
       mainlevbuild_367: 21300734
       mainlevbuild_368: 21300736
       mainlevbuild_369: 21300738
-      mainlevbuild_37: 21300074
       mainlevbuild_370: 21300740
       mainlevbuild_371: 21300742
       mainlevbuild_372: 21300744
@@ -24293,7 +24320,6 @@ TextureImporter:
       mainlevbuild_377: 21300754
       mainlevbuild_378: 21300756
       mainlevbuild_379: 21300758
-      mainlevbuild_38: 21300076
       mainlevbuild_380: 21300760
       mainlevbuild_381: 21300762
       mainlevbuild_382: 21300764
@@ -24304,7 +24330,6 @@ TextureImporter:
       mainlevbuild_387: 21300774
       mainlevbuild_388: 21300776
       mainlevbuild_389: 21300778
-      mainlevbuild_39: 21300078
       mainlevbuild_390: 21300780
       mainlevbuild_391: 21300782
       mainlevbuild_392: 21300784
@@ -24316,7 +24341,6 @@ TextureImporter:
       mainlevbuild_398: 21300796
       mainlevbuild_399: 21300798
       mainlevbuild_4: 21300008
-      mainlevbuild_40: 21300080
       mainlevbuild_400: 21300800
       mainlevbuild_401: 21300802
       mainlevbuild_402: 21300804
@@ -24327,7 +24351,6 @@ TextureImporter:
       mainlevbuild_407: 21300814
       mainlevbuild_408: 21300816
       mainlevbuild_409: 21300818
-      mainlevbuild_41: 21300082
       mainlevbuild_410: 21300820
       mainlevbuild_411: 21300822
       mainlevbuild_412: 21300824
@@ -24338,7 +24361,6 @@ TextureImporter:
       mainlevbuild_417: 21300834
       mainlevbuild_418: 21300836
       mainlevbuild_419: 21300838
-      mainlevbuild_42: 21300084
       mainlevbuild_420: 21300840
       mainlevbuild_421: 21300842
       mainlevbuild_422: 21300844
@@ -24349,7 +24371,6 @@ TextureImporter:
       mainlevbuild_427: 21300854
       mainlevbuild_428: 21300856
       mainlevbuild_429: 21300858
-      mainlevbuild_43: 21300086
       mainlevbuild_430: 21300860
       mainlevbuild_431: 21300862
       mainlevbuild_432: 21300864
@@ -24544,7 +24565,6 @@ TextureImporter:
       mainlevbuild_617: 21301234
       mainlevbuild_618: 21301236
       mainlevbuild_619: 21301238
-      mainlevbuild_62: 21300124
       mainlevbuild_620: 21301240
       mainlevbuild_621: 21301242
       mainlevbuild_622: 21301244
@@ -24555,7 +24575,6 @@ TextureImporter:
       mainlevbuild_627: 21301254
       mainlevbuild_628: 21301256
       mainlevbuild_629: 21301258
-      mainlevbuild_63: 21300126
       mainlevbuild_630: 21301260
       mainlevbuild_631: 21301262
       mainlevbuild_632: 21301264
@@ -24566,7 +24585,6 @@ TextureImporter:
       mainlevbuild_637: 21301274
       mainlevbuild_638: 21301276
       mainlevbuild_639: 21301278
-      mainlevbuild_64: 21300128
       mainlevbuild_640: 21301280
       mainlevbuild_641: 21301282
       mainlevbuild_642: 21301284
@@ -24577,7 +24595,6 @@ TextureImporter:
       mainlevbuild_647: 21301294
       mainlevbuild_648: 21301296
       mainlevbuild_649: 21301298
-      mainlevbuild_65: 21300130
       mainlevbuild_650: 21301300
       mainlevbuild_651: 21301302
       mainlevbuild_652: 21301304
@@ -24588,7 +24605,6 @@ TextureImporter:
       mainlevbuild_657: 21301314
       mainlevbuild_658: 21301316
       mainlevbuild_659: 21301318
-      mainlevbuild_66: 21300132
       mainlevbuild_660: 21301320
       mainlevbuild_661: 21301322
       mainlevbuild_662: 21301324
@@ -24599,7 +24615,6 @@ TextureImporter:
       mainlevbuild_667: 21301334
       mainlevbuild_668: 21301336
       mainlevbuild_669: 21301338
-      mainlevbuild_67: 21300134
       mainlevbuild_670: 21301340
       mainlevbuild_671: 21301342
       mainlevbuild_672: 21301344
@@ -24610,7 +24625,6 @@ TextureImporter:
       mainlevbuild_677: 21301354
       mainlevbuild_678: 21301356
       mainlevbuild_679: 21301358
-      mainlevbuild_68: 21300136
       mainlevbuild_680: 21301360
       mainlevbuild_681: 21301362
       mainlevbuild_682: 21301364
@@ -24621,7 +24635,6 @@ TextureImporter:
       mainlevbuild_687: 21301374
       mainlevbuild_688: 21301376
       mainlevbuild_689: 21301378
-      mainlevbuild_69: 21300138
       mainlevbuild_690: 21301380
       mainlevbuild_691: 21301382
       mainlevbuild_692: 21301384
@@ -24855,7 +24868,6 @@ TextureImporter:
       mainlevbuild_898: 21301796
       mainlevbuild_899: 21301798
       mainlevbuild_9: 21300018
-      mainlevbuild_90: 21300180
       mainlevbuild_900: 21301800
       mainlevbuild_901: 21301802
       mainlevbuild_902: 21301804
@@ -24866,7 +24878,6 @@ TextureImporter:
       mainlevbuild_907: 21301814
       mainlevbuild_908: 21301816
       mainlevbuild_909: 21301818
-      mainlevbuild_91: 21300182
       mainlevbuild_910: 21301820
       mainlevbuild_911: 21301822
       mainlevbuild_912: 21301824
@@ -24877,7 +24888,6 @@ TextureImporter:
       mainlevbuild_917: 21301834
       mainlevbuild_918: 21301836
       mainlevbuild_919: 21301838
-      mainlevbuild_92: 21300184
       mainlevbuild_920: 21301840
       mainlevbuild_921: 21301842
       mainlevbuild_922: 21301844
@@ -24888,7 +24898,6 @@ TextureImporter:
       mainlevbuild_927: 21301854
       mainlevbuild_928: 21301856
       mainlevbuild_929: 21301858
-      mainlevbuild_93: 21300186
       mainlevbuild_930: 21301860
       mainlevbuild_931: 21301862
       mainlevbuild_932: 21301864
@@ -24899,7 +24908,6 @@ TextureImporter:
       mainlevbuild_937: 21301874
       mainlevbuild_938: 21301876
       mainlevbuild_939: 21301878
-      mainlevbuild_94: 21300188
       mainlevbuild_940: 21301880
       mainlevbuild_941: 21301882
       mainlevbuild_942: 21301884
@@ -24910,7 +24918,6 @@ TextureImporter:
       mainlevbuild_947: 21301894
       mainlevbuild_948: 21301896
       mainlevbuild_949: 21301898
-      mainlevbuild_95: 21300190
       mainlevbuild_950: 21301900
       mainlevbuild_951: 21301902
       mainlevbuild_952: 21301904
@@ -24918,8 +24925,6 @@ TextureImporter:
       mainlevbuild_954: 21301908
       mainlevbuild_955: 21301910
       mainlevbuild_956: 21301912
-      mainlevbuild_96: 21300192
-      mainlevbuild_97: 21300194
       mainlevbuild_98: 21300196
       mainlevbuild_99: 21300198
       p: 21300714
