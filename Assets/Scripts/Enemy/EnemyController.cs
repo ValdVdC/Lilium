@@ -173,7 +173,7 @@ public class EnemyController : MonoBehaviour
         {
             currentFrame = (currentFrame + 1) % currentAnimationSprites.Length;
             
-            // Som de passos
+            // Som de passos apenas quando estiver se movendo (não durante o retorno à posição inicial)
             if (ai.isMoving)
             {
                 footstepTimer -= frameRate;
@@ -246,7 +246,7 @@ public class EnemyController : MonoBehaviour
         Gizmos.color = Color.red;
         Vector2 hitPosition = transform.position;
         
-        // Se o componente AI não estiver disponível durante o editor, use uma direção padrão
+        // Se o componente AI não estiver disponível durante o editor, usa uma direção padrão
         if (ai != null)
         {
             switch (ai.currentDirection)

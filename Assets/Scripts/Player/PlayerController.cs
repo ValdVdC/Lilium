@@ -29,6 +29,9 @@ public class PlayerController : MonoBehaviour
     public float footstepDelay = 0.3f;
     private float footstepTimer = 0f;
 
+    [Header("Interaction")]
+    public InteractorController interactor;
+
     private Vector2 movement;
     private Vector2 currentVelocity;
     private Vector2 targetVelocity;
@@ -49,10 +52,14 @@ public class PlayerController : MonoBehaviour
 
         spriteRenderer.sprite = idleDownSprites[0];
         UpdateColliderForDirection();
+
+        if (interactor == null)
+            interactor = GetComponent<InteractorController>();
     }
 
     void Update()
     {
+        // Movimento do jogador
         targetVelocity.x = Input.GetAxisRaw("Horizontal");
         targetVelocity.y = Input.GetAxisRaw("Vertical");
 
@@ -192,5 +199,20 @@ public class PlayerController : MonoBehaviour
             int index = Random.Range(0, footstepClips.Length);
             footstepAudioSource.PlayOneShot(footstepClips[index]);
         }
+    }
+
+    // Método para ser chamado externamente para desativar ou reativar o movimento
+    public void SetMovementEnabled(bool enabled)
+    {
+        if (!enabled)
+        {
+            currentVelocity = Vector2.zero;
+            targetVelocity = Vector2.zero;
+            isMoving = false;
+        }
+        
+        // O script permanece habilitado, mas quando desabilitado o movimento
+        // não processará entradas, mantendo o jogador estático
+        this.enabled = enabled;
     }
 }

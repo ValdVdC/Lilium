@@ -1,19 +1,42 @@
 using UnityEngine;
 using Pathfinding;
+using System.Collections;
 
 public class EnemyAI : MonoBehaviour
 {
+    [Header("Referências e Movimento")]
     public Transform player;
     public float moveSpeed = 2f;
-    public float chaseRange = 5f;
-    public float approachRange = 2.5f; // Nova variável - range intermediário entre chase e attack
-    public float attackRange = 1.5f;
-    public float attackCooldown = 1.5f;
-    public float nextWaypointDistance = 0.7f; 
+    public float nextWaypointDistance = 0.7f;
     public float smoothTime = 0.3f;
 
+    [Header("Comportamento")]
+    public float chaseRange = 5f;
+    public float approachRange = 2.5f;
+    public float attackRange = 1.5f;
+    public float attackCooldown = 1.5f;
+    
+    [Header("Área de Atuação")]
+    public bool useOperationalArea = true;
+    public LayerMask operationalAreaLayer;
+    public string operationalAreaTag = "EnemyArea";
+    // Nova propriedade - ID de área específico para este inimigo
+    public string assignedAreaID = "default";
+    public bool useAreaID = false; // Se true, verifica o ID da área em vez de apenas a tag
+
+    [Header("Retorno à Posição Inicial")]
+    public float returnDelay = 5f;
+    public bool returnToStartPosition = true;
+    public FacingDirection initialDirection = FacingDirection.Down;
+    
+    // Tolerância para considerar que chegou à posição inicial
+    public float returnPositionTolerance = 0.2f;
+    // Tempo mínimo parado para confirmar que chegou à posição inicial
+    public float stationaryConfirmTime = 0.5f;
+    private float stationaryTimer = 0f;
+
     public enum FacingDirection { Down, Up, Left, Right }
-    public enum EnemyState { Idle, Moving, Approaching, Attacking }
+    public enum EnemyState { Idle, Moving, Approaching, Attacking, Returning }
 
     [HideInInspector] public FacingDirection currentDirection;
     [HideInInspector] public bool isMoving;
@@ -22,6 +45,10 @@ public class EnemyAI : MonoBehaviour
 
     private Rigidbody2D rb;
     private float lastAttackTime;
+    private Vector3 startPosition;
+    private bool isPlayerInRange = false;
+    private float timeOutOfRange = 0f;
+    private bool isReturning = false;
     
     // Componentes de pathfinding
     private Seeker seeker;
@@ -46,7 +73,7 @@ public class EnemyAI : MonoBehaviour
     public float obstacleDetectionRadius = 0.7f;
     public float obstacleAvoidanceStrength = 0.2f;
     
-    // Novas variáveis para os aprimoramentos
+    // Variáveis para os aprimoramentos
     public float nodeProximityMultiplier = 1.2f;
     public float edgeFollowingStrength = 0.3f;
     private bool isInAttackMode = false;
@@ -58,26 +85,44 @@ public class EnemyAI : MonoBehaviour
         currentState = EnemyState.Idle;
         lastPosition = rb.position;
         
-        // Inicia o primeiro cálculo de caminho
-        if (player != null) {
-            seeker.StartPath(transform.position, player.position, OnPathComplete);
-        }
+        // Salva a posição inicial
+        startPosition = transform.position;
+        
+        // Define a direção inicial configurada no Inspector
+        currentDirection = initialDirection;
     }
 
     void Update()
     {
-        if (player == null) return;
+    if (player == null) return;
 
-        // Se estiver no meio de um ataque, não faz nada até terminar
-        if (currentState == EnemyState.Attacking && !attackAnimationComplete)
+    // Se estiver no meio de um ataque, não faz nada até terminar
+    if (currentState == EnemyState.Attacking && !attackAnimationComplete)
+    {
+        return;
+    }
+
+    float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+    bool playerInOperationalArea = IsPlayerInOperationalArea();
+    bool canChasePlayer = !useOperationalArea || playerInOperationalArea;
+
+    // Verifica se o player está em range e se pode persegui-lo
+    bool newIsPlayerInRange = distanceToPlayer < chaseRange && canChasePlayer;
+    
+    // Se o estado de detecção do jogador mudou
+    if (isPlayerInRange != newIsPlayerInRange)
+    {
+        isPlayerInRange = newIsPlayerInRange;
+        
+        // Se o jogador saiu do alcance, pára o movimento
+        if (!isPlayerInRange && currentState != EnemyState.Returning)
         {
-            return;
+            StopMoving();
         }
-
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+    }
 
         // Verificação de "stuck" quando estiver se movendo
-        if (currentState == EnemyState.Moving || currentState == EnemyState.Approaching)
+        if (currentState == EnemyState.Moving || currentState == EnemyState.Approaching || currentState == EnemyState.Returning)
         {
             if (Vector2.Distance(rb.position, lastPosition) < stuckCheckDistance)
             {
@@ -87,9 +132,16 @@ public class EnemyAI : MonoBehaviour
                     isStuck = true;
                     Debug.Log("Inimigo preso! Recalculando caminho...");
                     
-                    // Adiciona um pequeno offset aleatório à posição do jogador para tentar um caminho diferente
-                    Vector2 randomOffset = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * 0.5f;
-                    seeker.StartPath(transform.position, player.position + (Vector3)randomOffset, OnPathComplete);
+                    if (currentState == EnemyState.Returning)
+                    {
+                        seeker.StartPath(transform.position, startPosition, OnPathComplete);
+                    }
+                    else
+                    {
+                        // Adiciona um pequeno offset aleatório à posição do jogador para tentar um caminho diferente
+                        Vector2 randomOffset = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * 0.5f;
+                        seeker.StartPath(transform.position, player.position + (Vector3)randomOffset, OnPathComplete);
+                    }
                     
                     // Força um salto para o próximo waypoint se possível
                     if (path != null && currentWaypoint < path.vectorPath.Count - 1)
@@ -107,76 +159,214 @@ public class EnemyAI : MonoBehaviour
             lastPosition = rb.position;
         }
 
-        // Verifica se pode atacar
-        if (distanceToPlayer <= attackRange && Time.time > lastAttackTime + attackCooldown)
+        // Lógica para retornar à posição inicial
+        if (!isPlayerInRange && returnToStartPosition)
         {
-            Vector2 direction = (player.position - transform.position);
-            
-            // Define a direção do ataque com base na posição do jogador
-            UpdateAnimationDirection(direction);
-            
-            currentState = EnemyState.Attacking;
-            isMoving = false;
-            attackAnimationComplete = false;
-            lastAttackTime = Time.time;
-            return;
+            if (currentState != EnemyState.Returning)
+            {
+                timeOutOfRange += Time.deltaTime;
+                
+                if (timeOutOfRange >= returnDelay)
+                {
+                    StartReturnToStart();
+                }
+            }
+            else if (currentState == EnemyState.Returning)
+            {
+                // Se já chegou perto o suficiente da posição inicial
+                float distanceToStart = Vector3.Distance(transform.position, startPosition);
+                
+                if (distanceToStart < returnPositionTolerance)
+                {
+                    CompleteReturn();
+                }
+                else
+                {
+                    // Não chegou ainda, continua seguindo o caminho
+                    if (path != null)
+                    {
+                        FollowPath(0.8f); // Velocidade reduzida para maior precisão
+                    }
+                    else if (seeker != null && seeker.IsDone())
+                    {
+                        // Se não tem caminho, calcula um novo
+                        seeker.StartPath(transform.position, startPosition, OnPathComplete);
+                    }
+                }
+            }
         }
+        else
+        {
+            // Reset do temporizador de retorno quando o player está em range
+            timeOutOfRange = 0f;
+            
+            if (isReturning)
+            {
+                isReturning = false;
+                currentState = EnemyState.Idle;
+            }
 
-        // Atualiza o caminho periodicamente
-        pathUpdateTimer += Time.deltaTime;
-        if (pathUpdateTimer >= pathUpdateInterval)
-        {
-            pathUpdateTimer = 0f;
-            if (seeker.IsDone() && distanceToPlayer < chaseRange)
+            // Verifica se pode atacar
+            if (distanceToPlayer <= attackRange && Time.time > lastAttackTime + attackCooldown && canChasePlayer)
             {
-                seeker.StartPath(transform.position, player.position, OnPathComplete);
+                Vector2 direction = (player.position - transform.position);
+                
+                // Define a direção do ataque com base na posição do jogador
+                UpdateAnimationDirection(direction);
+                
+                currentState = EnemyState.Attacking;
+                isMoving = false;
+                attackAnimationComplete = false;
+                lastAttackTime = Time.time;
+                return;
             }
-        }
 
-        // Lógica de estados baseada na distância
-        if (distanceToPlayer < chaseRange && distanceToPlayer > approachRange)
+            // Atualiza o caminho periodicamente quando o player está em range
+            if (isPlayerInRange)
+            {
+                pathUpdateTimer += Time.deltaTime;
+                if (pathUpdateTimer >= pathUpdateInterval)
+                {
+                    pathUpdateTimer = 0f;
+                    if (seeker.IsDone())
+                    {
+                        seeker.StartPath(transform.position, player.position, OnPathComplete);
+                    }
+                }
+            }
+
+            // Lógica de estados baseada na distância
+            if (isPlayerInRange && distanceToPlayer > approachRange)
+            {
+                // Perseguição normal
+                currentState = EnemyState.Moving;
+                isMoving = true;
+                isInAttackMode = false;
+                
+                if (path != null)
+                {
+                    FollowPath(1.0f);
+                }
+            }
+            else if (isPlayerInRange && distanceToPlayer <= approachRange && distanceToPlayer > attackRange)
+            {
+                // Zona de aproximação - movimento mais cuidadoso
+                currentState = EnemyState.Approaching;
+                isMoving = true;
+                isInAttackMode = true;
+                
+                // Verifica se há linha de visão direta para o jogador
+                if (HasLineOfSightToPlayer())
+                {
+                    // Move-se diretamente em direção ao jogador se não houver obstáculos
+                    Vector2 directDirection = (player.position - transform.position).normalized;
+                    rb.MovePosition(rb.position + directDirection * moveSpeed * 0.8f * Time.deltaTime);
+                    UpdateAnimationDirection(directDirection);
+                }
+                else if (path != null)
+                {
+                    // Segue o caminho com velocidade reduzida para maior precisão
+                    FollowPath(0.7f);
+                }
+            }
+            else if (!isPlayerInRange && currentState != EnemyState.Returning)
+            {
+                // Fora do alcance e não está retornando, fica parado
+                StopMoving();
+            }
+        }
+    }
+    
+    // Novo método para parar o movimento adequadamente
+    void StopMoving()
+    {
+        currentState = EnemyState.Idle;
+        isMoving = false;
+        isInAttackMode = false;
+        // Resetar a velocidade quando parar
+        currentVelocity = Vector2.zero;
+        lastDirection = Vector2.zero;
+        // Garante que a animação pare imediatamente
+        rb.linearVelocity = Vector2.zero;
+    }
+    
+    // Método para finalizar o retorno à posição inicial
+    void CompleteReturn()
+    {
+        // Para o movimento e retorna ao estado inicial
+        currentState = EnemyState.Idle;
+        isMoving = false;
+        currentDirection = initialDirection;
+        
+        // Força a posição exata e para qualquer movimento residual
+        transform.position = startPosition;
+        rb.linearVelocity = Vector2.zero;
+        currentVelocity = Vector2.zero;
+        lastDirection = Vector2.zero;
+        
+        isReturning = false;
+        
+        // Limpa o caminho 
+        path = null;
+        
+        // Reset dos timers
+        stationaryTimer = 0f;
+        
+        // Debug.Log("Inimigo retornou à posição inicial com sucesso");
+    }
+    
+    void StartReturnToStart()
+    {
+        if (!isReturning && currentState != EnemyState.Returning)
         {
-            // Perseguição normal
-            currentState = EnemyState.Moving;
-            isMoving = true;
-            isInAttackMode = false;
+            // Se já estiver muito próximo da posição inicial, apenas finaliza o retorno
+            if (Vector3.Distance(transform.position, startPosition) < returnPositionTolerance * 0.5f)
+            {
+                CompleteReturn();
+                return;
+            }
             
-            if (path != null)
-            {
-                FollowPath(1.0f);
-            }
-        }
-        else if (distanceToPlayer <= approachRange && distanceToPlayer > attackRange)
-        {
-            // Zona de aproximação - movimento mais cuidadoso
-            currentState = EnemyState.Approaching;
+            isReturning = true;
+            currentState = EnemyState.Returning;
             isMoving = true;
-            isInAttackMode = true;
             
-            // Verifica se há linha de visão direta para o jogador
-            if (HasLineOfSightToPlayer())
+            // Calcula caminho para a posição inicial
+            if (seeker != null && seeker.IsDone())
             {
-                // Move-se diretamente em direção ao jogador se não houver obstáculos
-                Vector2 directDirection = (player.position - transform.position).normalized;
-                rb.MovePosition(rb.position + directDirection * moveSpeed * 0.8f * Time.deltaTime);
-                UpdateAnimationDirection(directDirection);
+                seeker.StartPath(transform.position, startPosition, OnPathComplete);
             }
-            else if (path != null)
-            {
-                // Segue o caminho com velocidade reduzida para maior precisão
-                FollowPath(0.7f);
-            }
+            
+            Debug.Log("Inimigo retornando à posição inicial");
         }
-        else if (distanceToPlayer >= chaseRange)
+    }
+    
+    bool IsPlayerInOperationalArea()
+    {
+        if (!useOperationalArea || player == null)
+            return true; // Se não usa área operacional, sempre retorna true
+            
+        // Verifica se o player está dentro de uma área de operação (usando Physics2D.OverlapPoint)
+        Collider2D[] playerAreas = Physics2D.OverlapPointAll(player.position, operationalAreaLayer);
+        
+        foreach (var area in playerAreas)
         {
-            // Fora do alcance, fica parado
-            currentState = EnemyState.Idle;
-            isMoving = false;
-            isInAttackMode = false;
-            // Resetar a velocidade quando parar
-            currentVelocity = Vector2.zero;
-            lastDirection = Vector2.zero;
+            // Se estamos usando IDs específicos de área
+            if (useAreaID)
+            {
+                EnemyAreaManager areaManager = area.GetComponent<EnemyAreaManager>();
+                if (areaManager != null && areaManager.areaID == assignedAreaID)
+                {
+                    return true;
+                }
+            }
+            // Se estamos usando apenas tags
+            else if (area.CompareTag(operationalAreaTag))
+            {
+                return true;
+            }
         }
+        
+        return false;
     }
     
     bool HasLineOfSightToPlayer()
@@ -416,6 +606,19 @@ public class EnemyAI : MonoBehaviour
         currentState = EnemyState.Idle;
     }
     
+    // Método para reiniciar o inimigo à sua posição original (útil para resetar níveis)
+    public void ResetToStartPosition()
+    {
+        transform.position = startPosition;
+        currentDirection = initialDirection;
+        currentState = EnemyState.Idle;
+        isMoving = false;
+        path = null;
+        rb.linearVelocity = Vector2.zero;
+        currentVelocity = Vector2.zero;
+        lastDirection = Vector2.zero;
+    }
+    
     // Desenha o caminho e os raios de detecção para depuração
     void OnDrawGizmos()
     {
@@ -453,5 +656,31 @@ public class EnemyAI : MonoBehaviour
         // Desenha o raio de aproximação
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, approachRange);
+        
+        // Desenha a posição inicial
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(startPosition, 0.3f);
+        
+        // Desenha a área de tolerância para retorno à posição inicial
+        Gizmos.color = new Color(0, 1, 1, 0.3f);
+        Gizmos.DrawWireSphere(startPosition, returnPositionTolerance);
+        
+        // Indica a direção inicial com uma seta
+        Vector2 directionIndicator = Vector2.zero;
+        switch (initialDirection)
+        {
+            case FacingDirection.Up: directionIndicator = Vector2.up; break;
+            case FacingDirection.Down: directionIndicator = Vector2.down; break;
+            case FacingDirection.Left: directionIndicator = Vector2.left; break;
+            case FacingDirection.Right: directionIndicator = Vector2.right; break;
+        }
+        
+        Gizmos.DrawLine(startPosition, (Vector2)startPosition + directionIndicator * 0.5f);
+        
+        // Mostra o ID da área atribuída se estiver usando áreas por ID
+        if (useAreaID)
+        {
+            UnityEditor.Handles.Label(transform.position + Vector3.up * 0.5f, "Area ID: " + assignedAreaID);
+        }
     }
 }
