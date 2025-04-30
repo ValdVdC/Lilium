@@ -1,0 +1,1586 @@
+fileFormatVersion: 2
+guid: bcddff9966848954b94593c696b51d6c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1347335598810014562
+    second: libassetpack-tiled_0
+  - first:
+      213: -2991784112202066352
+    second: libassetpack-tiled_1
+  - first:
+      213: 7562071239902097661
+    second: libassetpack-tiled_2
+  - first:
+      213: 7884434577139374878
+    second: libassetpack-tiled_3
+  - first:
+      213: -3668606451183642190
+    second: libassetpack-tiled_4
+  - first:
+      213: 7379901530519815145
+    second: libassetpack-tiled_5
+  - first:
+      213: -8901701552369382620
+    second: libassetpack-tiled_6
+  - first:
+      213: 3073602554295877186
+    second: libassetpack-tiled_7
+  - first:
+      213: 4560428305050179684
+    second: libassetpack-tiled_8
+  - first:
+      213: 8675400021536737875
+    second: libassetpack-tiled_9
+  - first:
+      213: 6248776014870995198
+    second: libassetpack-tiled_10
+  - first:
+      213: -5702326942611180085
+    second: libassetpack-tiled_11
+  - first:
+      213: 6871276447553606636
+    second: libassetpack-tiled_12
+  - first:
+      213: 8003743875321738290
+    second: libassetpack-tiled_13
+  - first:
+      213: 5417962110111649222
+    second: libassetpack-tiled_14
+  - first:
+      213: -796741991087247476
+    second: libassetpack-tiled_15
+  - first:
+      213: -6367016132024835740
+    second: libassetpack-tiled_16
+  - first:
+      213: -5038100499744222704
+    second: libassetpack-tiled_17
+  - first:
+      213: 7525347552297111101
+    second: libassetpack-tiled_18
+  - first:
+      213: 8214128557657210929
+    second: libassetpack-tiled_19
+  - first:
+      213: 5166933413650264062
+    second: libassetpack-tiled_20
+  - first:
+      213: 7237734970645089166
+    second: libassetpack-tiled_21
+  - first:
+      213: 3574037756407161869
+    second: libassetpack-tiled_22
+  - first:
+      213: 1128266471787657982
+    second: libassetpack-tiled_23
+  - first:
+      213: -4919765116338765758
+    second: libassetpack-tiled_24
+  - first:
+      213: 9079429209113936628
+    second: libassetpack-tiled_25
+  - first:
+      213: -6454788881421586990
+    second: libassetpack-tiled_26
+  - first:
+      213: 8056573630387349766
+    second: libassetpack-tiled_27
+  - first:
+      213: 2081071855924430813
+    second: libassetpack-tiled_28
+  - first:
+      213: -592510510889625968
+    second: libassetpack-tiled_29
+  - first:
+      213: 3674824670784906113
+    second: libassetpack-tiled_30
+  - first:
+      213: 5463347926573780101
+    second: libassetpack-tiled_31
+  - first:
+      213: 2635578140971347498
+    second: libassetpack-tiled_32
+  - first:
+      213: -8471438018957778165
+    second: libassetpack-tiled_33
+  - first:
+      213: 8905142867217290338
+    second: libassetpack-tiled_34
+  - first:
+      213: 3486627857685232991
+    second: libassetpack-tiled_35
+  - first:
+      213: 7195794589501236559
+    second: libassetpack-tiled_36
+  - first:
+      213: 2471213866792777289
+    second: libassetpack-tiled_37
+  - first:
+      213: 7151674775910219766
+    second: libassetpack-tiled_38
+  - first:
+      213: 1914651705553019624
+    second: libassetpack-tiled_39
+  - first:
+      213: -4666775638144523040
+    second: libassetpack-tiled_40
+  - first:
+      213: 1175317356616059307
+    second: libassetpack-tiled_41
+  - first:
+      213: 3509691463099998549
+    second: libassetpack-tiled_42
+  - first:
+      213: -8518672330765540117
+    second: libassetpack-tiled_43
+  - first:
+      213: 6527610360290115059
+    second: libassetpack-tiled_44
+  - first:
+      213: 4623234787606742475
+    second: libassetpack-tiled_45
+  - first:
+      213: -6263064486775697565
+    second: libassetpack-tiled_46
+  - first:
+      213: -4923281688195343218
+    second: libassetpack-tiled_47
+  - first:
+      213: -562623059354611977
+    second: libassetpack-tiled_48
+  - first:
+      213: 175581517461172504
+    second: libassetpack-tiled_49
+  - first:
+      213: -3643841128954696121
+    second: libassetpack-tiled_50
+  - first:
+      213: 3067300254333382047
+    second: libassetpack-tiled_51
+  - first:
+      213: 4373643054350695925
+    second: libassetpack-tiled_52
+  - first:
+      213: -4671863912046110183
+    second: libassetpack-tiled_53
+  - first:
+      213: -113440269813944621
+    second: libassetpack-tiled_54
+  - first:
+      213: 8224526713247492723
+    second: libassetpack-tiled_55
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: libassetpack-tiled_0
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 479
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2632f40b692b2b210800000000000000
+      internalID: 1347335598810014562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_1
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 479
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 056d98b733c0b76d0800000000000000
+      internalID: -2991784112202066352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_2
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 383
+        width: 60
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df0ff842abfd1f860800000000000000
+      internalID: 7562071239902097661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_3
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 461
+        width: 35
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1b133179732b6d60800000000000000
+      internalID: 7884434577139374878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_4
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 455
+        width: 33
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b91e78aedd761dc0800000000000000
+      internalID: -3668606451183642190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_5
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 479
+        width: 47
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e3cef3775daa6660800000000000000
+      internalID: 7379901530519815145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_6
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 479
+        width: 26
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42bca72f99dc67480800000000000000
+      internalID: -8901701552369382620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_7
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 483
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24ef98d0d31a7aa20800000000000000
+      internalID: 3073602554295877186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_8
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 484
+        width: 7
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 468172a9165e94f30800000000000000
+      internalID: 4560428305050179684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_9
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 431
+        width: 170
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35a0d18fa56356870800000000000000
+      internalID: 8675400021536737875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_10
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 431
+        width: 50
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef0ed579dac18b650800000000000000
+      internalID: 6248776014870995198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_11
+      rect:
+        serializedVersion: 2
+        x: 744
+        y: 350
+        width: 73
+        height: 155
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc57580abd34dd0b0800000000000000
+      internalID: -5702326942611180085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_12
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 23
+        width: 538
+        height: 505
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce3d0f1068dab5f50800000000000000
+      internalID: 6871276447553606636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_13
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 455
+        width: 18
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 234b2c126a2031f60800000000000000
+      internalID: 8003743875321738290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_14
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 407
+        width: 38
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cd0bb365d7703b40800000000000000
+      internalID: 5417962110111649222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_15
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 455
+        width: 26
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8f6b93616761f4f0800000000000000
+      internalID: -796741991087247476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_16
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 458
+        width: 19
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4616a73df80d3a7a0800000000000000
+      internalID: -6367016132024835740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_17
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 456
+        width: 23
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 012170ad942151ab0800000000000000
+      internalID: -5038100499744222704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_18
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 407
+        width: 50
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3e46025ab76f6860800000000000000
+      internalID: 7525347552297111101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_19
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 431
+        width: 35
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 130cc8227627ef170800000000000000
+      internalID: 8214128557657210929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_20
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 431
+        width: 26
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eff68ba6092a4b740800000000000000
+      internalID: 5166933413650264062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_21
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 434
+        width: 17
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8b09bfcb99917460800000000000000
+      internalID: 7237734970645089166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_22
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 433
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d04ab744768899130800000000000000
+      internalID: 3574037756407161869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_23
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 383
+        width: 32
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efaf2e6d06868af00800000000000000
+      internalID: 1128266471787657982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_24
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 383
+        width: 50
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 240054651bb79bbb0800000000000000
+      internalID: -4919765116338765758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_25
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 407
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f2ca84c2cc900e70800000000000000
+      internalID: 9079429209113936628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_26
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 410
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2dda9b616bbfb66a0800000000000000
+      internalID: -6454788881421586990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_27
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 412
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60964020803becf60800000000000000
+      internalID: 8056573630387349766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_28
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 359
+        width: 50
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd74074b3d371ec10800000000000000
+      internalID: 2081071855924430813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_29
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 383
+        width: 24
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0961db064daf6c7f0800000000000000
+      internalID: -592510510889625968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_30
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 390
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 183e9f961999ff230800000000000000
+      internalID: 3674824670784906113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_31
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 383
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58c0ccf3ef5b1db40800000000000000
+      internalID: 5463347926573780101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_32
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 341
+        width: 128
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2ea166fa54739420800000000000000
+      internalID: 2635578140971347498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_33
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 359
+        width: 26
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b03684f51086f6a80800000000000000
+      internalID: -8471438018957778165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_34
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 335
+        width: 56
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 264179a914c659b70800000000000000
+      internalID: 8905142867217290338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_35
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 335
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5d3f49409df26030800000000000000
+      internalID: 3486627857685232991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_36
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 335
+        width: 11
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4526efdd099cd360800000000000000
+      internalID: 7195794589501236559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_37
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 335
+        width: 11
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 946f3363be38b4220800000000000000
+      internalID: 2471213866792777289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_38
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 335
+        width: 11
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ffff37415adf3360800000000000000
+      internalID: 7151674775910219766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_39
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 335
+        width: 8
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e2651af495329a10800000000000000
+      internalID: 1914651705553019624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_40
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 335
+        width: 8
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e4e2f168484c3fb0800000000000000
+      internalID: -4666775638144523040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_41
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 359
+        width: 24
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba98373a8e09f4010800000000000000
+      internalID: 1175317356616059307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_42
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 359
+        width: 26
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 551eb416acde4b030800000000000000
+      internalID: 3509691463099998549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_43
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 359
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be465c626a897c980800000000000000
+      internalID: -8518672330765540117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_44
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 263
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fd7045b90bb69a50800000000000000
+      internalID: 6527610360290115059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_45
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 287
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc5478c5b87092040800000000000000
+      internalID: 4623234787606742475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_46
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 191
+        width: 94
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36fce5c48002519a0800000000000000
+      internalID: -6263064486775697565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_47
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 167
+        width: 25
+        height: 146
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8c5ee5a36dfcabb0800000000000000
+      internalID: -4923281688195343218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_48
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 215
+        width: 166
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fe89b4fe492138f0800000000000000
+      internalID: -562623059354611977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_49
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 191
+        width: 193
+        height: 109
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 811b569b57acf6200800000000000000
+      internalID: 175581517461172504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_50
+      rect:
+        serializedVersion: 2
+        x: 744
+        y: 182
+        width: 73
+        height: 155
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74e62b29cc97e6dc0800000000000000
+      internalID: -3643841128954696121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_51
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 167
+        width: 26
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9da10f745d319a20800000000000000
+      internalID: 3067300254333382047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_52
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 23
+        width: 90
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fd7de47f2d42bc30800000000000000
+      internalID: 4373643054350695925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_53
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 23
+        width: 90
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91a568b46843a2fb0800000000000000
+      internalID: -4671863912046110183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_54
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 23
+        width: 90
+        height: 141
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dee386fcaafc6ef0800000000000000
+      internalID: -113440269813944621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: libassetpack-tiled_55
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 23
+        width: 90
+        height: 133
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37ae3d46873632270800000000000000
+      internalID: 8224526713247492723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: b1b017dfa0a097b468952f32f4863b98
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      libassetpack-tiled_0: 1347335598810014562
+      libassetpack-tiled_1: -2991784112202066352
+      libassetpack-tiled_10: 6248776014870995198
+      libassetpack-tiled_11: -5702326942611180085
+      libassetpack-tiled_12: 6871276447553606636
+      libassetpack-tiled_13: 8003743875321738290
+      libassetpack-tiled_14: 5417962110111649222
+      libassetpack-tiled_15: -796741991087247476
+      libassetpack-tiled_16: -6367016132024835740
+      libassetpack-tiled_17: -5038100499744222704
+      libassetpack-tiled_18: 7525347552297111101
+      libassetpack-tiled_19: 8214128557657210929
+      libassetpack-tiled_2: 7562071239902097661
+      libassetpack-tiled_20: 5166933413650264062
+      libassetpack-tiled_21: 7237734970645089166
+      libassetpack-tiled_22: 3574037756407161869
+      libassetpack-tiled_23: 1128266471787657982
+      libassetpack-tiled_24: -4919765116338765758
+      libassetpack-tiled_25: 9079429209113936628
+      libassetpack-tiled_26: -6454788881421586990
+      libassetpack-tiled_27: 8056573630387349766
+      libassetpack-tiled_28: 2081071855924430813
+      libassetpack-tiled_29: -592510510889625968
+      libassetpack-tiled_3: 7884434577139374878
+      libassetpack-tiled_30: 3674824670784906113
+      libassetpack-tiled_31: 5463347926573780101
+      libassetpack-tiled_32: 2635578140971347498
+      libassetpack-tiled_33: -8471438018957778165
+      libassetpack-tiled_34: 8905142867217290338
+      libassetpack-tiled_35: 3486627857685232991
+      libassetpack-tiled_36: 7195794589501236559
+      libassetpack-tiled_37: 2471213866792777289
+      libassetpack-tiled_38: 7151674775910219766
+      libassetpack-tiled_39: 1914651705553019624
+      libassetpack-tiled_4: -3668606451183642190
+      libassetpack-tiled_40: -4666775638144523040
+      libassetpack-tiled_41: 1175317356616059307
+      libassetpack-tiled_42: 3509691463099998549
+      libassetpack-tiled_43: -8518672330765540117
+      libassetpack-tiled_44: 6527610360290115059
+      libassetpack-tiled_45: 4623234787606742475
+      libassetpack-tiled_46: -6263064486775697565
+      libassetpack-tiled_47: -4923281688195343218
+      libassetpack-tiled_48: -562623059354611977
+      libassetpack-tiled_49: 175581517461172504
+      libassetpack-tiled_5: 7379901530519815145
+      libassetpack-tiled_50: -3643841128954696121
+      libassetpack-tiled_51: 3067300254333382047
+      libassetpack-tiled_52: 4373643054350695925
+      libassetpack-tiled_53: -4671863912046110183
+      libassetpack-tiled_54: -113440269813944621
+      libassetpack-tiled_55: 8224526713247492723
+      libassetpack-tiled_6: -8901701552369382620
+      libassetpack-tiled_7: 3073602554295877186
+      libassetpack-tiled_8: 4560428305050179684
+      libassetpack-tiled_9: 8675400021536737875
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

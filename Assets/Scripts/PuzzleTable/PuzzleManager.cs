@@ -73,6 +73,67 @@ public class PuzzleManager : MonoBehaviour
             StartCoroutine(CompletePuzzle());
         }
     }
+
+    public void SetupInitialPieces()
+    {
+        // Configure quais peças já estão na mesa inicialmente
+        // Exemplo: 4 peças já colocadas (2 adagas e 2 escudos)
+        
+        // Isso deve ser chamado no Start ou em um método de inicialização
+        // do seu jogo, antes de permitir que o jogador coloque peças
+        
+        TableInteraction tableInteraction = GetComponent<TableInteraction>();
+        if (tableInteraction != null && tableInteraction.puzzleSlots != null)
+        {
+            // Aqui você pode configurar quais slots já têm peças
+            // Por exemplo, vamos supor que queremos adagas nos cantos NW e SE,
+            // e escudos nos lados N e W:
+            
+            // Adaga no canto superior esquerdo (NW)
+            if (tableInteraction.puzzleSlots[0, 0] != null)
+            {
+                PuzzleSlot slot = tableInteraction.puzzleSlots[0, 0];
+                slot.currentType = PuzzleItemType.Dagger;
+                slot.currentDirection = PuzzleDirection.NW;
+                slot.solutionType = PuzzleItemType.Dagger;
+                slot.solutionDirection = PuzzleDirection.NW;
+                slot.UpdateVisual();
+            }
+            
+            // Adaga no canto inferior direito (SE)
+            if (tableInteraction.puzzleSlots[2, 2] != null)
+            {
+                PuzzleSlot slot = tableInteraction.puzzleSlots[2, 2];
+                slot.currentType = PuzzleItemType.Dagger;
+                slot.currentDirection = PuzzleDirection.SE;
+                slot.solutionType = PuzzleItemType.Dagger;
+                slot.solutionDirection = PuzzleDirection.SE;
+                slot.UpdateVisual();
+            }
+            
+            // Escudo no lado norte (N)
+            if (tableInteraction.puzzleSlots[1, 0] != null)
+            {
+                PuzzleSlot slot = tableInteraction.puzzleSlots[1, 0];
+                slot.currentType = PuzzleItemType.Shield;
+                slot.currentDirection = PuzzleDirection.N;
+                slot.solutionType = PuzzleItemType.Shield;
+                slot.solutionDirection = PuzzleDirection.N;
+                slot.UpdateVisual();
+            }
+            
+            // Escudo no lado oeste (W)
+            if (tableInteraction.puzzleSlots[0, 1] != null)
+            {
+                PuzzleSlot slot = tableInteraction.puzzleSlots[0, 1];
+                slot.currentType = PuzzleItemType.Shield;
+                slot.currentDirection = PuzzleDirection.W;
+                slot.solutionType = PuzzleItemType.Shield;
+                slot.solutionDirection = PuzzleDirection.W;
+                slot.UpdateVisual();
+            }
+        }
+    }
     
     private IEnumerator CompletePuzzle()
     {

@@ -48,9 +48,6 @@ public class TableInteraction : MonoBehaviour, IInteractable
         // Criar objetos para os slots do puzzle (isso seria feito no editor)
         // Mas aqui vamos inicializar as referências programaticamente
         
-        // Definir posições e tipos dos slots iniciais
-        // Supondo que temos os slots já criados no Editor do Unity
-        
         // Por exemplo, assim seria a configuração inicial:
         // DaggerNW    ShieldN    DaggerNE
         // ShieldW     Empty      ShieldE
@@ -80,6 +77,9 @@ public class TableInteraction : MonoBehaviour, IInteractable
                         slot.currentType = PuzzleItemType.Empty;
                         emptySlotPosition = new Vector2Int(x, y);
                     }
+                    
+                    // Determinar a direção inicial com base na posição
+                    slot.DetermineInitialDirection();
                 }
             }
         }
@@ -290,7 +290,31 @@ public class TableInteraction : MonoBehaviour, IInteractable
             }
         }
     }
-    
+
+    private void ConfigureInitialSlotType(PuzzleSlot slot, int x, int y)
+    {
+        // Centro é vazio
+        if (x == 1 && y == 1)
+        {
+            slot.currentType = PuzzleItemType.Empty;
+            emptySlotPosition = new Vector2Int(x, y);
+        }
+        // Posições diagonais são adagas
+        else if ((x == 0 && y == 0) || (x == 2 && y == 0) || 
+                (x == 0 && y == 2) || (x == 2 && y == 2))
+        {
+            slot.currentType = PuzzleItemType.Dagger;
+        }
+        // Posições ortogonais são escudos
+        else
+        {
+            slot.currentType = PuzzleItemType.Shield;
+        }
+        
+        // Salvar o tipo como solução também
+        slot.solutionType = slot.currentType;
+    }
+
     private void PlacePuzzlePiece(GameObject highlightObject)
     {
         string[] parts = highlightObject.name.Split('_');
@@ -307,6 +331,15 @@ public class TableInteraction : MonoBehaviour, IInteractable
             {
                 // Colocar a peça no slot
                 puzzleSlots[x, y].currentType = itemType;
+                
+                // Configurar a direção correta com base na posição
+                SetAppropriateDirection(puzzleSlots[x, y], x, y);
+                
+                // Salvar direção como solução
+                puzzleSlots[x, y].solutionDirection = puzzleSlots[x, y].currentDirection;
+                puzzleSlots[x, y].solutionType = itemType;
+                
+                // Atualizar visual
                 puzzleSlots[x, y].UpdateVisual();
                 
                 // Remover do inventário
@@ -319,11 +352,62 @@ public class TableInteraction : MonoBehaviour, IInteractable
                 CheckAllPiecesPlaced();
 
                 if (audioManager != null)
-                audioManager.PlayPiecePlace();
+                    audioManager.PlayPiecePlace();
             }
         }
     }
-    
+
+    private void SetAppropriateDirection(PuzzleSlot slot, int x, int y)
+    {
+        // Configurar a direção com base na posição do slot
+        // Diagonais (adagas)
+        if (x == 0 && y == 0)
+            slot.currentDirection = PuzzleDirection.NW;
+        else if (x == 2 && y == 0)
+            slot.currentDirection = PuzzleDirection.NE;
+        else if (x == 0 && y == 2)
+            slot.currentDirection = PuzzleDirection.SW;
+        else if (x == 2 && y == 2)
+            slot.currentDirection = PuzzleDirection.SE;
+        
+        // Ortogonais (escudos)
+        else if (x == 1 && y == 0)
+            slot.currentDirection = PuzzleDirection.N;
+        else if (x == 2 && y == 1)
+            slot.currentDirection = PuzzleDirection.E;
+        else if (x == 1 && y == 2)
+            slot.currentDirection = PuzzleDirection.S;
+        else if (x == 0 && y == 1)
+            slot.currentDirection = PuzzleDirection.W;
+    }
+
+    private void ConfigureSlotDirection(PuzzleSlot slot, int x, int y)
+    {
+        // Configurar a direção com base na posição do slot
+        // Diagonais (adagas)
+        if (x == 0 && y == 0)
+            slot.currentDirection = PuzzleDirection.NW;
+        else if (x == 2 && y == 0)
+            slot.currentDirection = PuzzleDirection.NE;
+        else if (x == 0 && y == 2)
+            slot.currentDirection = PuzzleDirection.SW;
+        else if (x == 2 && y == 2)
+            slot.currentDirection = PuzzleDirection.SE;
+        
+        // Ortogonais (escudos)
+        else if (x == 1 && y == 0)
+            slot.currentDirection = PuzzleDirection.N;
+        else if (x == 2 && y == 1)
+            slot.currentDirection = PuzzleDirection.E;
+        else if (x == 1 && y == 2)
+            slot.currentDirection = PuzzleDirection.S;
+        else if (x == 0 && y == 1)
+            slot.currentDirection = PuzzleDirection.W;
+        
+        // Salvar como solução
+        slot.solutionDirection = slot.currentDirection;
+    }
+
     private void CheckAllPiecesPlaced()
     {
         int daggerCount = 0;
@@ -375,7 +459,7 @@ public class TableInteraction : MonoBehaviour, IInteractable
                 SwapWithEmptySlot(movePos);
                 
                 if (audioManager != null)
-                audioManager.PlayPuzzleShuffle();
+                    audioManager.PlayPuzzleShuffle();
 
                 // Atualizar visuais
                 UpdateAllSlotVisuals();
@@ -396,7 +480,7 @@ public class TableInteraction : MonoBehaviour, IInteractable
         {
             if (slot != null)
             {
-                slot.solutionType = slot.currentType;
+                slot.SaveSolutionState();
             }
         }
     }
@@ -485,13 +569,26 @@ public class TableInteraction : MonoBehaviour, IInteractable
     private void SwapWithEmptySlot(Vector2Int piecePosition)
     {
         // Trocar a peça com o espaço vazio
-        PuzzleItemType pieceType = puzzleSlots[piecePosition.x, piecePosition.y].currentType;
+        PuzzleSlot pieceSlot = puzzleSlots[piecePosition.x, piecePosition.y];
+        PuzzleSlot emptySlot = puzzleSlots[emptySlotPosition.x, emptySlotPosition.y];
         
-        puzzleSlots[emptySlotPosition.x, emptySlotPosition.y].currentType = pieceType;
-        puzzleSlots[piecePosition.x, piecePosition.y].currentType = PuzzleItemType.Empty;
+        // Guardar informações da peça a ser movida
+        PuzzleItemType pieceType = pieceSlot.currentType;
+        PuzzleDirection pieceDirection = pieceSlot.currentDirection;
         
-        // Atualizar a posição do espaço vazio
+        // Mover a peça para o espaço vazio (mantendo sua direção)
+        emptySlot.currentType = pieceType;
+        emptySlot.currentDirection = pieceDirection;
+        
+        // Definir o slot original como vazio
+        pieceSlot.currentType = PuzzleItemType.Empty;
+        
+        // Atualizar posição do espaço vazio
         emptySlotPosition = piecePosition;
+        
+        // Atualizar visuais
+        pieceSlot.UpdateVisual();
+        emptySlot.UpdateVisual();
     }
     
     private void UpdateAllSlotVisuals()
@@ -508,15 +605,19 @@ public class TableInteraction : MonoBehaviour, IInteractable
     
     public bool IsPuzzleSolved()
     {
-        // Verificar se todas as peças estão na posição correta
+        // Verificar se todas as peças estão na posição correta e com a direção correta
         foreach (PuzzleSlot slot in puzzleSlots)
         {
             if (slot != null)
             {
+                // Se o tipo é diferente da solução, não está resolvido
                 if (slot.currentType != slot.solutionType)
-                {
                     return false;
-                }
+                    
+                // Se não é vazio e a direção é diferente da solução, não está resolvido
+                if (slot.currentType != PuzzleItemType.Empty && 
+                    slot.currentDirection != slot.solutionDirection)
+                    return false;
             }
         }
         

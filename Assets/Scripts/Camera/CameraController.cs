@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour
     [Header("Cameras")]
     public Camera mainCamera;           // Referência à câmera principal (controlada pelo Cinemachine)
     public Camera tablePuzzleCamera;     // Câmera dedicada para a mesa de puzzle
+    public Camera clockPuzzleCamera;     // Câmera dedicada para o puzzle do relógio
     public Camera barrelCamera;          // Câmera dedicada para barris
 
     [Header("Transition Settings")]
@@ -20,6 +21,7 @@ public class CameraController : MonoBehaviour
     {
         Main,
         TablePuzzle,
+        ClockPuzzle,
         Barrel
     }
 
@@ -47,6 +49,15 @@ public class CameraController : MonoBehaviour
         }
         tablePuzzleCamera.gameObject.SetActive(false);
 
+        if (clockPuzzleCamera == null)
+        {
+            GameObject clockCamObj = new GameObject("Clock Puzzle Camera");
+            clockPuzzleCamera = clockCamObj.AddComponent<Camera>();
+            clockPuzzleCamera.orthographic = true;
+            clockPuzzleCamera.depth = mainCamera.depth + 1;
+        }
+        clockPuzzleCamera.gameObject.SetActive(false);
+
         // Configurar câmera dos barris
         if (barrelCamera == null)
         {
@@ -59,6 +70,7 @@ public class CameraController : MonoBehaviour
         
         // Copiar settings relevantes da main camera
         CopyCameraSettings(mainCamera, tablePuzzleCamera);
+        CopyCameraSettings(mainCamera, clockPuzzleCamera);
         CopyCameraSettings(mainCamera, barrelCamera);
         
         activeCamera = mainCamera;
@@ -84,6 +96,7 @@ public class CameraController : MonoBehaviour
         // Desativar todas as câmeras primeiro
         mainCamera.gameObject.SetActive(false);
         tablePuzzleCamera.gameObject.SetActive(false);
+        clockPuzzleCamera.gameObject.SetActive(false);
         barrelCamera.gameObject.SetActive(false);
 
         // Ativar a câmera selecionada
@@ -101,6 +114,10 @@ public class CameraController : MonoBehaviour
                 barrelCamera.gameObject.SetActive(true);
                 activeCamera = barrelCamera;
                 break;
+            case CameraType.ClockPuzzle:
+                clockPuzzleCamera.gameObject.SetActive(true);
+                activeCamera = clockPuzzleCamera;
+                break;
         }
     }
 
@@ -117,6 +134,20 @@ public class CameraController : MonoBehaviour
         tablePuzzleCamera.orthographicSize = zoomLevel;
         
         StartCoroutine(FadeBetweenCameras(mainCamera, tablePuzzleCamera));
+    }
+
+    public void ActivateClockPuzzleCamera(Transform clockPosition, float zoomLevel)
+    {
+        if (transitionInProgress)
+            return;
+
+        Vector3 clockCamPosition = clockPosition.position;
+        clockCamPosition.z = -10; // Manter Z negativo para câmera 2D
+        
+        clockPuzzleCamera.transform.position = clockCamPosition;
+        clockPuzzleCamera.orthographicSize = zoomLevel;
+        
+        StartCoroutine(FadeBetweenCameras(mainCamera, clockPuzzleCamera));
     }
 
     // Ativar câmera do barril e configurá-la para olhar para o barril específico

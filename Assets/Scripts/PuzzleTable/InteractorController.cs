@@ -2,23 +2,39 @@ using UnityEngine;
 
 public class InteractorController : MonoBehaviour
 {
-    public float interactionRadius = 1.5f;
     public KeyCode interactKey = KeyCode.E;
     public LayerMask interactableLayers;
     public GameObject interactionPrompt;
-
+    
+    private BoxCollider2D playerCollider;
     private IInteractable currentInteractable;
 
     private void Start()
     {
+        // Obter o BoxCollider2D do player
+        playerCollider = GetComponent<BoxCollider2D>();
+        
+        if (playerCollider == null)
+        {
+            Debug.LogError("BoxCollider2D não encontrado no GameObject do player. Adicione um BoxCollider2D ao player.");
+        }
+        
         if (interactionPrompt != null)
             interactionPrompt.SetActive(false);
     }
 
     private void Update()
     {
-        // Encontrar objeto interativo mais próximo
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, interactionRadius, interactableLayers);
+        if (playerCollider == null)
+            return;
+            
+        // Encontrar objetos interativos usando o BoxCollider2D
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(
+            transform.position, 
+            playerCollider.size, 
+            transform.rotation.eulerAngles.z, 
+            interactableLayers
+        );
         
         float closestDistance = float.MaxValue;
         IInteractable closestInteractable = null;
@@ -50,6 +66,16 @@ public class InteractorController : MonoBehaviour
         if (currentInteractable != null && Input.GetKeyDown(interactKey))
         {
             currentInteractable.Interact();
+        }
+    }
+    
+    // Método opcional para visualizar o range de interação na janela Scene do editor
+    private void OnDrawGizmos()
+    {
+        if (playerCollider != null)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireCube(transform.position, playerCollider.size);
         }
     }
 }

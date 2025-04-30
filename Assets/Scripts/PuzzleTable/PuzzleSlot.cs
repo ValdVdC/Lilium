@@ -1,5 +1,18 @@
 using UnityEngine;
 
+// Enum para as direções das peças
+public enum PuzzleDirection
+{
+    NW, // Noroeste
+    NE, // Nordeste
+    SW, // Sudoeste
+    SE, // Sudeste
+    N,  // Norte
+    E,  // Leste
+    S,  // Sul
+    W   // Oeste
+}
+
 public class PuzzleSlot : MonoBehaviour
 {
     [Header("References")]
@@ -14,7 +27,11 @@ public class PuzzleSlot : MonoBehaviour
     [Header("Puzzle Position")]
     public Vector2Int position;
     public PuzzleItemType currentType = PuzzleItemType.Empty;
+    public PuzzleDirection currentDirection = PuzzleDirection.NW; // Direção atual da peça
+    
+    [Header("Solution Info")]
     public PuzzleItemType solutionType = PuzzleItemType.Empty;
+    public PuzzleDirection solutionDirection = PuzzleDirection.NW; // Direção correta para solução
     
     private void Start()
     {
@@ -24,7 +41,38 @@ public class PuzzleSlot : MonoBehaviour
         if (slotCollider == null)
             slotCollider = GetComponent<BoxCollider2D>();
             
+        // Determinar a direção inicial com base na posição
+        DetermineInitialDirection();
+            
         UpdateVisual();
+    }
+    
+    // Determina a direção inicial com base na posição do slot
+    public void DetermineInitialDirection()
+    {
+        // Direções para adagas nas diagonais
+        if (position.x == 0 && position.y == 0)
+            currentDirection = PuzzleDirection.NW;
+        else if (position.x == 2 && position.y == 0)
+            currentDirection = PuzzleDirection.NE;
+        else if (position.x == 0 && position.y == 2)
+            currentDirection = PuzzleDirection.SW;
+        else if (position.x == 2 && position.y == 2)
+            currentDirection = PuzzleDirection.SE;
+        
+        // Direções para escudos nas posições N, E, S, W
+        else if (position.x == 1 && position.y == 0)
+            currentDirection = PuzzleDirection.N;
+        else if (position.x == 2 && position.y == 1)
+            currentDirection = PuzzleDirection.E;
+        else if (position.x == 1 && position.y == 2)
+            currentDirection = PuzzleDirection.S;
+        else if (position.x == 0 && position.y == 1)
+            currentDirection = PuzzleDirection.W;
+            
+        // Salva a direção inicial como solução (se não for vazio)
+        if (currentType != PuzzleItemType.Empty)
+            solutionDirection = currentDirection;
     }
     
     public void UpdateVisual()
@@ -39,14 +87,12 @@ public class PuzzleSlot : MonoBehaviour
                 break;
                 
             case PuzzleItemType.Dagger:
-                // Determinar qual sprite de adaga usar com base na posição
                 int daggerIndex = GetDaggerSpriteIndex();
                 if (daggerIndex >= 0 && daggerIndex < daggerSprites.Length)
                     slotRenderer.sprite = daggerSprites[daggerIndex];
                 break;
                 
             case PuzzleItemType.Shield:
-                // Determinar qual sprite de escudo usar com base na posição
                 int shieldIndex = GetShieldSpriteIndex();
                 if (shieldIndex >= 0 && shieldIndex < shieldSprites.Length)
                     slotRenderer.sprite = shieldSprites[shieldIndex];
@@ -56,36 +102,34 @@ public class PuzzleSlot : MonoBehaviour
     
     private int GetDaggerSpriteIndex()
     {
-        // Determinar qual variante da adaga baseado na posição
-        // Isso depende de como você quer que as adagas apontem para o centro
-        
-        // Assumindo grade 3x3 onde o centro é [1,1]
-        if (position.x == 0 && position.y == 0)
-            return 0; // Noroeste (NW) -> Sudeste
-        else if (position.x == 2 && position.y == 0)
-            return 1; // Nordeste (NE) -> Sudoeste
-        else if (position.x == 0 && position.y == 2)
-            return 2; // Sudoeste (SW) -> Nordeste
-        else if (position.x == 2 && position.y == 2)
-            return 3; // Sudeste (SE) -> Noroeste
-            
-        return 0; // Fallback
+        // Determinar qual sprite da adaga usar com base na direção atual da peça
+        switch (currentDirection)
+        {
+            case PuzzleDirection.NW: return 0;
+            case PuzzleDirection.NE: return 1;
+            case PuzzleDirection.SW: return 2;
+            case PuzzleDirection.SE: return 3;
+            default: return 0;
+        }
     }
     
     private int GetShieldSpriteIndex()
     {
-        // Determinar qual variante do escudo baseado na posição
-        
-        // Assumindo grade 3x3 onde o centro é [1,1]
-        if (position.x == 1 && position.y == 0)
-            return 0; // Norte (N) -> Sul
-        else if (position.x == 2 && position.y == 1)
-            return 1; // Leste (E) -> Oeste
-        else if (position.x == 1 && position.y == 2)
-            return 2; // Sul (S) -> Norte
-        else if (position.x == 0 && position.y == 1)
-            return 3; // Oeste (W) -> Leste
-            
-        return 0; // Fallback
+        // Determinar qual sprite do escudo usar com base na direção atual da peça
+        switch (currentDirection)
+        {
+            case PuzzleDirection.N: return 0;
+            case PuzzleDirection.E: return 1;
+            case PuzzleDirection.S: return 2;
+            case PuzzleDirection.W: return 3;
+            default: return 0;
+        }
+    }
+    
+    public void SaveSolutionState()
+    {
+        // Salvar o tipo e direção atuais como solução
+        solutionType = currentType;
+        solutionDirection = currentDirection;
     }
 }
