@@ -380,7 +380,7 @@ public class ClockPuzzleManager : MonoBehaviour
         // Mostrar recompensa
         StartCoroutine(ShowRewardAfterDelay(2f));
         
-        // Fechar a interação automaticamente após um pequeno delay
+        // Fechar a interação automaticamente
         FinishInteraction();
     }
     

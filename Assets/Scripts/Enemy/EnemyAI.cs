@@ -33,8 +33,7 @@ public class EnemyAI : MonoBehaviour
     public float returnPositionTolerance = 0.2f;
     // Tempo mínimo parado para confirmar que chegou à posição inicial
     public float stationaryConfirmTime = 0.5f;
-    private float stationaryTimer = 0f;
-
+    
     public enum FacingDirection { Down, Up, Left, Right }
     public enum EnemyState { Idle, Moving, Approaching, Attacking, Returning }
 
@@ -54,7 +53,7 @@ public class EnemyAI : MonoBehaviour
     private Seeker seeker;
     private Path path;
     private int currentWaypoint = 0;
-    private bool reachedEndOfPath = false;
+    
     private float pathUpdateTimer = 0f;
     public float pathUpdateInterval = 1.0f;
     
@@ -76,7 +75,6 @@ public class EnemyAI : MonoBehaviour
     // Variáveis para os aprimoramentos
     public float nodeProximityMultiplier = 1.2f;
     public float edgeFollowingStrength = 0.3f;
-    private bool isInAttackMode = false;
     
     void Start()
     {
@@ -241,7 +239,6 @@ public class EnemyAI : MonoBehaviour
                 // Perseguição normal
                 currentState = EnemyState.Moving;
                 isMoving = true;
-                isInAttackMode = false;
                 
                 if (path != null)
                 {
@@ -253,7 +250,6 @@ public class EnemyAI : MonoBehaviour
                 // Zona de aproximação - movimento mais cuidadoso
                 currentState = EnemyState.Approaching;
                 isMoving = true;
-                isInAttackMode = true;
                 
                 // Verifica se há linha de visão direta para o jogador
                 if (HasLineOfSightToPlayer())
@@ -282,7 +278,6 @@ public class EnemyAI : MonoBehaviour
     {
         currentState = EnemyState.Idle;
         isMoving = false;
-        isInAttackMode = false;
         // Resetar a velocidade quando parar
         currentVelocity = Vector2.zero;
         lastDirection = Vector2.zero;
@@ -308,9 +303,6 @@ public class EnemyAI : MonoBehaviour
         
         // Limpa o caminho 
         path = null;
-        
-        // Reset dos timers
-        stationaryTimer = 0f;
         
         // Debug.Log("Inimigo retornou à posição inicial com sucesso");
     }
@@ -414,12 +406,8 @@ public class EnemyAI : MonoBehaviour
             
         if (currentWaypoint >= path.vectorPath.Count)
         {
-            reachedEndOfPath = true;
+            // reachedEndOfPath would be set to true here, but it's not used anywhere
             return;
-        }
-        else
-        {
-            reachedEndOfPath = false;
         }
 
         // Direção base para o próximo waypoint

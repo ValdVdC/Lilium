@@ -21,7 +21,6 @@ public class ClockHandController : MonoBehaviour
     // Variáveis para controle de rotação contínua
     private float keyHoldTimer = 0f;
     private float lastRotationTime = 0f;
-    private bool isKeyHeld = false;
     private bool isRotatingClockwise = false;
     private bool isRotatingCounterClockwise = false;
     
@@ -66,7 +65,6 @@ public class ClockHandController : MonoBehaviour
             RotateCounterClockwise();
             
             // Iniciar controle de rotação contínua
-            isKeyHeld = true;
             isRotatingCounterClockwise = true;
             isRotatingClockwise = false;
             keyHoldTimer = 0f;
@@ -78,7 +76,6 @@ public class ClockHandController : MonoBehaviour
             RotateClockwise();
             
             // Iniciar controle de rotação contínua
-            isKeyHeld = true;
             isRotatingClockwise = true;
             isRotatingCounterClockwise = false;
             keyHoldTimer = 0f;
@@ -114,7 +111,6 @@ public class ClockHandController : MonoBehaviour
         if ((!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.LeftArrow)) && 
             (!Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.RightArrow)))
         {
-            isKeyHeld = false;
             keyHoldTimer = 0f;
         }
     }

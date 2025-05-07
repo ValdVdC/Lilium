@@ -7,7 +7,9 @@ public class CameraController : MonoBehaviour
     public Camera mainCamera;           // Referência à câmera principal (controlada pelo Cinemachine)
     public Camera tablePuzzleCamera;     // Câmera dedicada para a mesa de puzzle
     public Camera clockPuzzleCamera;     // Câmera dedicada para o puzzle do relógio
+    public Camera shelfPuzzleCamera;     // Câmera dedicada para o puzzle da estante de livros
     public Camera barrelCamera;          // Câmera dedicada para barris
+    public Camera paintingCamera;        // Câmera dedicada para quadros
 
     [Header("Transition Settings")]
     public float transitionDuration = 0.5f;
@@ -22,6 +24,8 @@ public class CameraController : MonoBehaviour
         Main,
         TablePuzzle,
         ClockPuzzle,
+        ShelfPuzzle,
+        Painting,
         Barrel
     }
 
@@ -58,6 +62,15 @@ public class CameraController : MonoBehaviour
         }
         clockPuzzleCamera.gameObject.SetActive(false);
 
+        if (shelfPuzzleCamera == null)
+        {
+            GameObject shelfCamObj = new GameObject("Shelf Puzzle Camera");
+            shelfPuzzleCamera = shelfCamObj.AddComponent<Camera>();
+            shelfPuzzleCamera.orthographic = true;
+            shelfPuzzleCamera.depth = mainCamera.depth + 1;
+        }
+        shelfPuzzleCamera.gameObject.SetActive(false);
+
         // Configurar câmera dos barris
         if (barrelCamera == null)
         {
@@ -66,12 +79,22 @@ public class CameraController : MonoBehaviour
             barrelCamera.orthographic = true;
             barrelCamera.depth = mainCamera.depth + 1;
         }
-        barrelCamera.gameObject.SetActive(false);
+        paintingCamera.gameObject.SetActive(false);
+                if (paintingCamera == null)
+        {
+            GameObject paintingCamObj = new GameObject("Painting Camera");
+            paintingCamera = paintingCamObj.AddComponent<Camera>();
+            paintingCamera.orthographic = true;
+            paintingCamera.depth = mainCamera.depth + 1;
+        }
+        paintingCamera.gameObject.SetActive(false);
         
         // Copiar settings relevantes da main camera
         CopyCameraSettings(mainCamera, tablePuzzleCamera);
         CopyCameraSettings(mainCamera, clockPuzzleCamera);
+        CopyCameraSettings(mainCamera, shelfPuzzleCamera);
         CopyCameraSettings(mainCamera, barrelCamera);
+        CopyCameraSettings(mainCamera, paintingCamera);
         
         activeCamera = mainCamera;
     }
@@ -97,7 +120,9 @@ public class CameraController : MonoBehaviour
         mainCamera.gameObject.SetActive(false);
         tablePuzzleCamera.gameObject.SetActive(false);
         clockPuzzleCamera.gameObject.SetActive(false);
+        shelfPuzzleCamera.gameObject.SetActive(false);
         barrelCamera.gameObject.SetActive(false);
+        paintingCamera.gameObject.SetActive(false);
 
         // Ativar a câmera selecionada
         switch (cameraType)
@@ -114,9 +139,17 @@ public class CameraController : MonoBehaviour
                 barrelCamera.gameObject.SetActive(true);
                 activeCamera = barrelCamera;
                 break;
+            case CameraType.Painting:
+                paintingCamera.gameObject.SetActive(true);
+                activeCamera = paintingCamera;
+                break;
             case CameraType.ClockPuzzle:
                 clockPuzzleCamera.gameObject.SetActive(true);
                 activeCamera = clockPuzzleCamera;
+                break;
+            case CameraType.ShelfPuzzle:
+                shelfPuzzleCamera.gameObject.SetActive(true);
+                activeCamera = shelfPuzzleCamera;
                 break;
         }
     }
@@ -150,6 +183,20 @@ public class CameraController : MonoBehaviour
         StartCoroutine(FadeBetweenCameras(mainCamera, clockPuzzleCamera));
     }
 
+    public void ActivateShelfPuzzleCamera(Transform shelfPosition, float zoomLevel)
+    {
+        if (transitionInProgress)
+            return;
+
+        Vector3 shelfCamPosition = shelfPosition.position;
+        shelfCamPosition.z = -10; // Manter Z negativo para câmera 2D
+        
+        shelfPuzzleCamera.transform.position = shelfCamPosition;
+        shelfPuzzleCamera.orthographicSize = zoomLevel;
+        
+        StartCoroutine(FadeBetweenCameras(mainCamera, shelfPuzzleCamera));
+    }
+
     // Ativar câmera do barril e configurá-la para olhar para o barril específico
     public void ActivateBarrelCamera(Transform barrelPosition, float zoomLevel)
     {
@@ -163,6 +210,21 @@ public class CameraController : MonoBehaviour
         barrelCamera.orthographicSize = zoomLevel;
         
         StartCoroutine(FadeBetweenCameras(mainCamera, barrelCamera));
+    }
+
+    // Ativar câmera do quadro e configurá-la para olhar para o quadro específico
+    public void ActivatePaintingCamera(Transform paintingPosition, float zoomLevel)
+    {
+        if (transitionInProgress)
+            return;
+
+        Vector3 paintingCamPosition = paintingPosition.position;
+        paintingCamPosition.z = -10; // Manter Z negativo para câmera 2D
+        
+        paintingCamera.transform.position = paintingCamPosition;
+        paintingCamera.orthographicSize = zoomLevel;
+        
+        StartCoroutine(FadeBetweenCameras(mainCamera, paintingCamera));
     }
 
     // Voltar para a câmera principal

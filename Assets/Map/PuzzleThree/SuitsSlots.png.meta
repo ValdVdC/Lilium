@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: a2c15de5086609c45a3127e175de6e15
+guid: cb6bdbc07f4996b49bb9ffe473572e68
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -243099114694839562
-    second: W_0
+      213: -4381639232192589412
+    second: SuitsSlots_0
+  - first:
+      213: 1859777551568917386
+    second: SuitsSlots_1
+  - first:
+      213: -2046128745316518806
+    second: SuitsSlots_2
+  - first:
+      213: 2451876773463599813
+    second: SuitsSlots_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +122,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: W_0
+      name: SuitsSlots_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 19
-        height: 21
+        x: 17
+        y: 158
+        width: 7
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6f2f667a4a650acf0800000000000000
-      internalID: -243099114694839562
+      spriteID: 402cd4c639eb2a040b3881e0bbf4e32a
+      internalID: 516656372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuitsSlots_1
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 158
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d37c49c721450b742abb7c3580bbc022
+      internalID: -647231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuitsSlots_2
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 36
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad2ac11954894dc4ea79088112bf9a89
+      internalID: -696934624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuitsSlots_3
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 36
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3249333d7fe8cbe4a8304880cd8c4c7e
+      internalID: -1352056594
       vertices: []
       indices: 
       edges: []
@@ -138,7 +213,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f84dae728a3f1744d83fe123284a58f4
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +223,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      W_0: -243099114694839562
+      SuitsSlots_0: 516656372
+      SuitsSlots_1: -647231
+      SuitsSlots_2: -696934624
+      SuitsSlots_3: -1352056594
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
