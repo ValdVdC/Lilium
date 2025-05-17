@@ -1,34 +1,31 @@
 fileFormatVersion: 2
-guid: 7f6a1ec3518250744834181b3ae04b7b
+guid: db043e6e315d8c448abcb85cfd933143
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5815346444209245126
-    second: Pieces_0
+      213: -1068532961821940698
+    second: "Rel\xF3gioFinish_0"
   - first:
-      213: -5707208235025365451
-    second: Pieces_1
+      213: 4485120459903921236
+    second: "Rel\xF3gioFinish_1"
   - first:
-      213: 1801684832408766203
-    second: Pieces_2
+      213: -2565083073077893051
+    second: "Rel\xF3gioFinish_2"
   - first:
-      213: 5262411738066956617
-    second: Pieces_3
+      213: -3635298809848162681
+    second: "Rel\xF3gioFinish_3"
   - first:
-      213: -8231439895271094956
-    second: Pieces_4
+      213: -3776881398691841074
+    second: "Rel\xF3gioFinish_4"
   - first:
-      213: 421191062671846005
-    second: Pieces_5
+      213: -8497789103728990382
+    second: "Rel\xF3gioFinish_5"
   - first:
-      213: 6713323665980220584
-    second: Pieces_6
+      213: 5352744386421395900
+    second: "Rel\xF3gioFinish_6"
   - first:
-      213: -5519977043689896800
-    second: Pieces_7
-  - first:
-      213: -4521170433502928094
-    second: Pieces_8
+      213: 8375496624699576394
+    second: "Rel\xF3gioFinish_7"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -137,199 +134,177 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Pieces_0
+      name: "Rel\xF3gioFinish_0"
       rect:
         serializedVersion: 2
-        x: 21
-        y: 91
-        width: 20
-        height: 20
+        x: 0
+        y: 122
+        width: 60
+        height: 122
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6cb4ceca7c244b050800000000000000
-      internalID: 5815346444209245126
+      spriteID: 624aecbbeeecb21f0800000000000000
+      internalID: -1068532961821940698
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pieces_1
+      name: "Rel\xF3gioFinish_1"
       rect:
         serializedVersion: 2
-        x: 55
-        y: 91
-        width: 18
-        height: 20
+        x: 60
+        y: 122
+        width: 60
+        height: 122
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 536012c295cebc0b0800000000000000
-      internalID: -5707208235025365451
+      spriteID: 45ce86b8b495e3e30800000000000000
+      internalID: 4485120459903921236
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pieces_2
+      name: "Rel\xF3gioFinish_2"
       rect:
         serializedVersion: 2
-        x: 87
-        y: 91
-        width: 20
-        height: 20
+        x: 120
+        y: 122
+        width: 60
+        height: 122
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bf60fe03fced00910800000000000000
-      internalID: 1801684832408766203
+      spriteID: 54823d1198ef66cd0800000000000000
+      internalID: -2565083073077893051
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pieces_3
+      name: "Rel\xF3gioFinish_3"
       rect:
         serializedVersion: 2
-        x: 20
-        y: 66
-        width: 20
-        height: 18
+        x: 180
+        y: 122
+        width: 60
+        height: 122
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 941b3552897d70940800000000000000
-      internalID: 5262411738066956617
+      spriteID: 786999a3ef2dc8dc0800000000000000
+      internalID: -3635298809848162681
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pieces_4
+      name: "Rel\xF3gioFinish_4"
       rect:
         serializedVersion: 2
-        x: 54
-        y: 66
-        width: 20
-        height: 20
+        x: 0
+        y: 0
+        width: 60
+        height: 122
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 455436cf60d04cd80800000000000000
-      internalID: -8231439895271094956
+      spriteID: ecb3130f062d59bc0800000000000000
+      internalID: -3776881398691841074
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pieces_5
+      name: "Rel\xF3gioFinish_5"
       rect:
         serializedVersion: 2
-        x: 88
-        y: 66
-        width: 20
-        height: 18
+        x: 60
+        y: 0
+        width: 60
+        height: 122
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 57aef193a0f58d500800000000000000
-      internalID: 421191062671846005
+      spriteID: 2576c0855d9c11a80800000000000000
+      internalID: -8497789103728990382
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pieces_6
+      name: "Rel\xF3gioFinish_6"
       rect:
         serializedVersion: 2
-        x: 21
-        y: 39
-        width: 20
-        height: 20
+        x: 120
+        y: 0
+        width: 60
+        height: 122
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8a469f43e448a2d50800000000000000
-      internalID: 6713323665980220584
+      spriteID: cb11d1ec8a4c84a40800000000000000
+      internalID: 5352744386421395900
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pieces_7
+      name: "Rel\xF3gioFinish_7"
       rect:
         serializedVersion: 2
-        x: 55
-        y: 39
-        width: 18
-        height: 20
+        x: 180
+        y: 0
+        width: 60
+        height: 122
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0a48d86ff1a1563b0800000000000000
-      internalID: -5519977043689896800
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pieces_8
-      rect:
-        serializedVersion: 2
-        x: 87
-        y: 39
-        width: 20
-        height: 20
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2232f06e1739141c0800000000000000
-      internalID: -4521170433502928094
+      spriteID: a4093bc0ecdbb3470800000000000000
+      internalID: 8375496624699576394
       vertices: []
       indices: 
       edges: []
@@ -338,7 +313,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 68018dab247587141a311d60c46d2e4f
+    spriteID: e68a7d96513b9e44abd305dba7be6b23
     internalID: 0
     vertices: []
     indices: 
@@ -348,15 +323,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Pieces_0: 5815346444209245126
-      Pieces_1: -5707208235025365451
-      Pieces_2: 1801684832408766203
-      Pieces_3: 5262411738066956617
-      Pieces_4: -8231439895271094956
-      Pieces_5: 421191062671846005
-      Pieces_6: 6713323665980220584
-      Pieces_7: -5519977043689896800
-      Pieces_8: -4521170433502928094
+      "Rel\xF3gioFinish_0": -1068532961821940698
+      "Rel\xF3gioFinish_1": 4485120459903921236
+      "Rel\xF3gioFinish_2": -2565083073077893051
+      "Rel\xF3gioFinish_3": -3635298809848162681
+      "Rel\xF3gioFinish_4": -3776881398691841074
+      "Rel\xF3gioFinish_5": -8497789103728990382
+      "Rel\xF3gioFinish_6": 5352744386421395900
+      "Rel\xF3gioFinish_7": 8375496624699576394
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

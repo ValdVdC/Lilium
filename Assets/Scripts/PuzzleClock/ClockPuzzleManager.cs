@@ -29,6 +29,9 @@ public class ClockPuzzleManager : MonoBehaviour
     public GameObject clockInteractionUI;      // UI para interação com o relógio
     public Button confirmButton;               // Botão para confirmar a configuração
     public GameObject interactionKeyIcon;      // Ícone da tecla de interação (NOVO!)
+    public SpriteRenderer clockSpriteRenderer;    // Referência ao SpriteRenderer do relógio
+    public Sprite[] clockAnimationSprites;        // Array de sprites para a animação
+    public float animationSpeed = 0.2f;           // Velocidade da animação (segundos por frame)
     
     [Header("Feedback")]
     public GameObject successFeedback;         // Objeto/Efeito para feedback de sucesso
@@ -48,13 +51,32 @@ public class ClockPuzzleManager : MonoBehaviour
     
     [Header("Requisitos")]
     public bool requiresBookToBeRead = true;   // Controla o requisito de livro
+
+    [Header("Estado da Chave")]
+    public bool keyCollected = false;  // Indica se a chave já foi coletada
+
+    [Header("Key UI")]
+    public ClockKeyUIController keyUIController;  // Controlador da UI da chave
+
+    [Header("Key UI Interaction")]
+    public RectTransform keyHighlight;        // Highlight retangular para a chave
+    public GameObject keyClickIndicator;      // Indicador de clique quando hover na chave
+    public Canvas puzzleCanvas;               // Canvas que contém os elementos UI do puzzle
+    public PuzzleItemType keyItemType;        // Tipo do item da chave para o inventário
     
     private int currentActiveHandIndex = 0;     // 0 = horas, 1 = minutos, 2 = segundos
     private ClockHandController[] hands;       // Array com todos os ponteiros
     private Direction[] handDirections;        // Direções usadas para cada ponteiro
-    private bool playerInRange = false;        // Indica se o jogador está na área de interação (NOVO!)
-    private bool isClockActive = false;        // Indica se o relógio está em interação (NOVO!)
-    
+    private bool playerInRange = false;        // Indica se o jogador está na área de interação
+    private bool isClockActive = false;        // Indica se o relógio está em interação 
+
+    private bool isKeyInteractable = false;   // Indica se a chave pode ser interagida
+    private bool isHoveringOverKey = false;   // Indica se o mouse está sobre a chave
+
+    private bool[] handConfirmed;         // Array para controlar quais ponteiros já foram confirmados
+    private int[] savedPositions;         // Array para salvar as posições dos ponteiros
+    private Direction[] savedDirections;  // Array para salvar as direções dos ponteiros
+
     private void Awake()
     {
         // Inicializar arrays
@@ -92,25 +114,47 @@ public class ClockPuzzleManager : MonoBehaviour
         // Log de configuração inicial
         Debug.Log("[CLOCK PUZZLE] Puzzle inicializado com valores esperados:");
         Debug.Log($"[CLOCK PUZZLE] Solução: Hora={correctHour} (Direção={correctHourDirection}), Minuto={correctMinute} (Direção={correctMinuteDirection}), Segundo={correctSecond} (Direção={correctSecondDirection})");
+
+        handConfirmed = new bool[3] { false, false, false };
+        savedPositions = new int[3] { 0, 0, 0 };
+        savedDirections = new Direction[3] { Direction.Clockwise, Direction.Clockwise, Direction.Clockwise };
     }
 
     private void Update()
     {
-        // Verificar saída da interação
-        if (clockInteractionUI != null && clockInteractionUI.activeSelf)
+        // Verificar saída da interação com prioridade
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            // Se estiver em qualquer tipo de interação, finaliza
+            if (isClockActive || isKeyInteractable)
             {
-                Debug.Log("[CLOCK PUZZLE] Saindo da interação com o relógio");
+                Debug.Log("[CLOCK PUZZLE] Saindo da interação");
                 FinishInteraction();
                 return;
             }
-            
-            // Verificar confirmação do ponteiro atual
+            // Se não estiver em interação e estiver na área, inicia
+            else if (playerInRange)
+            {
+                Debug.Log("[CLOCK PUZZLE] Jogador pressionou E para interagir");
+                if (puzzleSolved && !keyCollected)
+                {
+                    StartKeyInteraction();
+                }
+                else if (!puzzleSolved)
+                {
+                    StartClockInteraction();
+                }
+                return;
+            }
+        }
+
+        // Verificar confirmação do ponteiro atual (somente se a UI do relógio estiver ativa)
+        if (clockInteractionUI != null && clockInteractionUI.activeSelf)
+        {
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
                 string ponteiro = currentActiveHandIndex == 0 ? "Horas" : 
-                                  currentActiveHandIndex == 1 ? "Minutos" : "Segundos";
+                                currentActiveHandIndex == 1 ? "Minutos" : "Segundos";
                 
                 int posicao = hands[currentActiveHandIndex].CurrentPosition;
                 Direction direcao = handDirections[currentActiveHandIndex];
@@ -119,11 +163,17 @@ public class ClockPuzzleManager : MonoBehaviour
                 NextHand();
             }
         }
-        // Verificar interação com o relógio quando o jogador estiver no alcance (NOVO!)
-        else if (playerInRange && !isClockActive && !puzzleSolved && Input.GetKeyDown(KeyCode.E))
+        
+        // Atualizar UI da chave se estiver ativa
+        if (isKeyInteractable && !keyCollected)
         {
-            Debug.Log("[CLOCK PUZZLE] Jogador pressionou E para interagir com o relógio");
-            StartClockInteraction();
+            UpdateKeyInteractionUI();
+            
+            if (Input.GetMouseButtonDown(0) && isHoveringOverKey)
+            {
+                Debug.Log("[CLOCK PUZZLE] Clique detectado quando hover na chave!");
+                CollectKey();
+            }
         }
     }
     
@@ -150,14 +200,23 @@ public class ClockPuzzleManager : MonoBehaviour
     // Inicia a interação com o relógio
     public void StartClockInteraction()
     {
-        if (requiresBookToBeRead && !bookHasBeenRead)
+        // Se o puzzle foi resolvido e a chave não foi coletada, vamos direto para a interação da chave
+        if (puzzleSolved && !keyCollected)
+        {
+            Debug.Log("[CLOCK PUZZLE] Puzzle já resolvido. Mostrando interface da chave.");
+            StartKeyInteraction();
+            return;
+        }
+
+        // Se o puzzle não foi resolvido, verificamos o requisito do livro
+        if (!puzzleSolved && requiresBookToBeRead && !bookHasBeenRead)
         {
             Debug.Log("[CLOCK PUZZLE] O jogador precisa ler o livro primeiro!");
             return;
         }
-        
+
         Debug.Log("[CLOCK PUZZLE] Iniciando interação com o relógio");
-        isClockActive = true;  // Marcar o relógio como ativo (NOVO!)
+        isClockActive = true;
         
         // Esconder o ícone de interação enquanto estiver interagindo (NOVO!)
         if (interactionKeyIcon != null)
@@ -202,8 +261,26 @@ public class ClockPuzzleManager : MonoBehaviour
             cameraController.ActivateClockPuzzleCamera(clockPosition, puzzleCameraSize);
         }
         
-        // Ativar o primeiro ponteiro (horas)
-        currentActiveHandIndex = 0;
+        for (int i = 0; i < handConfirmed.Length; i++)
+        {
+            if (!handConfirmed[i])
+            {
+                currentActiveHandIndex = i;
+                break;
+            }
+        }
+
+        // Restaurar as posições salvas
+        for (int i = 0; i < hands.Length; i++)
+        {
+            if (hands[i] != null)
+            {
+                hands[i].SetPosition(savedPositions[i]);
+                handDirections[i] = savedDirections[i];
+            }
+        }
+
+        // Ativar o ponteiro atual
         ActivateCurrentHand();
         
         // Tocar música de puzzle
@@ -213,7 +290,81 @@ public class ClockPuzzleManager : MonoBehaviour
         // Log status inicial dos ponteiros
         LogClockHandsStatus();
     }
-    
+
+    public void StartKeyInteraction()
+    {
+        if (keyCollected)
+        {
+            Debug.Log("[CLOCK PUZZLE] Chave já foi coletada!");
+            return;
+        }
+
+        Debug.Log("[CLOCK PUZZLE] Iniciando interação com a chave");
+        isClockActive = true;
+        isKeyInteractable = false; // Começa como false até a câmera terminar
+        
+        // Esconder o ícone de interação
+        if (interactionKeyIcon != null)
+            interactionKeyIcon.SetActive(false);
+        
+        // Desativar o jogador e componentes relacionados
+        PlayerController playerController = FindFirstObjectByType<PlayerController>();
+        if (playerController != null)
+        {
+            Debug.Log("[CLOCK PUZZLE] Desativando controles do jogador para interação com a chave");
+            playerController.enabled = false;
+            playerController.spriteRenderer.enabled = false;
+            
+            // Desativar InteractorController
+            InteractorController interactor = playerController.GetComponent<InteractorController>();
+            if (interactor != null)
+                interactor.enabled = false;
+
+            // Desativar percepção e lanterna
+            Transform perception = playerController.transform.Find("Perception");
+            if (perception != null) 
+                perception.gameObject.SetActive(false);
+            
+            Transform flashLight = playerController.transform.Find("FlashLight");
+            if (flashLight != null) 
+                flashLight.gameObject.SetActive(false);
+                        
+            // Desativar sombras
+            ShadowCaster2D shadowCaster = GetComponent<ShadowCaster2D>();
+            if (shadowCaster != null) 
+                shadowCaster.enabled = false;
+        }
+
+        // IMPORTANTE: Modificação aqui - Primeiro ativar a câmera do puzzle
+        if (cameraController != null)
+        {
+            Debug.Log("[CLOCK PUZZLE] Ativando câmera do puzzle");
+            
+            // Garantir que a câmera principal seja desativada
+            Camera mainCamera = Camera.main;
+            if (mainCamera != null)
+                mainCamera.gameObject.SetActive(false);
+
+            // Ativar câmera do puzzle usando a posição do relógio
+            cameraController.ActivateClockPuzzleCamera(clockPosition, puzzleCameraSize);
+            
+            // Depois ajustar para a posição da chave
+            StartCoroutine(AdjustCameraForKey());
+        }
+        
+        // A UI será ativada depois que a câmera terminar a transição
+        if (keyUIController != null)
+        {
+            keyUIController.gameObject.SetActive(false);
+        }
+    }
+
+    private IEnumerator DelaySetupKeyInteraction()
+    {
+        yield return null; // Aguardar um frame
+        SetupKeyInteractionUI();
+    }
+
     // Ativa o ponteiro atual e desativa os outros
     private void ActivateCurrentHand()
     {
@@ -251,6 +402,13 @@ public class ClockPuzzleManager : MonoBehaviour
     // Avança para o próximo ponteiro
     public void NextHand()
     {
+        // Marcar o ponteiro atual como confirmado
+        handConfirmed[currentActiveHandIndex] = true;
+        
+        // Salvar a posição e direção final deste ponteiro
+        savedPositions[currentActiveHandIndex] = hands[currentActiveHandIndex].CurrentPosition;
+        savedDirections[currentActiveHandIndex] = hands[currentActiveHandIndex].GetLastMoveDirection();
+
         currentActiveHandIndex++;
         
         if (currentActiveHandIndex >= hands.Length)
@@ -364,10 +522,17 @@ public class ClockPuzzleManager : MonoBehaviour
         if (successFeedback != null)
             successFeedback.SetActive(true);
         
-        // Desativar UI de interação
+        // Desativar UI de interação do relógio
         if (clockInteractionUI != null)
             clockInteractionUI.SetActive(false);
-        
+
+        // Desativar ponteiros
+        foreach (var hand in hands)
+        {
+            if (hand != null)
+                hand.SetActive(false);
+        }
+
         // Tocar som de sucesso
         if (audioManager != null)
         {
@@ -375,13 +540,29 @@ public class ClockPuzzleManager : MonoBehaviour
             audioManager.PlaySolvedMusic();
         }
         
-        Debug.Log("[CLOCK PUZZLE] Puzzle resolvido! Mostrando recompensa em breve.");
+        Debug.Log("[CLOCK PUZZLE] Puzzle resolvido! Iniciando sequência de recompensa.");
         
-        // Mostrar recompensa
-        StartCoroutine(ShowRewardAfterDelay(2f));
+        // Iniciar a animação do relógio
+        StartCoroutine(AnimateClockAfterSolved());
         
-        // Fechar a interação automaticamente
-        FinishInteraction();
+        // Primeiro ativar a recompensa
+        if (rewardObject != null)
+        {
+            rewardObject.SetActive(true);
+            Debug.Log("[CLOCK PUZZLE] Recompensa ativada!");
+            
+            // Verificar se a chave tem um collider
+            Collider2D keyCollider = rewardObject.GetComponent<Collider2D>();
+            if (keyCollider == null)
+            {
+                BoxCollider2D boxCollider = rewardObject.AddComponent<BoxCollider2D>();
+                boxCollider.isTrigger = true;
+                Debug.Log("[CLOCK PUZZLE] Adicionado BoxCollider2D à chave para interação");
+            }
+        }
+        
+        // Depois ajustar a câmera e configurar a UI
+        StartCoroutine(AdjustCameraForKey());
     }
     
     // Chamado quando o puzzle falha
@@ -398,6 +579,7 @@ public class ClockPuzzleManager : MonoBehaviour
         
         // Resetar ponteiros
         ResetClockHands();
+        ResetPuzzleProgress();
         
         // Tocar som de falha
         if (audioManager != null)
@@ -436,6 +618,16 @@ public class ClockPuzzleManager : MonoBehaviour
         {
             rewardObject.SetActive(true);
             Debug.Log("[CLOCK PUZZLE] Recompensa ativada!");
+            
+            // Verificar se a chave tem um collider
+            Collider2D keyCollider = rewardObject.GetComponent<Collider2D>();
+            if (keyCollider == null)
+            {
+                // Adicionar um BoxCollider2D à chave
+                BoxCollider2D boxCollider = rewardObject.AddComponent<BoxCollider2D>();
+                boxCollider.isTrigger = true; // Para não ter colisão física
+                Debug.Log("[CLOCK PUZZLE] Adicionado BoxCollider2D à chave para interação");
+            }
         }
         
         // Tocar som de aparecer recompensa
@@ -453,12 +645,28 @@ public class ClockPuzzleManager : MonoBehaviour
     // Finaliza a interação e volta para a visão principal
     public void FinishInteraction()
     {
+        // Salvar o estado atual antes de finalizar
+        for (int i = 0; i < hands.Length; i++)
+        {
+            if (hands[i] != null)
+            {
+                savedPositions[i] = hands[i].CurrentPosition;
+                savedDirections[i] = hands[i].GetLastMoveDirection();
+            }
+        }
         Debug.Log("[CLOCK PUZZLE] Finalizando interação com o relógio");
-        isClockActive = false;  // Marcar o relógio como inativo (NOVO!)
-        
-        // Mostrar novamente o ícone de interação se o jogador ainda estiver na área e o puzzle não estiver resolvido (NOVO!)
-        if (interactionKeyIcon != null && playerInRange && !puzzleSolved)
-            interactionKeyIcon.SetActive(true);
+        isClockActive = false;
+        isKeyInteractable = false;
+        // Mostrar novamente o ícone de interação se o jogador ainda estiver na área
+        if (interactionKeyIcon != null && playerInRange)
+        {
+            // Mostrar ícone se o puzzle não foi resolvido OU se foi resolvido mas a chave não foi coletada
+            if (!puzzleSolved || (puzzleSolved && !keyCollected))
+            {
+                interactionKeyIcon.SetActive(true);
+                Debug.Log("[CLOCK PUZZLE] Mostrou ícone de interação após finalizar interação");
+            }
+        }
         
         // Reativar jogador e componentes relacionados
         PlayerController playerController = FindFirstObjectByType<PlayerController>();
@@ -492,6 +700,13 @@ public class ClockPuzzleManager : MonoBehaviour
             Debug.Log("[CLOCK PUZZLE] UI de interação do relógio desativada");
         }
         
+        // Esconder a UI da chave se estiver ativa
+        if (keyUIController != null)
+        {
+            keyUIController.HideKeyInteractionUI();
+            keyUIController.gameObject.SetActive(false); // Garantir que o objeto inteiro seja desativado
+        }
+        
         // Voltar para a câmera principal
         if (cameraController != null)
         {
@@ -515,21 +730,38 @@ public class ClockPuzzleManager : MonoBehaviour
             }
         }
     }
+
+    public void ResetPuzzleProgress()
+    {
+        for (int i = 0; i < handConfirmed.Length; i++)
+        {
+            handConfirmed[i] = false;
+            savedPositions[i] = 0;
+            savedDirections[i] = Direction.Clockwise;
+        }
+        currentActiveHandIndex = 0;
+        
+        // Resetar os ponteiros para a posição inicial
+        ResetClockHands();
+    }
     
     // Chamado quando o jogador entra na área de interação do relógio (NOVO!)
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Verificar se é o jogador que entrou no trigger
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
             Debug.Log("[CLOCK PUZZLE] Jogador entrou na área de interação do relógio");
             
-            // Mostrar o ícone de interação se o puzzle não foi resolvido e o relógio não está em uso
-            if (!isClockActive && !puzzleSolved && interactionKeyIcon != null)
+            // Mostrar o ícone de interação se o puzzle não foi resolvido OU
+            // se foi resolvido mas a chave ainda não foi coletada
+            if (!isClockActive && (!puzzleSolved || (puzzleSolved && !keyCollected)))
             {
-                interactionKeyIcon.SetActive(true);
-                Debug.Log("[CLOCK PUZZLE] Mostrou ícone de interação");
+                if (interactionKeyIcon != null)
+                {
+                    interactionKeyIcon.SetActive(true);
+                    Debug.Log("[CLOCK PUZZLE] Mostrou ícone de interação");
+                }
             }
         }
     }
@@ -552,13 +784,368 @@ public class ClockPuzzleManager : MonoBehaviour
         }
     }
     
-    // Método para implementação da interface IInteractable, se necessário (NOVO!)
+    // Método para implementação da interface IInteractable
     public void Interact()
     {
-        if (!isClockActive && !puzzleSolved)
+        if (!isClockActive)
         {
             Debug.Log("[CLOCK PUZZLE] Interação iniciada através da interface IInteractable");
-            StartClockInteraction();
+            
+            // Se o puzzle foi resolvido mas a chave não foi coletada
+            if (puzzleSolved && !keyCollected)
+            {
+                StartKeyInteraction();
+            }
+            else if (!puzzleSolved)
+            {
+                StartClockInteraction();
+            }
+        }
+    }
+
+    private IEnumerator AnimateClockAfterSolved()
+    {
+        if (clockSpriteRenderer == null || clockAnimationSprites == null || clockAnimationSprites.Length < 2)
+        {
+            Debug.LogWarning("[CLOCK PUZZLE] Componentes de animação não configurados corretamente!");
+            yield break;
+        }
+        
+        Debug.Log("[CLOCK PUZZLE] Iniciando animação do relógio");
+        
+        int currentSpriteIndex = 0;
+        bool goingForward = true;
+        
+        while (true) // Loop infinito para animação contínua
+        {
+            // Atualizar o sprite atual
+            clockSpriteRenderer.sprite = clockAnimationSprites[currentSpriteIndex];
+            
+            // Esperar pelo tempo determinado
+            yield return new WaitForSeconds(animationSpeed);
+            
+            // Lógica para ir e voltar na sequência de sprites (ping-pong)
+            if (goingForward)
+            {
+                currentSpriteIndex++;
+                if (currentSpriteIndex >= clockAnimationSprites.Length - 1)
+                {
+                    goingForward = false;
+                }
+            }
+            else
+            {
+                currentSpriteIndex--;
+                if (currentSpriteIndex <= 0)
+                {
+                    goingForward = true;
+                }
+            }
+        }
+    }
+
+    private IEnumerator AdjustCameraForKey()
+    {
+        yield return new WaitForSeconds(0f);
+        
+        if (cameraController != null && rewardObject != null)
+        {
+            Camera currentCamera = cameraController.GetCurrentCamera();
+            if (currentCamera == null)
+            {
+                Debug.LogError("[CLOCK PUZZLE] Camera atual é nula!");
+                yield break;
+            }
+
+            Vector3 originalPosition = currentCamera.transform.position;
+            float originalSize = currentCamera.orthographicSize;
+            
+            Vector3 targetPosition = new Vector3(
+                rewardObject.transform.position.x,
+                rewardObject.transform.position.y - 0.5f,
+                originalPosition.z
+            );
+            
+            float targetSize = puzzleCameraSize * 0.8f;
+            float duration = 0.5f;
+            float elapsedTime = 0f;
+            
+            while (elapsedTime < duration)
+            {
+                elapsedTime += Time.deltaTime;
+                float t = elapsedTime / duration;
+                float smoothT = Mathf.SmoothStep(0, 1, t);
+                
+                currentCamera.transform.position = Vector3.Lerp(originalPosition, targetPosition, smoothT);
+                currentCamera.orthographicSize = Mathf.Lerp(originalSize, targetSize, smoothT);
+                
+                yield return null;
+            }
+
+            // Aguardar um momento antes de ativar a UI
+            yield return new WaitForSeconds(0.2f);
+
+            // Configurar a UI e ativar interação
+            if (keyUIController != null)
+            {
+                keyUIController.gameObject.SetActive(true);
+                SetupKeyInteractionUI();
+            }
+
+            isKeyInteractable = true;
+            Debug.Log("[CLOCK PUZZLE] Câmera ajustada e UI da chave configurada");
+            
+            // Debug adicional para verificar o estado
+            Debug.Log($"[CLOCK PUZZLE] Estado final: isKeyInteractable={isKeyInteractable}, keyUIController.active={keyUIController?.gameObject.activeSelf}");
+        }
+    }
+    // Configura a UI para interação com a chave
+    private void SetupKeyInteractionUI()
+    {
+        if (rewardObject == null || keyUIController == null)
+        {
+            Debug.LogError("[CLOCK PUZZLE] rewardObject ou keyUIController é nulo!");
+            return;
+        }
+        
+        Debug.Log("[CLOCK PUZZLE] Configurando UI de interação da chave");
+        
+        // Garantir que o keyUIController esteja ativo para interação
+        keyUIController.gameObject.SetActive(true);
+        
+        // Ativar a UI de interação da chave
+        keyUIController.ShowKeyInteractionUI();
+        
+        // Posicionar o highlight ao redor da chave
+        PositionKeyHighlight();
+    }
+
+    // Posiciona o highlight retangular ao redor da chave
+    private void PositionKeyHighlight()
+    {
+        if (keyUIController == null)
+        {
+            Debug.LogError("[CLOCK PUZZLE] keyUIController é nulo!");
+            return;
+        }
+        
+        if (keyUIController.keyHighlight == null)
+        {
+            Debug.LogError("[CLOCK PUZZLE] keyHighlight é nulo no keyUIController!");
+            return;
+        }
+        
+        if (rewardObject == null)
+        {
+            Debug.LogError("[CLOCK PUZZLE] rewardObject é nulo!");
+            return;
+        }
+        
+        // Use a referência direta ao puzzleCanvas em vez de procurar pelo Canvas pai
+        if (puzzleCanvas == null)
+        {
+            Debug.LogError("[CLOCK PUZZLE] puzzleCanvas não foi atribuído no Inspector!");
+            return;
+        }
+        
+        RectTransform canvasRect = puzzleCanvas.transform as RectTransform;
+        if (canvasRect == null)
+        {
+            Debug.LogError("[CLOCK PUZZLE] puzzleCanvas não tem RectTransform!");
+            return;
+        }
+        
+        // Obter a câmera atual
+        Camera currentCamera = cameraController.GetCurrentCamera();
+        if (currentCamera == null)
+        {
+            Debug.LogError("[CLOCK PUZZLE] Câmera atual é nula!");
+            return;
+        }
+        
+        // Pegar o renderer da chave para obter seus limites
+        Renderer keyRenderer = rewardObject.GetComponent<Renderer>();
+        if (keyRenderer == null)
+        {
+            Debug.LogError("[CLOCK PUZZLE] Chave não tem um componente Renderer!");
+            return;
+        }
+        
+        // Obter os limites da chave
+        Bounds keyBounds = keyRenderer.bounds;
+        
+        // Expandir os limites um pouco para o highlight ser maior que a chave
+        keyBounds.Expand(0.1f);
+        
+        // Converter as posições dos cantos da chave para a tela
+        Vector3 minScreenPoint = currentCamera.WorldToScreenPoint(keyBounds.min);
+        Vector3 maxScreenPoint = currentCamera.WorldToScreenPoint(keyBounds.max);
+        
+        // Verificar se a conversão para coordenadas locais está funcionando
+        Vector2 minLocalPoint, maxLocalPoint;
+        
+        // Usar a câmera correta dependendo do modo do canvas
+        Camera canvasCamera = puzzleCanvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : currentCamera;
+        
+        bool minResult = RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            canvasRect,
+            minScreenPoint,
+            canvasCamera,
+            out minLocalPoint);
+        
+        bool maxResult = RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            canvasRect,
+            maxScreenPoint,
+            canvasCamera,
+            out maxLocalPoint);
+        
+        if (!minResult || !maxResult)
+        {
+            Debug.LogError("[CLOCK PUZZLE] Falha ao converter pontos da tela para pontos locais!");
+            return;
+        }
+        
+        // Configurar a posição e tamanho do highlight
+        keyUIController.keyHighlight.anchoredPosition = (minLocalPoint + maxLocalPoint) / 2;
+        keyUIController.keyHighlight.sizeDelta = new Vector2(
+            Mathf.Abs(maxLocalPoint.x - minLocalPoint.x),
+            Mathf.Abs(maxLocalPoint.y - minLocalPoint.y)
+        );
+        
+        // Adicionar um pequeno padding ao retângulo
+        float padding = 20f; // Aumentado de 15f para 20f
+        keyUIController.keyHighlight.sizeDelta += new Vector2(padding * 2, padding * 2);
+    }
+
+    private void CheckMouseHoverOnKey()
+    {
+        // Somente verificar se a chave está ativa e interagível
+        if (rewardObject == null || !rewardObject.activeSelf || !isKeyInteractable)
+        {
+            isHoveringOverKey = false;
+            if (keyUIController != null)
+                keyUIController.ShowClickIndicator(false, Vector2.zero);
+            return;
+        }
+        
+        Camera currentCamera = cameraController.GetCurrentCamera();
+        if (currentCamera == null)
+            return;
+        
+        Vector2 mouseWorldPos = currentCamera.ScreenToWorldPoint(Input.mousePosition);
+        
+        // Usar um círculo um pouco maior para a detecção
+        float detectionRadius = 0.3f; // Aumentado para melhor detecção
+        RaycastHit2D hit = Physics2D.CircleCast(mouseWorldPos, detectionRadius, Vector2.zero, 0f);
+        
+        bool wasHovering = isHoveringOverKey;
+        isHoveringOverKey = (hit.collider != null && hit.collider.gameObject == rewardObject);
+        
+        // Se o estado do hover mudou
+        if (wasHovering != isHoveringOverKey)
+        {
+            Debug.Log($"[CLOCK PUZZLE] Estado do hover mudou: {isHoveringOverKey}");
+            
+            // Atualizar o highlight
+            if (keyUIController != null)
+            {
+                keyUIController.SetHighlightHoverState(isHoveringOverKey);
+                UpdateClickIndicator(isHoveringOverKey, currentCamera);
+            }
+        }
+    }
+
+    private void UpdateClickIndicator(bool show, Camera camera)
+    {
+        if (keyUIController != null && show && rewardObject != null)
+        {
+            // Posicionar o indicador no centro da chave
+            Vector3 keyWorldPos = rewardObject.transform.position;
+            Vector2 screenPos = camera.WorldToScreenPoint(keyWorldPos);
+            
+            // Converter para coordenadas locais do canvas
+            RectTransform canvasRect = puzzleCanvas.transform as RectTransform;
+            
+            // Usar a câmera correta dependendo do modo do canvas
+            Camera canvasCamera = puzzleCanvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : camera;
+            
+            Vector2 localPoint;
+            if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                canvasRect,
+                screenPos,
+                canvasCamera,
+                out localPoint))
+            {
+                keyUIController.ShowClickIndicator(true, localPoint);
+                Debug.Log("[CLOCK PUZZLE] Indicador de clique mostrado em: " + localPoint);
+            }
+        }
+        else if (keyUIController != null)
+        {
+            keyUIController.ShowClickIndicator(false, Vector2.zero);
+        }
+    }
+
+    // Coleta a chave e adiciona ao inventário
+    private void CollectKey()
+    {
+        // Verificar se a chave já foi coletada
+        if (keyCollected || rewardObject == null)
+            return;
+        
+        Debug.Log("[CLOCK PUZZLE] Tentando coletar a chave...");
+        
+        // Referência ao inventário
+        InventoryManager inventory = FindFirstObjectByType<InventoryManager>();
+        
+        // Tentar adicionar a chave ao inventário
+        bool added = inventory != null && inventory.AddItem(keyItemType);
+        
+        if (added)
+        {
+            Debug.Log("[CLOCK PUZZLE] Chave coletada com sucesso!");
+            keyCollected = true;
+            
+            // Desativar o objeto da chave
+            rewardObject.SetActive(false);
+            
+            // Desativar UI de interação da chave
+            if (keyUIController != null)
+                keyUIController.HideKeyInteractionUI();
+            
+            // Tocar som de coleta
+            if (audioManager != null)
+                audioManager.PlayKeyCollect();
+            
+            // Finalizar a interação com o puzzle
+            StartCoroutine(DelayedFinishInteraction());
+        }
+        else
+        {
+            Debug.LogError("[CLOCK PUZZLE] Falha ao adicionar a chave ao inventário!");
+        }
+    }
+    private IEnumerator DelayedFinishInteraction()
+    {
+        // Pequeno delay para que o som de coleta seja reproduzido completamente
+        yield return new WaitForSeconds(0f);
+        FinishInteraction();
+    }
+    private void UpdateKeyInteractionUI()
+    {
+        if (puzzleSolved && isKeyInteractable && !keyCollected)
+        {
+            // Reposicionar o highlight para caso a câmera tenha se movido
+            PositionKeyHighlight();
+            
+            // Verificar o hover do mouse sobre a chave
+            CheckMouseHoverOnKey();
+            
+            // Debug para verificar se está atualizando
+            if (isHoveringOverKey)
+            {
+                Debug.Log("[CLOCK PUZZLE] Mouse sobre a chave - UI sendo atualizada");
+            }
         }
     }
 }

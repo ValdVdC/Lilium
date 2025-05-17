@@ -88,7 +88,7 @@ public class PaintingInteraction : MonoBehaviour
         if (paintingUI != null)
         {
             paintingUI.SetActive(true);
-            Debug.Log("[BOOKSHELF PUZZLE] UI de interação ativada");
+            Debug.Log("[PAINTING] UI de interação ativada");
         }
 
         // Configurar câmera

@@ -54,5 +54,8 @@ TagManager:
   - name: Decoration
     uniqueID: 2050911605
     locked: 0
+  - name: InteractionIconKey
+    uniqueID: 2610896009
+    locked: 0
   m_RenderingLayers:
   - Default

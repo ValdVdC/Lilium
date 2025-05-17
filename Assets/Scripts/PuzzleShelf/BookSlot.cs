@@ -74,17 +74,12 @@ public class BookSlot : BookItem
     public BookItem RemoveBook()
     {
         BookItem removedBook = _currentBook;
-        _currentBook = null;
         
         if (removedBook != null)
         {
-            // MODIFICAÇÃO: Limpar a referência do slot no livro
-            if (removedBook is BookItem regularBook)
-            {
-                regularBook.currentSlot = null;
-            }
-            
-            Debug.Log($"[BOOK SLOT] {slotName}: Livro {removedBook.name} removido");
+            removedBook.currentSlot = null;
+            _currentBook = null;
+            Debug.Log($"[BOOK SLOT] {slotName}: Livro {removedBook.name} removido e referências limpas");
         }
         
         return removedBook;

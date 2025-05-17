@@ -13,10 +13,12 @@ public class BookItem : MonoBehaviour
     
     [Header("Configurações de Posição")]
     public Vector3 originalPosition;            // Posição original do livro na estante
+    private Vector2Int _lastKnownGridPosition = new Vector2Int(-1, -1);
     
     [Header("Referências")]
-    public BookSlot currentSlot;
-
+    public BookSlot _currentSlot;
+    private BookSlot _lastKnownSlot;  
+    
     protected BookshelfPuzzleManager puzzleManager;  // Referência ao gerenciador do puzzle
     protected bool isHighlighted = false;       // Indica se está destacado pelo cursor
     protected bool isSelected = false;          // Indica se está selecionado pelo jogador
@@ -88,5 +90,32 @@ public class BookItem : MonoBehaviour
         if (puzzleManager == null || !puzzleManager.puzzleActive) return;
         
         // Podemos implementar lógica de clique diretamente aqui como alternativa
+    }
+    public BookSlot currentSlot
+    {
+        get { return _currentSlot; }
+        set 
+        { 
+            _currentSlot = value;
+            if (value != null)
+            {
+                _lastKnownSlot = value; // Atualiza o último slot conhecido
+                Debug.Log($"[BOOK ITEM] {name}: Atualizando lastKnownSlot para {value.name}");
+            }
+        }
+    }
+    
+    public BookSlot lastKnownSlot
+    {
+        get { return _lastKnownSlot; }
+    }
+    public Vector2Int lastKnownGridPosition
+    {
+        get { return _lastKnownGridPosition; }
+        set 
+        { 
+            _lastKnownGridPosition = value;
+            Debug.Log($"[BOOK ITEM] {name}: Atualizando lastKnownGridPosition para [{value.y}, {value.x}]");
+        }
     }
 }

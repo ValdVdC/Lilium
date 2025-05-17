@@ -183,7 +183,7 @@ public class CameraController : MonoBehaviour
         StartCoroutine(FadeBetweenCameras(mainCamera, clockPuzzleCamera));
     }
 
-    public void ActivateShelfPuzzleCamera(Transform shelfPosition, float zoomLevel)
+    public void ActivateShelfPuzzleCamera(Transform shelfPosition, float zoomLevel, string hexColor = "#110A07")
     {
         if (transitionInProgress)
             return;
@@ -193,6 +193,12 @@ public class CameraController : MonoBehaviour
         
         shelfPuzzleCamera.transform.position = shelfCamPosition;
         shelfPuzzleCamera.orthographicSize = zoomLevel;
+
+        Color backgroundColor;
+        if (ColorUtility.TryParseHtmlString(hexColor, out backgroundColor))
+            shelfPuzzleCamera.backgroundColor = backgroundColor;
+        else
+            shelfPuzzleCamera.backgroundColor = Color.black; // Cor padrão se a conversão falhar
         
         StartCoroutine(FadeBetweenCameras(mainCamera, shelfPuzzleCamera));
     }
@@ -277,5 +283,12 @@ public class CameraController : MonoBehaviour
         // Limpar
         Destroy(fadeObj);
         transitionInProgress = false;
+    }
+
+    // Método para obter a câmera atual
+    public Camera GetCurrentCamera()
+    {
+        // Retorna a câmera ativa atual
+        return activeCamera;
     }
 }

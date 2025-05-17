@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UI; // Adicionado para elementos UI
 
 public class TableInteraction : MonoBehaviour, IInteractable
 {
@@ -21,9 +22,31 @@ public class TableInteraction : MonoBehaviour, IInteractable
     
     [HideInInspector]
     public bool interactionEnabled = true;
-    private bool isPuzzleOpen = false;
-    private Vector2Int emptySlotPosition = new Vector2Int(1, 1); // Centro inicialmente vazio
+    public bool isPuzzleOpen = false;
+    public Vector2Int emptySlotPosition = new Vector2Int(1, 1); // Centro inicialmente vazio
     private PlayerController playerController;
+
+    [Header("Interaction Icon")]
+    public GameObject interactionKeyIconPrefab; // Prefab do ícone E
+    public float iconYOffset = 1.5f; // Altura acima da mesa
+    public float iconXOffset = 0.5f; // Distância para a direita (valor positivo)   
+    private GameObject interactionIcon;
+
+    [Header("Keyboard UI")]
+    public GameObject keyboardUIPanel;        // Painel contendo todas as teclas
+    public GameObject closeButton; // Referência para o botão de fechar
+    public GameObject keyW;                   // Tecla W/Up
+    public GameObject keyA;                   // Tecla A/Left
+    public GameObject keyS;                   // Tecla S/Down
+    public GameObject keyD;                   // Tecla D/Right  
+    public Color activeKeyColor = Color.white; // Cor quando a tecla está ativa
+    public Color inactiveKeyColor = new Color(0.5f, 0.5f, 0.5f, 0.5f); // Cor quando a tecla está inativa
+
+    [Header("Shuffle Configuration")]
+    public int minShuffleMoves = 50;
+    public int maxShuffleMoves = 80;
+    public float shuffleSpeed = 0.1f; 
+    
     
     private void Start()
     {
@@ -41,6 +64,12 @@ public class TableInteraction : MonoBehaviour, IInteractable
             
         // Inicializar slots do puzzle
         InitializePuzzleSlots();
+        
+        // Criar o ícone de interação
+        CreateInteractionIcon();
+
+        if (keyboardUIPanel != null)
+            keyboardUIPanel.SetActive(false);
     }
     
     private void InitializePuzzleSlots()
@@ -103,7 +132,11 @@ public class TableInteraction : MonoBehaviour, IInteractable
     public void OpenPuzzleView()
     {
         isPuzzleOpen = true;
-        
+            
+        // Ocultar o ícone de interação quando abrir o puzzle
+        if (interactionIcon != null)
+            interactionIcon.SetActive(false);
+
         // Desativar jogador e também o InteractorController
         if (playerController != null)
         {
@@ -133,11 +166,49 @@ public class TableInteraction : MonoBehaviour, IInteractable
         
         puzzleBoard.SetActive(true);
         
+        // IMPORTANTE: Sempre mostrar o closeButton quando o puzzle é aberto
+        if (closeButton != null)
+            closeButton.SetActive(true);
+        
+        // Garantir que a UI do teclado esteja inicialmente desativada
+        if (keyboardUIPanel != null)
+            keyboardUIPanel.SetActive(false);
+        
         // Mostrar destaques de posicionamento se estiver na fase de colocação inicial
         if (puzzleManager.currentState == PuzzleState.Collection || 
             puzzleManager.currentState == PuzzleState.InitialSetup)
         {
             ShowPlacementHighlights();
+        }
+        else if (puzzleManager.currentState == PuzzleState.Solving)
+        {
+            // Mostrar a UI do teclado apenas quando estiver na fase de resolução
+            ShowKeyboardUI();
+        }
+    }
+
+    private void ShowKeyboardUI()
+    {
+        if (keyboardUIPanel != null)
+        {
+            keyboardUIPanel.SetActive(true);
+            Debug.Log("Keyboard UI Panel ativado: " + keyboardUIPanel.name);
+            UpdateKeyboardUI(); // Atualizar quais teclas estão disponíveis imediatamente
+        }
+        else
+        {
+            Debug.LogError("keyboardUIPanel é null! Verifique as referências no Inspector.");
+        }
+        
+        // Verificar também o botão de fechar
+        if (closeButton != null)
+        {
+            closeButton.SetActive(true);
+            Debug.Log("Close Button ativado: " + closeButton.name);
+        }
+        else
+        {
+            Debug.LogError("closeButton é null! Verifique as referências no Inspector.");
         }
     }
     
@@ -174,9 +245,14 @@ public class TableInteraction : MonoBehaviour, IInteractable
         
         puzzleBoard.SetActive(true);
         placementHighlights.SetActive(false);
+        
+        // Desativar todos os elementos da UI
+        if (keyboardUIPanel != null)
+            keyboardUIPanel.SetActive(false);
+        if (closeButton != null)
+            closeButton.SetActive(false);
     }
-    
-    
+
     private void ShowPlacementHighlights()
     {
         placementHighlights.SetActive(true);
@@ -222,7 +298,52 @@ public class TableInteraction : MonoBehaviour, IInteractable
             }
         }
     }
-    
+
+    // Função para atualizar quais teclas são válidas:
+    private void UpdateKeyboardUI()
+    {
+        if (keyboardUIPanel == null || !isPuzzleOpen || puzzleManager.currentState != PuzzleState.Solving)
+            return;
+            
+        // Obter movimentos válidos com base na posição do espaço vazio
+        List<Vector2Int> validMoves = GetValidMoves();
+        
+        // Por padrão, todas as teclas são inativas
+        SetKeyActive(keyW, false);
+        SetKeyActive(keyA, false);
+        SetKeyActive(keyS, false);
+        SetKeyActive(keyD, false);
+        
+        // Ativar apenas as teclas que correspondem a movimentos válidos
+        foreach (Vector2Int move in validMoves)
+        {
+            Vector2Int direction = move - emptySlotPosition;
+
+            if (direction.x == 0 && direction.y == -1)  // Mover o espaço vazio para cima / peça para baixo
+                SetKeyActive(keyS, true);               // Tecla S/Down
+            else if (direction.x == 0 && direction.y == 1)  // Mover o espaço vazio para baixo / peça para cima
+                SetKeyActive(keyW, true);               // Tecla W/Up
+            else if (direction.x == -1 && direction.y == 0)  // Mover o espaço vazio para direita
+                SetKeyActive(keyD, true);               // Tecla D/Right
+            else if (direction.x == 1 && direction.y == 0)  // Mover o espaço vazio para esquerda
+                SetKeyActive(keyA, true);               // Tecla A/Left
+        }
+    }
+
+    // Método auxiliar para ativar/desativar uma tecla visualmente
+    private void SetKeyActive(GameObject keyObject, bool active)
+    {
+        if (keyObject == null)
+            return;
+            
+        // Obter o componente de imagem para mudar a cor
+        Image keyImage = keyObject.GetComponent<Image>();
+        if (keyImage != null)
+        {
+            keyImage.color = active ? activeKeyColor : inactiveKeyColor;
+        }
+    }
+
     private void Update()
     {
         if (isPuzzleOpen)
@@ -232,6 +353,16 @@ public class TableInteraction : MonoBehaviour, IInteractable
             {
                 ClosePuzzleView();
                 return;
+            }
+            
+            // Verificar se o estado mudou para Solving e atualizar a UI
+            if (puzzleManager.currentState == PuzzleState.Solving && keyboardUIPanel != null)
+            {
+                // Se o teclado ainda não estiver ativo, mostrar e atualizar
+                if (!keyboardUIPanel.activeSelf)
+                {
+                    ShowKeyboardUI();
+                }
             }
             
             // Lógica para interação com o puzzle
@@ -244,6 +375,7 @@ public class TableInteraction : MonoBehaviour, IInteractable
             if (puzzleManager.currentState == PuzzleState.Solving)
             {
                 HandleKeyboardInput();
+                UpdateKeyboardUI();
             }
         }
     }
@@ -327,7 +459,10 @@ public class TableInteraction : MonoBehaviour, IInteractable
             PuzzleItemType itemType = (type == "Dagger") ? PuzzleItemType.Dagger : PuzzleItemType.Shield;
             
             // Verificar se temos este item no inventário
-            if (puzzleManager.HasItemInInventory(itemType))
+            InventoryManager inventory = FindFirstObjectByType<InventoryManager>();
+            bool hasItem = inventory != null && inventory.HasItem(itemType);
+            
+            if (hasItem)
             {
                 // Colocar a peça no slot
                 puzzleSlots[x, y].currentType = itemType;
@@ -343,6 +478,10 @@ public class TableInteraction : MonoBehaviour, IInteractable
                 puzzleSlots[x, y].UpdateVisual();
                 
                 // Remover do inventário
+                if (inventory != null)
+                    inventory.RemoveItem(itemType);
+                    
+                // Remover do inventário do PuzzleManager para manter compatibilidade
                 puzzleManager.RemoveItemFromInventory(itemType);
                 
                 // Atualizar highlights
@@ -436,14 +575,25 @@ public class TableInteraction : MonoBehaviour, IInteractable
         puzzleManager.currentState = PuzzleState.Shuffling;
         placementHighlights.SetActive(false);
         
+        if (keyboardUIPanel != null)
+            keyboardUIPanel.SetActive(false);
+        
         // Guardar configuração inicial (solução)
         SaveSolutionState();
         
         // Animação de embaralhamento
         yield return new WaitForSeconds(0.5f);
         
-        // Realizar movimentos aleatórios válidos (30-50 movimentos)
-        int shuffleMoves = Random.Range(30, 51);
+        // Melhorias no algoritmo de embaralhamento:
+        // 1. Aumentar número de movimentos
+        int shuffleMoves = Random.Range(minShuffleMoves, maxShuffleMoves + 1);
+        
+        // 2. Evitar movimentos redundantes (retornar à posição anterior)
+        Vector2Int lastMove = Vector2Int.zero;
+        
+        // 3. Usar uma estratégia de "memória" para evitar repetições de padrões
+        HashSet<string> recentBoardStates = new HashSet<string>();
+        
         for (int i = 0; i < shuffleMoves; i++)
         {
             // Lista de movimentos possíveis
@@ -451,28 +601,139 @@ public class TableInteraction : MonoBehaviour, IInteractable
             
             if (possibleMoves.Count > 0)
             {
-                // Escolher um movimento aleatório
-                int moveIndex = Random.Range(0, possibleMoves.Count);
-                Vector2Int movePos = possibleMoves[moveIndex];
+                // Filtrar movimentos para evitar voltar para a posição anterior
+                List<Vector2Int> preferredMoves = new List<Vector2Int>();
+                foreach (Vector2Int move in possibleMoves)
+                {
+                    // Evitar reverter o último movimento
+                    Vector2Int moveDirection = move - emptySlotPosition;
+                    Vector2Int reverseMovePos = emptySlotPosition + (lastMove * -1);
+                    
+                    if (move != reverseMovePos)
+                    {
+                        preferredMoves.Add(move);
+                    }
+                }
+                
+                // Se não tiver movimentos preferidos (só tem a opção de voltar), usar os originais
+                if (preferredMoves.Count == 0)
+                    preferredMoves = possibleMoves;
+                
+                // Escolher um movimento aleatório entre os preferidos
+                int moveIndex = Random.Range(0, preferredMoves.Count);
+                Vector2Int movePos = preferredMoves[moveIndex];
+                
+                // Registrar a direção deste movimento para evitar reverter no próximo passo
+                lastMove = movePos - emptySlotPosition;
                 
                 // Mover a peça
                 SwapWithEmptySlot(movePos);
                 
-                if (audioManager != null)
+                // Armazenar o estado atual para evitar repetições
+                string currentState = GetBoardStateHash();
+                recentBoardStates.Add(currentState);
+                
+                if (audioManager != null && i % 3 == 0)  // Tocar som a cada 3 movimentos para não sobrecarregar
                     audioManager.PlayPuzzleShuffle();
 
                 // Atualizar visuais
                 UpdateAllSlotVisuals();
                 
-                // Pequena pausa para animação
-                yield return new WaitForSeconds(0.5f);
+                // Pequena pausa para animação (mais rápida)
+                yield return new WaitForSeconds(shuffleSpeed);
+            }
+        }
+        
+        // Verificar se o estado final não está muito próximo da solução
+        if (IsNearSolution())
+        {
+            // Realizar mais alguns movimentos aleatórios
+            for (int i = 0; i < 10; i++)
+            {
+                List<Vector2Int> possibleMoves = GetValidMoves();
+                if (possibleMoves.Count > 0)
+                {
+                    int moveIndex = Random.Range(0, possibleMoves.Count);
+                    SwapWithEmptySlot(possibleMoves[moveIndex]);
+                    yield return new WaitForSeconds(shuffleSpeed);
+                }
             }
         }
         
         // Mudar para estado de resolução
         puzzleManager.currentState = PuzzleState.Solving;
+        Debug.Log("Mudando para estado de resolução (PuzzleState.Solving)");
+        
+        // Mostrar a UI do teclado agora que estamos em modo de resolução
+        ShowKeyboardUI();
+    }
+
+    private string GetBoardStateHash()
+    {
+        System.Text.StringBuilder hash = new System.Text.StringBuilder();
+        
+        for (int y = 0; y < 3; y++)
+        {
+            for (int x = 0; x < 3; x++)
+            {
+                PuzzleSlot slot = puzzleSlots[x, y];
+                if (slot != null)
+                {
+                    hash.Append(slot.currentType.ToString()[0]);
+                    
+                    if (slot.currentType != PuzzleItemType.Empty)
+                    {
+                        hash.Append(((int)slot.currentDirection).ToString());
+                    }
+                }
+            }
+        }
+        
+        return hash.ToString();
     }
     
+    // Verifica se o puzzle está próximo da solução
+    private bool IsNearSolution()
+    {
+        int correctPieces = 0;
+        
+        foreach (PuzzleSlot slot in puzzleSlots)
+        {
+            if (slot != null)
+            {
+                if (slot.currentType == slot.solutionType)
+                {
+                    if (slot.currentType == PuzzleItemType.Empty || 
+                        slot.currentDirection == slot.solutionDirection)
+                    {
+                        correctPieces++;
+                    }
+                }
+            }
+        }
+        
+        // Se mais de 6 peças (de 9) estão corretas, está muito próximo
+        return correctPieces > 6;
+    }
+    
+    public IEnumerator AutoClosePuzzleView()
+    {
+        // Sem espera, tornando o fechamento instantâneo
+        yield return null;
+
+        // Fechar o puzzle
+        ClosePuzzleView();
+        
+        // Ocultar o ícone de interação permanentemente
+        if (interactionIcon != null)
+        {
+            interactionIcon.SetActive(false);
+        }
+        
+        // Desabilitar a interação com este objeto
+        interactionEnabled = false;
+    }
+
     private void SaveSolutionState()
     {
         // Salvar o estado atual como solução
@@ -515,14 +776,14 @@ public class TableInteraction : MonoBehaviour, IInteractable
     private void HandleKeyboardInput()
     {
         Vector2Int moveDirection = Vector2Int.zero;
-        
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-            moveDirection = new Vector2Int(0, 1);
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-            moveDirection = new Vector2Int(0, -1);
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
+            moveDirection = new Vector2Int(0, -1);  // Corrigido: era (0, 1)
+        else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+            moveDirection = new Vector2Int(0, 1);   // Corrigido: era (0, -1)
+        else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             moveDirection = new Vector2Int(1, 0);
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             moveDirection = new Vector2Int(-1, 0);
             
         if (moveDirection != Vector2Int.zero)
@@ -589,6 +850,9 @@ public class TableInteraction : MonoBehaviour, IInteractable
         // Atualizar visuais
         pieceSlot.UpdateVisual();
         emptySlot.UpdateVisual();
+        
+        // Atualizar a UI de teclado após o movimento
+        UpdateKeyboardUI();
     }
     
     private void UpdateAllSlotVisuals()
@@ -622,5 +886,59 @@ public class TableInteraction : MonoBehaviour, IInteractable
         }
         
         return true;
+    }
+
+    private void CreateInteractionIcon()
+    {
+        if (interactionKeyIconPrefab != null)
+        {
+            // Criar o ícone como instância independente primeiro
+            interactionIcon = Instantiate(interactionKeyIconPrefab);
+            
+            // Guardar a escala original do prefab
+            Vector3 originalScale = interactionIcon.transform.localScale;
+
+            // Guardar a posição original do prefab
+            Vector3 originalPosition = interactionIcon.transform.localPosition;
+            
+            // Tornar o ícone filho da mesa para que se mova junto
+            interactionIcon.transform.SetParent(transform, false); // false é importante - mantém a escala mundial
+            
+            // Aplicar offset vertical (Y) e horizontal (X)
+            interactionIcon.transform.localPosition = new Vector3(iconXOffset, iconYOffset, 0);
+            
+            // Garantir que a escala permaneça a mesma do prefab
+            interactionIcon.transform.localScale = originalScale;
+            
+            // Desativar inicialmente
+            interactionIcon.SetActive(false);
+        }
+    }
+
+    public void ShowInteractionIcon()
+    {
+        // Mostrar o ícone apenas se:
+        // 1. O puzzle não está aberto
+        // 2. A interação está habilitada
+        // 3. O puzzle não foi resolvido
+        if (interactionIcon != null && !isPuzzleOpen && interactionEnabled && 
+            (puzzleManager == null || puzzleManager.currentState != PuzzleState.Completed))
+        {
+            interactionIcon.SetActive(true);
+        }
+        
+        // Garantir que a UI do teclado NÃO seja ativada aqui
+        if (keyboardUIPanel != null && !isPuzzleOpen)
+            keyboardUIPanel.SetActive(false);
+    }
+
+    public void HideInteractionIcon()
+    {
+        if (interactionIcon != null)
+            interactionIcon.SetActive(false);
+        
+        // Garantir que a UI do teclado também seja desativada
+        if (keyboardUIPanel != null && !isPuzzleOpen)
+            keyboardUIPanel.SetActive(false);
     }
 }

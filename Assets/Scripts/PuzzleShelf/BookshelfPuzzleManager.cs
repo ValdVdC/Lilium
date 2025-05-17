@@ -5,7 +5,58 @@ using System.Collections.Generic;
 using UnityEngine.Rendering.Universal;
 
 public class BookshelfPuzzleManager : MonoBehaviour
+{   
+    [System.Serializable]
+    private class GridCell
+    {
+        public BookSlot Slot { get; private set; }    
+        public BookItem Book { get; private set; }    
+        public Vector3 WorldPosition { get; private set; }    
+
+public GridCell(Transform bookshelfTransform, Vector2 localOffset)
 {
+    // Converte posição local para mundial baseada no transform da estante
+    WorldPosition = bookshelfTransform.TransformPoint(new Vector3(localOffset.x, localOffset.y, 0));
+    Slot = null;
+    Book = null;
+}
+
+public void SetSlot(BookSlot slot)
+{
+    Slot = slot;
+    if (slot != null)
+    {
+        // Usar posição local em relação à estante
+        slot.transform.position = WorldPosition;
+    }
+}
+
+public void SetBook(BookItem book)
+{
+    Book = book;
+    if (book != null)
+    {
+        // Usar posição local em relação à estante
+        book.transform.position = WorldPosition;
+        
+        if (Slot != null)
+        {
+            Slot._currentBook = book;
+            book.currentSlot = Slot;
+        }
+    }
+}
+
+        public bool IsEmpty()
+        {
+            if (Slot != null)
+            {
+                return Book == null;
+            }
+            return Book == null;
+        }
+    }
+
     [Header("Estado do Puzzle")]
     public bool puzzleActive = false;       // Indica se o puzzle está ativo
     public bool puzzleSolved = false;       // Indica se o puzzle foi resolvido
@@ -25,9 +76,16 @@ public class BookshelfPuzzleManager : MonoBehaviour
     [Header("Interface e Feedback")]
     public GameObject puzzleUI;             // UI com instruções
     public GameObject interactionKeyIcon;   // Ícone de tecla E para interagir
+    public GameObject Light;
     public GameObject successFeedback;      // Feedback visual de sucesso
     public GameObject failureFeedback;      // Feedback visual de falha
     
+    [Header("UI de Naipes")]
+    public GameObject spadesUIHighlight;    // Destaque UI para o naipe de espadas
+    public GameObject clubsUIHighlight;      // Destaque UI para o naipe de paus
+    public GameObject diamondsUIHighlight;   // Destaque UI para o naipe de ouros
+    public GameObject heartsUIHighlight;     // Destaque UI para o naipe de copas
+
     [Header("Câmera")]
     public CameraController cameraController;  // Controlador da câmera
     public Transform bookshelfPosition;        // Posição da estante para a câmera focar
@@ -41,7 +99,7 @@ public class BookshelfPuzzleManager : MonoBehaviour
     public Color highlightColor = new Color(1f, 1f, 0.7f, 1f);  // Cor para destacar o item sob o cursor
 
     [Header("Posições dos Itens")]
-    public BookItem[,] bookGrid;           // Matriz para armazenar os livros por posição lógica
+    private GridCell[,] bookGrid;          // Matriz para armazenar os livros por posição lógica
     public int rowCount = 3;               // Número de prateleiras
     public int colCount = 4;               // Número de livros/slots por prateleira
 
@@ -102,6 +160,9 @@ public class BookshelfPuzzleManager : MonoBehaviour
             
         if (interactionKeyIcon != null)
             interactionKeyIcon.SetActive(false);
+
+        if (Light != null)
+            Light.SetActive(false);    
             
         if (successFeedback != null)
             successFeedback.SetActive(false);
@@ -112,70 +173,82 @@ public class BookshelfPuzzleManager : MonoBehaviour
         Debug.Log("[BOOKSHELF PUZZLE] Inicializado com " + allBooks.Count + " livros e " + allSlots.Count + " slots");
         InitializeBookGrid();
     }
-
-    private void InitializeBookGrid()
+//ponto de partida
+private void InitializeBookGrid()
+{
+    bookGrid = new GridCell[rowCount, colCount];
+    
+    // Definir posições locais para cada célula
+    Vector2[,] localPositions = new Vector2[3, 4] 
     {
-        // Inicializar a matriz de livros
-        bookGrid = new BookItem[rowCount, colCount];
-        
-        // Mapear cada livro para sua posição inicial na grade
-        MapGridPositions();
-        
-        // Validar se todos os slots foram preenchidos corretamente
-        for (int row = 0; row < rowCount; row++)
-        {
-            for (int col = 0; col < colCount; col++)
-            {
-                if (bookGrid[row, col] == null)
-                {
-                    Debug.LogWarning($"[BOOKSHELF PUZZLE] Posição vazia na matriz: [{row}, {col}]");
-                }
-                else 
-                {
-                    Debug.Log($"[BOOKSHELF PUZZLE] Posição [{row}, {col}]: {bookGrid[row, col].name}");
-                }
-            }
+        // Primeira fileira (row 0)
+        { 
+            new Vector2(0.05f*0.75f -0.291f, 0.29f*0.75f +0.0845f),   // [0,0]
+            new Vector2(0.29f*0.75f -0.291f, 0.29f*0.75f +0.0845f),   // [0,1]
+            new Vector2(0.509f*0.75f -0.291f, 0.29f*0.75f +0.0845f),  // [0,2]
+            new Vector2(0.74f*0.75f -0.291f, 0.29f*0.75f +0.0845f)    // [0,3]
+        },
+        // Segunda fileira (row 1)
+        { 
+            new Vector2(0.05f*0.75f -0.291f, -0.033f*0.75f+0.0845f),   // [1,0]
+            new Vector2(0.29f*0.75f -0.291f, -0.033f*0.75f+0.0845f),   // [1,1]
+            new Vector2(0.509f*0.75f -0.291f, -0.033f*0.75f+0.0845f),  // [1,2]
+            new Vector2(0.74f*0.75f -0.291f, -0.033f*0.75f+0.0845f)    // [1,3]
+        },
+        // Fileira dos naipes (row 2)
+        { 
+            new Vector2(-0.245f, -0.18f),  // [2,0]
+            new Vector2(-0.075f, -0.18f),  // [2,1]
+            new Vector2(0.0906f, -0.18f),  // [2,2]
+            new Vector2(0.2649f, -0.18f)   // [2,3]
         }
-        
-        Debug.Log("[BOOKSHELF PUZZLE] Matriz de livros inicializada");
+    };
+
+    // Ajuste esses valores conforme necessário para sua escala e layout
+
+    // Criar células com posições locais
+    for (int row = 0; row < rowCount; row++)
+    {
+        for (int col = 0; col < colCount; col++)
+        {
+            bookGrid[row, col] = new GridCell(transform, localPositions[row, col]);
+            Debug.Log($"Criada célula [{row},{col}] na posição local: {localPositions[row, col]}, posição mundial: {bookGrid[row, col].WorldPosition}");
+        }
     }
+
+    // Configurar slots na última linha (row 2)
+    bookGrid[2, 0].SetSlot(spadesSlot);
+    bookGrid[2, 1].SetSlot(clubsSlot);
+    bookGrid[2, 2].SetSlot(diamondsSlot);
+    bookGrid[2, 3].SetSlot(heartsSlot);
+    
+    MapGridPositions();
+}
     
     // Mapeia cada livro para sua posição na grade com base em suas posições físicas
     private void MapGridPositions()
     {
-        // Posição aproximada de cada prateleira (ajuste conforme necessário)
-        float[] shelfYPositions = new float[rowCount];
-        float[] shelfXPositions = new float[colCount];
+        // Primeira prateleira (row 0)
+        bookGrid[0, 0].SetBook(FindBookByName("RedStarBook"));
+        bookGrid[0, 1].SetBook(redYellowBook);
+        bookGrid[0, 2].SetBook(blueHorizontalBook);
+        bookGrid[0, 3].SetBook(FindBookByExactName("GreenBook"));
         
-        // MODIFICAÇÃO 1: Vamos usar nomes mais específicos para encontrar os livros
+        // Segunda prateleira (row 1)
+        bookGrid[1, 0].SetBook(FindBookByExactName("BlueBook"));
+        bookGrid[1, 1].SetBook(FindBookByName("HorizontalRedBook"));
+        bookGrid[1, 2].SetBook(purpleSpottedBook);
+        bookGrid[1, 3].SetBook(greenHorizontalBook);
         
-        // Primeira prateleira (de cima) - row 0
-        bookGrid[0, 0] = FindBookByName("RedStarBook"); // Primeiro livro vermelho
-        bookGrid[0, 1] = redYellowBook;                 // Livro vermelho com detalhes amarelos
-        bookGrid[0, 2] = blueHorizontalBook;            // Livro azul deitado
-        bookGrid[0, 3] = FindBookByExactName("GreenBook");   // Livro verde
-        
-        // Segunda prateleira (do meio) - row 1
-        // MODIFICAÇÃO 2: Usar nome mais específico para o livro azul vertical
-        bookGrid[1, 0] = FindBookByExactName("BlueBook"); // Livro azul normal (vertical)
-        bookGrid[1, 1] = FindBookByName("HorizontalRedBook"); // Livro vermelho deitado
-        bookGrid[1, 2] = purpleSpottedBook;             // Livro roxo com detalhes amarelos pontilhados
-        bookGrid[1, 3] = greenHorizontalBook;           // Livro verde deitado
-        
-        // Terceira prateleira (naipes) - row 2
-        bookGrid[2, 0] = spadesSlot;                    // Espadas
-        bookGrid[2, 1] = clubsSlot;                     // Paus
-        bookGrid[2, 2] = diamondsSlot;                  // Ouros
-        bookGrid[2, 3] = heartsSlot;                    // Copas
-        
-        // Imprimir debug para verificar o mapeamento
-        for (int row = 0; row < rowCount; row++) {
-            for (int col = 0; col < colCount; col++) {
-                if (bookGrid[row, col] != null) {
-                    Debug.Log($"Grid[{row},{col}] = {bookGrid[row, col].name}");
-                } else {
-                    Debug.Log($"Grid[{row},{col}] = NULL");
-                }
+        // Debug do estado inicial
+        for (int row = 0; row < rowCount; row++)
+        {
+            for (int col = 0; col < colCount; col++)
+            {
+                var cell = bookGrid[row, col];
+                string content = cell.Book != null ? cell.Book.name : "vazio";
+                string slotInfo = cell.Slot != null ? $" (Slot: {cell.Slot.name})" : "";
+                Debug.Log($"Grid[{row},{col}] = {content}{slotInfo}");
             }
         }
     }
@@ -283,366 +356,233 @@ public class BookshelfPuzzleManager : MonoBehaviour
     }
     
     // Movimento do cursor virtual - versão corrigida
-    private void MoveCursor(Vector2Int direction)
+private void MoveCursor(Vector2Int direction)
+{
+    Vector2Int startPosition = cursorPosition;
+    
+    // Lógica diferente baseada se um livro está selecionado ou não
+    if (selectedBook != null)
     {
-        // Armazenar posição atual antes de mover
-        Vector2Int startPosition = cursorPosition;
-        
-        // Calcular nova posição (com Y invertido para navegação intuitiva)
-        int newRow = cursorPosition.y - direction.y;
-        int newCol = cursorPosition.x + direction.x;
-        
-        // Limitar dentro dos limites da estante
-        newRow = Mathf.Clamp(newRow, 0, rowCount - 1);
-        newCol = Mathf.Clamp(newCol, 0, colCount - 1);
-        
-        // CORREÇÃO PRINCIPAL: Verificação especial para a fileira dos naipes (row 2)
-        // Se estamos tentando mover PARA a fileira de naipes
-        if (newRow == 2 && cursorPosition.y != 2)
-        {
-            // Se não tem livro selecionado, procurar livros na fileira de naipes
-            if (selectedBook == null)
-            {
-                bool hasAnyBook = false;
-                int targetCol = -1;
-                float minDistance = float.MaxValue;
+        // Com livro selecionado, podemos navegar para espaços vazios
+        MoveWithSelectedBook(direction);
+    }
+    else
+    {
+        // Sem livro selecionado, comportamento original (apenas espaços ocupados)
+        MoveWithoutSelectedBook(direction);
+    }
+    
+    // Atualizar o item destacado
+    UpdateHighlightedItem();
+}
 
-                Debug.Log($"[BOOKSHELF PUZZLE] ==== Verificando fileira de naipes ==== (posição atual: {cursorPosition.x}, {cursorPosition.y})");
-                
-                // Verificar cada slot da fileira de naipes
-                BookSlot[] slots = { spadesSlot, clubsSlot, diamondsSlot, heartsSlot };
-                for (int col = 0; col < slots.Length; col++)
-                {
-                    BookSlot slot = slots[col];
-                    if (slot != null)
-                    {
-                        Debug.Log($"[BOOKSHELF PUZZLE] Verificando {slot.name} na coluna {col}");
-                        if (slot.CurrentBook != null)
-                        {
-                            hasAnyBook = true;
-                            float distance = Mathf.Abs(col - cursorPosition.x);
-                            Debug.Log($"[BOOKSHELF PUZZLE] Encontrado livro {slot.CurrentBook.name} - distância: {distance}");
-                            
-                            if (distance < minDistance)
-                            {
-                                minDistance = distance;
-                                targetCol = col;
-                                Debug.Log($"[BOOKSHELF PUZZLE] Nova menor distância: {minDistance} na coluna {targetCol}");
-                            }
-                        }
-                    }
-                }
+// Método para mover o cursor quando um livro está selecionado (pode ir para espaços vazios)
+private void MoveWithSelectedBook(Vector2Int direction)
+{
+    // Inverter a direção Y para corresponder à lógica do grid (positivo = baixo)
+    if (direction == Vector2Int.up)
+    {
+        direction = Vector2Int.down;
+    }
+    else if (direction == Vector2Int.down)
+    {
+        direction = Vector2Int.up;
+    }
+    
+    Vector2Int targetPosition = cursorPosition + direction;
+    
+    // Verificar se a posição alvo está dentro dos limites da grade
+    if (targetPosition.x >= 0 && targetPosition.x < colCount && 
+        targetPosition.y >= 0 && targetPosition.y < rowCount)
+    {
+        // Mover para a posição alvo diretamente se estiver dentro dos limites
+        cursorPosition = targetPosition;
+        Debug.Log($"Cursor com livro selecionado movido para: ({cursorPosition.x}, {cursorPosition.y})");
+        return;
+    }
+    
+    // Se chegou aqui, a posição alvo está fora dos limites
+    Debug.Log("Tentativa de mover para fora dos limites da grade");
+}
 
-                if (hasAnyBook)
-                {
-                    // Mover para o livro mais próximo
-                    newCol = targetCol;
-                    Debug.Log($"[BOOKSHELF PUZZLE] Movendo para o livro na coluna {targetCol}");
-                }
-                else
-                {
-                    Debug.Log("[BOOKSHELF PUZZLE] Não há livros na fileira de naipes para navegar");
-                    return; // Manter posição atual
-                }
-            }
-            else
-            {
-                // Se tem livro selecionado, permitir acesso (continua o código)
-                Debug.Log("[BOOKSHELF PUZZLE] Permitindo acesso à fileira de naipes - livro selecionado");
-            }
-        }
-        
-        // Verificar se a nova posição está vazia
-        bool positionIsEmpty = IsPositionEmpty(newRow, newCol);
-        
-        // CORREÇÃO: Caso especial para slots de naipes - eles não devem ser considerados vazios
-        // quando um livro está selecionado (mesmo se não tiverem livro dentro deles)
-        if (newRow == 2 && selectedBook != null)
+// Método original de movimento do cursor (apenas para espaços ocupados)
+private void MoveWithoutSelectedBook(Vector2Int direction)
+{
+    // Pegar o item atual
+    BookItem currentItem = GetItemAtCursorPosition();
+    if (currentItem == null) return;
+
+    Vector3 currentPosition = currentItem.transform.position;
+    BookItem nextItem = null;
+    float minDistance = float.MaxValue;
+    bool foundInColumn = false;
+    
+    // Primeiro, tentar encontrar na mesma coluna (comportamento original)
+    for (int row = 0; row < rowCount; row++)
+    {
+        for (int col = 0; col < colCount; col++)
         {
-            BookItem item = bookGrid[newRow, newCol];
-            if (item is BookSlot)
+            BookItem gridItem = bookGrid[row, col].Slot ?? bookGrid[row, col].Book;
+            if (gridItem == null || gridItem == currentItem) continue;
+
+            Vector3 itemPosition = gridItem.transform.position;
+            Vector3 difference = itemPosition - currentPosition;
+
+            bool isInDirection = false;
+            if (direction == Vector2Int.right && difference.x > 0.1f && Mathf.Abs(difference.y) < 0.5f)
+                isInDirection = true;
+            else if (direction == Vector2Int.left && difference.x < -0.1f && Mathf.Abs(difference.y) < 0.5f)
+                isInDirection = true;
+            else if (direction == Vector2Int.up && difference.y > 0.1f && Mathf.Abs(difference.x) < 0.5f)
             {
-                // Se estamos com livro selecionado e indo para um slot de naipe,
-                // consideramos como posição não-vazia (para evitar a busca de outros itens)
-                positionIsEmpty = false;
+                isInDirection = true;
+                if (col == cursorPosition.x) foundInColumn = true;
             }
-        }
-        
-        if (positionIsEmpty)
-        {
-            // NOVA LÓGICA APRIMORADA: Encontrar o item não vazio mais próximo
-            bool foundItem = false;
-            
-            if (direction.y != 0) // Navegação vertical (cima/baixo)
+            else if (direction == Vector2Int.down && difference.y < -0.1f && Mathf.Abs(difference.x) < 0.5f)
+                isInDirection = true;
+
+            if (isInDirection)
             {
-                // NOVA SOLUÇÃO: Verificar se toda a fileira está vazia
-                bool entireRowEmpty = true;
-                for (int col = 0; col < colCount; col++)
+                float distance = Vector3.Distance(currentPosition, itemPosition);
+                if (distance < minDistance)
                 {
-                    if (!IsPositionEmpty(newRow, col))
-                    {
-                        entireRowEmpty = false;
-                        break;
-                    }
-                }
-                
-                // Se toda a fileira estiver vazia, tentar pular para a próxima fileira não vazia
-                if (entireRowEmpty)
-                {
-                    Debug.Log($"[BOOKSHELF PUZZLE] Fileira {newRow} inteiramente vazia, tentando pular...");
-                    
-                    // Continuar na mesma direção até encontrar uma fileira não vazia
-                    int searchRow = newRow;
-                    while (true)
-                    {
-                        searchRow -= direction.y; // Continuar na mesma direção (-y para cima, +y para baixo)
-                        
-                        // Verificar se está nos limites
-                        if (searchRow < 0 || searchRow >= rowCount)
-                            break;
-                        
-                        // Verificar se esta fileira tem pelo menos um item
-                        bool hasItem = false;
-                        int bestCol = -1;
-                        
-                        // Tentar encontrar um item na mesma coluna primeiro
-                        if (!IsPositionEmpty(searchRow, newCol))
-                        {
-                            hasItem = true;
-                            bestCol = newCol;
-                        }
-                        else
-                        {
-                            // Procurar em toda a fileira, priorizando posições mais próximas da coluna atual
-                            for (int offset = 1; offset < colCount; offset++)
-                            {
-                                // Verificar à esquerda e à direita com offsets crescentes
-                                if (newCol - offset >= 0 && !IsPositionEmpty(searchRow, newCol - offset))
-                                {
-                                    hasItem = true;
-                                    bestCol = newCol - offset;
-                                    break;
-                                }
-                                
-                                if (newCol + offset < colCount && !IsPositionEmpty(searchRow, newCol + offset))
-                                {
-                                    hasItem = true;
-                                    bestCol = newCol + offset;
-                                    break;
-                                }
-                            }
-                        }
-                        
-                        if (hasItem)
-                        {
-                            newRow = searchRow;
-                            newCol = bestCol;
-                            foundItem = true;
-                            Debug.Log($"[BOOKSHELF PUZZLE] Pulou para fileira {newRow}, coluna {newCol}");
-                            break;
-                        }
-                    }
-                    
-                    // Se não encontrou nenhuma fileira com itens
-                    if (!foundItem)
-                    {
-                        Debug.Log("[BOOKSHELF PUZZLE] Não encontrou nenhuma fileira com itens, mantendo posição original");
-                        newRow = cursorPosition.y;
-                        newCol = cursorPosition.x;
-                        return;
-                    }
-                }
-                else 
-                {
-                    // Buscar na mesma linha, priorizando esquerda
-                    for (int offset = 1; offset < colCount; offset++)
-                    {
-                        // Verificar à esquerda com offsets crescentes
-                        if (newCol - offset >= 0)
-                        {
-                            // CORREÇÃO: Tratamento especial para navegação para fileira de naipes
-                            if (newRow == 2 && selectedBook == null)
-                            {
-                                // Se tentando ir para naipes sem livro selecionado, não considerar slot vazio
-                                continue;
-                            }
-                            
-                            if (!IsPositionEmpty(newRow, newCol - offset))
-                            {
-                                newCol = newCol - offset;
-                                foundItem = true;
-                                Debug.Log($"[BOOKSHELF PUZZLE] Encontrado item à esquerda em [{newRow}, {newCol}]");
-                                break;
-                            }
-                        }
-                        
-                        // Verificar à direita com offsets crescentes
-                        if (newCol + offset < colCount)
-                        {
-                            // CORREÇÃO: Tratamento especial para navegação para fileira de naipes
-                            if (newRow == 2 && selectedBook == null)
-                            {
-                                // Se tentando ir para naipes sem livro selecionado, não considerar slot vazio
-                                continue;
-                            }
-                            
-                            if (!IsPositionEmpty(newRow, newCol + offset))
-                            {
-                                newCol = newCol + offset;
-                                foundItem = true;
-                                Debug.Log($"[BOOKSHELF PUZZLE] Encontrado item à direita em [{newRow}, {newCol}]");
-                                break;
-                            }
-                        }
-                    }
-                    
-                    // Se não encontrou nada na mesma linha, voltar para linha original
-                    if (!foundItem)
-                    {
-                        Debug.Log("[BOOKSHELF PUZZLE] Nenhum item encontrado na linha de destino, mantendo linha original");
-                        newRow = cursorPosition.y;
-                        newCol = cursorPosition.x;
-                        return;
-                    }
-                }
-            }
-            else if (direction.x != 0) // Navegação horizontal (esquerda/direita)
-            {
-                // Continuar na mesma direção até encontrar item não vazio
-                int searchCol = newCol;
-                while (true)
-                {
-                    searchCol += direction.x;
-                    
-                    // Verificar limites
-                    if (searchCol < 0 || searchCol >= colCount)
-                        break;
-                    
-                    // CORREÇÃO: Tratamento especial para navegação na fileira de naipes
-                    if (newRow == 2 && selectedBook == null)
-                    {
-                        // Se tentando navegar horizontalmente na fileira de naipes sem livro selecionado
-                        break;
-                    }
-                    
-                    if (!IsPositionEmpty(newRow, searchCol))
-                    {
-                        newCol = searchCol;
-                        foundItem = true;
-                        Debug.Log($"[BOOKSHELF PUZZLE] Encontrado item na direção horizontal em [{newRow}, {newCol}]");
-                        break;
-                    }
-                }
-                
-                // Se não encontrou nada, manter posição original
-                if (!foundItem)
-                {
-                    Debug.Log("[BOOKSHELF PUZZLE] Nenhum item encontrado na direção horizontal, mantendo posição original");
-                    newRow = cursorPosition.y;
-                    newCol = cursorPosition.x;
-                    return;
+                    minDistance = distance;
+                    nextItem = gridItem;
+                    cursorPosition = new Vector2Int(col, row);
                 }
             }
         }
-        
-        // Verificação adicional: Se a posição final for na fileira de naipes e não tem livro selecionado
-        if (newRow == 2 && selectedBook == null)
-        {
-            // Verificar se o slot de destino tem um livro
-            BookItem finalItem = bookGrid[newRow, newCol];
-            if (finalItem is BookSlot finalSlot && finalSlot.CurrentBook == null)
-            {
-                Debug.Log("[BOOKSHELF PUZZLE] Posição final na fileira de naipes sem livro selecionado e slot vazio, movimento bloqueado");
-                return;
-            }
-            // Se tem livro no slot, permitir acesso
-            Debug.Log("[BOOKSHELF PUZZLE] Permitindo acesso ao slot de naipe - slot já contém um livro");
-        }
-        
-        // Verificação adicional: Se a posição final ainda estiver vazia, não mover
-        if (IsPositionEmpty(newRow, newCol))
-        {
-            Debug.Log("[BOOKSHELF PUZZLE] Posição final ainda está vazia, mantendo posição original");
-            return;
-        }
-        
-        // Atualizar posição do cursor
-        cursorPosition = new Vector2Int(newCol, newRow);
-        
-        Debug.Log($"[BOOKSHELF PUZZLE] Cursor movido de ({startPosition.x}, {startPosition.y}) para: ({cursorPosition.x}, {cursorPosition.y}) - Fileira: {newRow+1}");
-        
-        // Atualizar o destaque visual
-        UpdateHighlightedItem();
     }
 
-    private bool IsPositionEmpty(int row, int col)
+    // Se não encontrou nenhum item acima na mesma coluna, procurar o mais próximo
+    if (direction == Vector2Int.up && !foundInColumn)
     {
-        // Verificar se a posição é válida
-        if (row >= 0 && row < rowCount && col >= 0 && col < colCount)
+        minDistance = float.MaxValue;
+        for (int row = 0; row < rowCount; row++)
         {
-            // Uma posição está vazia se não tiver nenhum item
-            BookItem item = bookGrid[row, col];
-            
-            if (item == null)
-                return true;
-                    
-            // Se for um slot vazio (sem livro), é considerado vazio
-            if (item is BookSlot slot)
+            for (int col = 0; col < colCount; col++)
             {
-                // NOVA LÓGICA: Se o slot tem um livro dentro, nunca é considerado vazio
-                if (slot.CurrentBook != null)
-                    return false;
-                
-                // CORREÇÃO IMPORTANTE: Slots na fileira de naipes são considerados 
-                // NÃO vazios quando um livro está selecionado
-                if (row == 2 && selectedBook != null)
+                BookItem gridItem = bookGrid[row, col].Slot ?? bookGrid[row, col].Book;
+                if (gridItem == null || gridItem == currentItem) continue;
+
+                Vector3 itemPosition = gridItem.transform.position;
+                Vector3 difference = itemPosition - currentPosition;
+
+                if (difference.y > 0.1f) // Se está acima
                 {
-                    Debug.Log("[BOOKSHELF PUZZLE] Slot de naipe tratado como NÃO vazio - livro selecionado disponível");
-                    return false; // Não é vazio para fins de navegação
+                    float distance = Vector3.Distance(currentPosition, itemPosition);
+                    if (distance < minDistance)
+                    {
+                        minDistance = distance;
+                        nextItem = gridItem;
+                        cursorPosition = new Vector2Int(col, row);
+                    }
                 }
-                
-                return true;
-            }
-            
-            // CORREÇÃO: Se for um slot na fileira dos naipes (row 2) 
-            // e NÃO temos livro selecionado, agora verificamos se tem livro no slot
-            if (row == 2 && item is BookSlot slot2 && selectedBook == null)
-            {
-                // Se tem livro, não é vazio; se não tem, é vazio
-                bool isEmpty = slot2.CurrentBook == null;
-                Debug.Log($"[BOOKSHELF PUZZLE] Slot de naipe {slot2.name} tratado como {(isEmpty ? "vazio" : "NÃO vazio")} - tem livro: {slot2.CurrentBook != null}");
-                return isEmpty;
             }
         }
-        
+    }
+
+    if (nextItem != null)
+    {
+        Debug.Log($"Cursor movido para: ({cursorPosition.x}, {cursorPosition.y}) - Item: {nextItem.name}");
+    }
+}
+//ponto de partida
+    private bool IsPositionEmpty(int row, int col)
+    {
+        if (row >= 0 && row < rowCount && col >= 0 && col < colCount)
+        {
+            GridCell cell = bookGrid[row, col];
+            
+            // Se for um slot
+            if (cell.Slot != null)
+            {
+                // Se tem livro selecionado, slot nunca está vazio
+                if (selectedBook != null)
+                    return false;
+                    
+                // Senão, está vazio se não tiver livro
+                return cell.Book == null;
+            }
+            
+            // Para posições normais, está vazio se não tiver livro
+            return cell.Book == null;
+        }
         return false;
     }
     
     // Atualiza o item que está destacado pelo cursor
     private void UpdateHighlightedItem()
+{
+    // 1. Primeiro, remover TODOS os highlights
+    foreach (BookItem book in allBooks)
     {
-        // Remover destaque anterior
-        if (currentHighlightedBook != null)
-        {
-            currentHighlightedBook.SetHighlighted(false);
-        }
-        
-        // Encontrar novo livro/slot sob o cursor
-        currentHighlightedBook = GetItemAtCursorPosition();
-        
-        // Aplicar destaque ao novo item
-        if (currentHighlightedBook != null)
-        {
-            currentHighlightedBook.SetHighlighted(true);
-            Debug.Log($"[BOOKSHELF PUZZLE] Destacando: {currentHighlightedBook.name}");
-        }
-        else
-        {
-            Debug.Log("[BOOKSHELF PUZZLE] Nenhum item para destacar na posição do cursor");
-        }
-        
-        // Atualizar visualização prévia
+        book.SetHighlighted(false);
+    }
+    foreach (BookSlot slot in allSlots)
+    {
+        slot.SetHighlighted(false);
+    }
+
+    // 2. Encontrar novo livro/slot sob o cursor
+    currentHighlightedBook = GetItemAtCursorPosition();
+    
+    // 3. Aplicar destaque APENAS ao item atual
+    if (currentHighlightedBook != null)
+    {
+        currentHighlightedBook.SetHighlighted(true);
+        Debug.Log($"[BOOKSHELF PUZZLE] Destacando: {currentHighlightedBook.name}");
+    }
+    else if (selectedBook != null)
+    {
+        // Estamos em uma posição vazia com um livro selecionado
+        // Não destacamos nada, mas mostramos o preview
+        Debug.Log("[BOOKSHELF PUZZLE] Mostrando preview em posição vazia");
         UpdatePreview();
+    }
+    else
+    {
+        Debug.Log("[BOOKSHELF PUZZLE] Nenhum item para destacar na posição do cursor");
+    }
+    
+    // 4. Atualizar UI dos naipes
+    UpdateSuitUIHighlights();
+    
+    // 5. Atualizar visualização prévia
+    UpdatePreview();
+}
+
+    // Atualiza o destaque visual dos naipes na UI
+    private void UpdateSuitUIHighlights()
+    {
+        // Desativar todos primeiro
+        spadesUIHighlight.SetActive(false);
+        clubsUIHighlight.SetActive(false);
+        diamondsUIHighlight.SetActive(false);
+        heartsUIHighlight.SetActive(false);
+        
+        // Se não estivermos na fileira de naipes (row 2), não mostrar nenhum destaque
+        if (cursorPosition.y != 2)
+            return;
+        
+        // Verificar qual slot de naipe está atualmente selecionado
+        switch (cursorPosition.x)
+        {
+            case 0: // Espadas (primeiro slot)
+                spadesUIHighlight.SetActive(true);
+                break;
+            case 1: // Paus (segundo slot)
+                clubsUIHighlight.SetActive(true);
+                break;
+            case 2: // Ouros (terceiro slot)
+                diamondsUIHighlight.SetActive(true);
+                break;
+            case 3: // Copas (quarto slot)
+                heartsUIHighlight.SetActive(true);
+                break;
+        }
+        
+        Debug.Log($"[BOOKSHELF PUZZLE] Destacando UI do naipe na coluna {cursorPosition.x}");
     }
 
     private void CreatePreviewObject()
@@ -664,60 +604,45 @@ public class BookshelfPuzzleManager : MonoBehaviour
     }
 
     private void UpdatePreview()
+{
+    // Se não temos objeto de visualização prévia ainda, criar um
+    if (previewObject == null)
+        CreatePreviewObject();
+    
+    // Se não há livro selecionado, não mostrar visualização
+    if (selectedBook == null)
     {
-        // Se não temos objeto de visualização prévia ainda, criar um
-        if (previewObject == null)
-            CreatePreviewObject();
+        previewObject.SetActive(false);
+        return;
+    }
+    
+    int row = cursorPosition.y;
+    int col = cursorPosition.x;
+    bool shouldShowPreview = false;
+    Vector3 previewPosition = Vector3.zero;
+    float scaleMultiplier = 0.8f;  // Escala padrão
+    
+    // Verificar se estamos em uma posição válida
+    if (row >= 0 && row < rowCount && col >= 0 && col < colCount)
+    {
+        GridCell cell = bookGrid[row, col];
         
-        // Se não há livro selecionado, não mostrar visualização
-        if (selectedBook == null)
-        {
-            previewObject.SetActive(false);
-            return;
-        }
-        
-        // Verificar se o cursor está sobre um espaço vazio
-        int row = cursorPosition.y;
-        int col = cursorPosition.x;
-        
-        // MODIFICAÇÃO AQUI: Caso especial para slots de naipes (fileira 2)
-        bool shouldShowPreview = false;
-        
-        if (row == 2 && bookGrid[row, col] is BookSlot naipeSlot)
+        if (row == 2 && cell.Slot != null)
         {
             // Para slots de naipes, mostrar o preview se o slot estiver vazio
-            shouldShowPreview = naipeSlot.CurrentBook == null;
-            Debug.Log($"[BOOKSHELF PUZZLE] Slot de naipe: {naipeSlot.name}, tem livro: {naipeSlot.CurrentBook != null}, mostrar preview: {shouldShowPreview}");
+            shouldShowPreview = cell.Slot.CurrentBook == null;
+            previewPosition = cell.Slot.transform.position; // Usar a posição atual do slot
+            scaleMultiplier = 0.6f;  // Escala menor para slots de naipes
         }
         else
         {
             // Para outras posições, usar lógica normal
-            shouldShowPreview = IsPositionEmpty(row, col);
+            shouldShowPreview = cell.Book == null; // Mostrar se não há livro na posição
+            previewPosition = cell.WorldPosition;
         }
         
-        // Mostrar visualização apenas em posições válidas
         if (shouldShowPreview)
         {
-            // Obter a posição do espaço vazio
-            Vector3 previewPosition;
-            float scaleMultiplier = 0.8f;  // Escala padrão
-            
-            // Se for um slot de naipe vazio (última fileira), aplicar escala menor
-            if (bookGrid[row, col] is BookSlot currentSlot)
-            {
-                previewPosition = currentSlot.transform.position;
-                // Usar uma escala ainda menor para a fileira dos naipes (última fileira)
-                if (row == 2)  // Considerando que row 2 é a fileira dos naipes (última fileira)
-                {
-                    scaleMultiplier = 0.6f;  // Valor menor para a última fileira
-                }
-            }
-            // Caso contrário, usar a posição original do grid
-            else
-            {
-                previewPosition = CalculateGridPosition(row, col);
-            }
-            
             // Configurar a visualização prévia
             previewObject.SetActive(true);
             previewObject.transform.position = previewPosition;
@@ -730,15 +655,20 @@ public class BookshelfPuzzleManager : MonoBehaviour
             previewColor.a = previewAlpha;
             previewRenderer.color = previewColor;
             
-            // Usar escala com base na posição da fileira
+            // Aplicar escala
             previewObject.transform.localScale = Vector3.one * scaleMultiplier;
         }
         else
         {
-            // Se não está em um espaço vazio, esconder visualização
             previewObject.SetActive(false);
         }
     }
+    else
+    {
+        // Fora da grade, não mostrar preview
+        previewObject.SetActive(false);
+    }
+}
 
     // Método auxiliar para calcular a posição de um item no grid se você não tiver uma referência
     private Vector3 CalculateGridPosition(int row, int col)
@@ -760,7 +690,7 @@ public class BookshelfPuzzleManager : MonoBehaviour
             
             if (checkRow >= 0 && checkRow < rowCount && checkCol >= 0 && checkCol < colCount)
             {
-                BookItem item = bookGrid[checkRow, checkCol];
+                BookItem item = bookGrid[checkRow, checkCol].Book ?? bookGrid[checkRow, checkCol].Slot;
                 if (item != null)
                 {
                     position += item.transform.position;
@@ -785,127 +715,124 @@ public class BookshelfPuzzleManager : MonoBehaviour
     }
 
     // Encontra o livro ou slot na posição do cursor
-    private BookItem GetItemAtCursorPosition()
+private BookItem GetItemAtCursorPosition()
+{
+    int row = cursorPosition.y;
+    int col = cursorPosition.x;
+    
+    if (row >= 0 && row < rowCount && col >= 0 && col < colCount)
     {
-        int row = cursorPosition.y;
-        int col = cursorPosition.x;
+        GridCell cell = bookGrid[row, col];
         
-        // Verificar se a posição é válida
-        if (row >= 0 && row < rowCount && col >= 0 && col < colCount)
+        // Se tiver um slot, retornar o slot
+        if (cell.Slot != null)
+            return cell.Slot;
+            
+        // Se tiver um livro, retornar o livro
+        if (cell.Book != null)
+            return cell.Book;
+            
+        // Se tivermos um livro selecionado, retornar uma posição "fantasma" para preview
+        if (selectedBook != null)
         {
-            return bookGrid[row, col];
+            // Para posições vazias quando um livro está selecionado, 
+            // podemos usar o preview para visualização
+            UpdatePreview();
+            return null; // Retorna null, mas o UpdateHighlightedItem saberá lidar com isso
         }
-        
-        return null;
     }
+    return null;
+}
     
     // Seleciona ou troca o livro atual
     private void SelectOrSwapBook()
+{
+    int row = cursorPosition.y;
+    int col = cursorPosition.x;
+    bool isEmptyPosition = GetItemAtCursorPosition() == null;
+    
+    // Armazenar a posição atual do cursor antes de qualquer operação
+    Vector2Int originalCursorPosition = cursorPosition;
+    
+    if (selectedBook == null)
     {
-        if (currentHighlightedBook == null) return;
+        // Tentando selecionar um item, mas se estivermos em uma posição vazia, não há nada para selecionar
+        if (isEmptyPosition) return;
         
-        // Armazenar a posição atual do cursor antes de qualquer operação
-        Vector2Int originalCursorPosition = cursorPosition;
-        
-        if (selectedBook == null)
+        // Continuar com a lógica normal para selecionar um item
+        if (currentHighlightedBook is BookSlot slot)
         {
-            // Tentando selecionar um item
-            if (currentHighlightedBook is BookSlot slot)
+            // Se for um slot com livro, seleciona o livro
+            if (slot.CurrentBook != null)
             {
-                // Se for um slot com livro, seleciona o livro
-                if (slot.CurrentBook != null)
-                {
-                    selectedBook = slot.CurrentBook;
-                    selectedBook.SetSelected(true);
-                    // Remover o livro do slot
-                    slot.RemoveBook();
-                    Debug.Log($"[BOOKSHELF PUZZLE] Livro selecionado do slot: {selectedBook.name}");
-                }
-                else
-                {
-                    Debug.Log("[BOOKSHELF PUZZLE] Slot vazio, nada para selecionar");
-                }
-            }
-            else 
-            {
-                // Selecionar um livro normal
-                selectedBook = currentHighlightedBook;
+                selectedBook = slot.CurrentBook;
                 selectedBook.SetSelected(true);
-                Debug.Log($"[BOOKSHELF PUZZLE] Livro selecionado: {selectedBook.name}");
-            }
-            UpdatePreview();
-        }
-        else
-        {
-            // Já tem um livro selecionado, tentando trocar/colocar
-            if (currentHighlightedBook is BookSlot slot)
-            {
-                // Colocando em um slot
-                if (slot.CurrentBook != null)
-                {
-                    // Trocar com o livro do slot
-                    BookItem slotBook = slot.RemoveBook();
-                    slot.SetBook(selectedBook);
-                    
-                    // O livro do slot agora é o selecionado
-                    selectedBook.SetSelected(false);
-                    slotBook.transform.position = selectedBook.originalPosition;
-                    
-                    // Atualizar a matriz de livros E as relações corretas
-                    UpdateBookGridAfterSwap(selectedBook, slotBook);
-                    
-                    // IMPORTANTE: Atualizar as referências de slot dos livros
-                    UpdateBookSlotReferences();
-                    
-                    selectedBook = null;
-                    
-                    Debug.Log($"[BOOKSHELF PUZZLE] Trocado com livro do slot");
-                    
-                    Debug.Log("[BOOKSHELF PUZZLE] Iniciando verificação de solução...");
-                    // Verificar a solução após qualquer troca envolvendo slots
-                    CheckSolution();
-                }
-                else
-                {
-                    // Slot vazio, apenas colocar
-                    Vector3 oldPosition = selectedBook.transform.position;
-                    slot.SetBook(selectedBook);
-                    
-                    // Atualizar a matriz de livros
-                    UpdateBookGridAfterMove(selectedBook, FindGridPosition(selectedBook), FindGridPosition(slot));
-                    
-                    // IMPORTANTE: Atualizar as referências de slot dos livros
-                    UpdateBookSlotReferences();
-                    
-                    selectedBook.SetSelected(false);
-                    selectedBook = null;
-                    
-                    Debug.Log($"[BOOKSHELF PUZZLE] Livro colocado no slot");
-                    
-                    Debug.Log("[BOOKSHELF PUZZLE] Iniciando verificação de solução...");
-                    // Verificar a solução após qualquer colocação em slot
-                    CheckSolution();
-                }
-            }
-            else if (currentHighlightedBook == selectedBook)
-            {
-                // Cancelar seleção
-                selectedBook.SetSelected(false);
-                selectedBook = null;
-                Debug.Log("[BOOKSHELF PUZZLE] Seleção cancelada");
+                // Remover o livro do slot
+                slot.RemoveBook();
+                Debug.Log($"[BOOKSHELF PUZZLE] Livro selecionado do slot: {selectedBook.name}");
             }
             else
             {
-                // Trocar posição com outro livro
-                Vector3 tempPosition = selectedBook.transform.position;
-                selectedBook.transform.position = currentHighlightedBook.transform.position;
-                currentHighlightedBook.transform.position = tempPosition;
+                Debug.Log("[BOOKSHELF PUZZLE] Slot vazio, nada para selecionar");
+            }
+        }
+        else 
+        {
+            // Selecionar um livro normal
+            selectedBook = currentHighlightedBook;
+            selectedBook.SetSelected(true);
+            Debug.Log($"[BOOKSHELF PUZZLE] Livro selecionado: {selectedBook.name}");
+        }
+        UpdatePreview();
+    }
+    else
+    {
+        // Já tem um livro selecionado, tentando colocar em algum lugar
+        
+        if (isEmptyPosition)
+        {
+            // Estamos em uma posição vazia, colocar o livro aqui
+            PlaceBookInEmptyPosition(row, col);
+        }
+        else if (currentHighlightedBook is BookSlot slot)
+        {
+            // Colocando em um slot
+            if (slot.CurrentBook != null)
+            {
+                // Slot ocupado, trocar os livros
+                Debug.Log("=== INICIANDO TROCA ENTRE SLOTS ===");
                 
-                // Armazenar uma referência ao livro que estava sob o cursor
-                BookItem swappedBook = currentHighlightedBook;
+                // Guardar referências antes da troca
+                BookItem slotBook = slot.CurrentBook;
+                
+                // Remover livro atual do slot
+                slot.RemoveBook();
+                
+                // Colocar novo livro no slot
+                slot.SetBook(selectedBook);
+                
+                // Colocar livro antigo na posição do livro selecionado
+                slotBook.transform.position = selectedBook.originalPosition;
+                
+                // Atualizar grid uma única vez
+                UpdateBookGridAfterSwap(selectedBook, slotBook);
+                
+                // Limpar seleção
+                selectedBook.SetSelected(false);
+                selectedBook = null;
+                
+                // Atualizar referências
+                UpdateBookSlotReferences();
+                CheckSolution();
+            }
+            else
+            {
+                // Slot vazio, apenas colocar
+                Vector3 oldPosition = selectedBook.transform.position;
+                slot.SetBook(selectedBook);
                 
                 // Atualizar a matriz de livros
-                UpdateBookGridAfterSwap(selectedBook, currentHighlightedBook);
+                UpdateBookGridAfterMove(selectedBook, FindGridPosition(selectedBook), FindGridPosition(slot));
                 
                 // IMPORTANTE: Atualizar as referências de slot dos livros
                 UpdateBookSlotReferences();
@@ -913,22 +840,130 @@ public class BookshelfPuzzleManager : MonoBehaviour
                 selectedBook.SetSelected(false);
                 selectedBook = null;
                 
-                Debug.Log("[BOOKSHELF PUZZLE] Livros trocados de posição");
+                Debug.Log($"[BOOKSHELF PUZZLE] Livro colocado no slot");
+                
+                Debug.Log("[BOOKSHELF PUZZLE] Iniciando verificação de solução...");
+                // Verificar a solução após qualquer colocação em slot
                 CheckSolution();
             }
+        }
+        else if (currentHighlightedBook == selectedBook)
+        {
+            // Cancelar seleção
+            selectedBook.SetSelected(false);
+            selectedBook = null;
+            Debug.Log("[BOOKSHELF PUZZLE] Seleção cancelada");
+        }
+        else
+        {
+            // Trocar posição com outro livro
+            Vector3 tempPosition = selectedBook.transform.position;
+            Vector3 targetPosition = currentHighlightedBook.transform.position;
             
-            if (previewObject != null)
-                previewObject.SetActive(false);
+            Debug.Log($"=== INICIANDO TROCA DE LIVROS ===");
+            Debug.Log($"Livro selecionado: {selectedBook.name} na posição {tempPosition}");
+            Debug.Log($"Livro alvo: {currentHighlightedBook.name} na posição {targetPosition}");
+            Debug.Log($"Posição do cursor antes da troca: ({cursorPosition.x}, {cursorPosition.y})");
+            
+            // Fazer a troca física
+            selectedBook.transform.position = targetPosition;
+            currentHighlightedBook.transform.position = tempPosition;
+            
+            // Armazenar uma referência ao livro que estava sob o cursor
+            BookItem swappedBook = currentHighlightedBook;
+            
+            Debug.Log("=== ESTADO DA MATRIZ ANTES DA TROCA ===");
+            for (int r = 0; r < rowCount; r++)
+            {
+                for (int c = 0; c < colCount; c++)
+                {
+                    Debug.Log($"Grid[{r},{c}] = {(bookGrid[r, c].Book?.name ?? bookGrid[r, c].Slot?.name ?? "vazio")}");
+                }
+            }
+            
+            // Atualizar a matriz de livros
+            UpdateBookGridAfterSwap(selectedBook, currentHighlightedBook);
+            
+            Debug.Log("=== ESTADO DA MATRIZ APÓS A TROCA ===");
+            for (int r = 0; r < rowCount; r++)
+            {
+                for (int c = 0; c < colCount; c++)
+                {
+                    Debug.Log($"Grid[{r},{c}] = {(bookGrid[r, c].Book?.name ?? bookGrid[r, c].Slot?.name ?? "vazio")}");
+                }
+            }
+            
+            // IMPORTANTE: Atualizar as referências de slot dos livros
+            UpdateBookSlotReferences();
+            
+            // NOVO: Encontrar a nova posição de ambos os livros após a troca
+            Vector2Int newSelectedPos = FindGridPosition(selectedBook);
+            Vector2Int newSwappedPos = FindGridPosition(swappedBook);
+            
+            Debug.Log($"Nova posição do livro selecionado ({selectedBook.name}): ({newSelectedPos.x}, {newSelectedPos.y})");
+            Debug.Log($"Nova posição do livro trocado ({swappedBook.name}): ({newSwappedPos.x}, {newSwappedPos.y})");
+            
+            selectedBook.SetSelected(false);
+            selectedBook = null;
+            
+            Debug.Log("[BOOKSHELF PUZZLE] Livros trocados de posição");
+            CheckSolution();
+            
+            Debug.Log($"=== ESTADO FINAL ===");
+            Debug.Log($"Posição final do cursor: ({cursorPosition.x}, {cursorPosition.y})");
+            Debug.Log($"Item sob o cursor: {GetItemAtCursorPosition()?.name ?? "nenhum"}");
         }
         
-        // Garantir que o cursor permanece na mesma posição lógica após a troca
-        cursorPosition = originalCursorPosition;
-        
-        // Atualizar o item destacado com base na posição atual do cursor
-        UpdateHighlightedItem();
-        
-        Debug.Log($"[BOOKSHELF PUZZLE] Cursor mantido na posição: ({cursorPosition.x}, {cursorPosition.y})");
+        if (previewObject != null)
+            previewObject.SetActive(false);
     }
+    
+    // Garantir que o cursor permanece na mesma posição lógica após a troca
+    cursorPosition = originalCursorPosition;
+    
+    // Atualizar o item destacado com base na posição atual do cursor
+    UpdateHighlightedItem();
+    
+    Debug.Log($"[BOOKSHELF PUZZLE] Cursor mantido na posição: ({cursorPosition.x}, {cursorPosition.y})");
+}
+private void PlaceBookInEmptyPosition(int row, int col)
+{
+    if (row < 0 || row >= rowCount || col < 0 || col >= colCount || selectedBook == null)
+        return;
+    
+    GridCell cell = bookGrid[row, col];
+    
+    // Verificar se a célula está realmente vazia
+    if (cell.Book != null)
+    {
+        Debug.LogWarning($"[BOOKSHELF PUZZLE] Tentativa de colocar em posição não vazia: [{row},{col}]");
+        return;
+    }
+    
+    // Colocar o livro na célula vazia
+    Vector2Int oldPos = FindGridPosition(selectedBook);
+    
+    // Definir a posição do livro no mundo
+    selectedBook.transform.position = cell.WorldPosition;
+    
+    // Atualizar a referência do livro na matriz
+    cell.SetBook(selectedBook);
+    
+    // Se o livro estava em outra célula antes, limpar aquela referência
+    if (oldPos.x >= 0 && oldPos.y >= 0)
+    {
+        bookGrid[oldPos.y, oldPos.x].SetBook(null);
+    }
+    
+    // Limpar seleção
+    selectedBook.SetSelected(false);
+    selectedBook = null;
+    
+    Debug.Log($"[BOOKSHELF PUZZLE] Livro colocado na posição vazia: [{row},{col}]");
+    
+    // Atualizar referências
+    UpdateBookSlotReferences();
+}
 
     // Adicione este novo método para sincronizar as referências entre livros e slots
     private void UpdateBookSlotReferences()
@@ -984,12 +1019,10 @@ public class BookshelfPuzzleManager : MonoBehaviour
         // 4. Atualizar a matriz de grid com as novas referências para os slots (fileira 2)
         for (int col = 0; col < colCount; col++)
         {
-            if (bookGrid[2, col] is BookSlot slot)
+            if (bookGrid[2, col].Slot != null)
             {
-                // Garantir que o slot mantém sua referência na matriz
-                bookGrid[2, col] = slot;
-                
-                Debug.Log($"[BOOKSHELF PUZZLE] Slot na matriz[2,{col}]: {slot.name}, contém: {(slot.CurrentBook != null ? slot.CurrentBook.name : "nada")}");
+                BookSlot currentSlot = bookGrid[2, col].Slot;
+                Debug.Log($"[BOOKSHELF PUZZLE] Slot na matriz[2,{col}]: {currentSlot.name}, contém: {(currentSlot.CurrentBook != null ? currentSlot.CurrentBook.name : "nada")}");
             }
         }
         
@@ -1003,43 +1036,115 @@ public class BookshelfPuzzleManager : MonoBehaviour
         {
             for (int col = 0; col < colCount; col++)
             {
-                if (bookGrid[row, col] == item)
+                GridCell cell = bookGrid[row, col];
+                if (cell.Book == item || cell.Slot == item)
                 {
                     return new Vector2Int(col, row);
                 }
             }
         }
-        return new Vector2Int(-1, -1); // Item não encontrado
+        return new Vector2Int(-1, -1);
     }
-    
+        
     // Atualiza a matriz após mover um livro
-    private void UpdateBookGridAfterMove(BookItem movedBook, Vector2Int fromPos, Vector2Int toPos)
+private void UpdateBookGridAfterMove(BookItem movedBook, Vector2Int fromPos, Vector2Int toPos)
+{
+    if (fromPos.x < 0 || toPos.x < 0) return;
+    
+    // Remover o livro da posição original
+    bookGrid[fromPos.y, fromPos.x].SetBook(null);
+    
+    // Colocar o livro na nova posição
+    bookGrid[toPos.y, toPos.x].SetBook(movedBook);
+    
+    Debug.Log($"[BOOKSHELF PUZZLE] Livro movido de [{fromPos.y},{fromPos.x}] para [{toPos.y},{toPos.x}]");
+}
+
+private void UpdateBookGridAfterSwap(BookItem book1, BookItem book2)
+{
+    Debug.Log($"=== INICIANDO TROCA DE GRID ===");
+    Debug.Log($"Tentando trocar: {book1.name} com {book2.name}");
+
+    // Mostrar estado inicial do grid
+    Debug.Log("Estado inicial do grid:");
+    for (int row = 0; row < rowCount; row++)
     {
-        if (fromPos.x < 0 || toPos.x < 0) return; // Posição inválida
+        for (int col = 0; col < colCount; col++)
+        {
+            var content = bookGrid[row, col].Book != null ? bookGrid[row, col].Book.name : "vazio";
+            Debug.Log($"Grid[{row},{col}] = {content}");
+        }
+    }
+
+    GridCell cell1 = null;
+    GridCell cell2 = null;
+    Vector2Int pos1 = Vector2Int.zero;
+    Vector2Int pos2 = Vector2Int.zero;
+
+    // Encontrar as células que contêm os livros
+    for (int row = 0; row < rowCount; row++)
+    {
+        for (int col = 0; col < colCount; col++)
+        {
+            if (bookGrid[row, col].Book == book1)
+            {
+                cell1 = bookGrid[row, col];
+                pos1 = new Vector2Int(col, row);
+                Debug.Log($"Encontrado {book1.name} na posição [{row},{col}]");
+            }
+            if (bookGrid[row, col].Book == book2)
+            {
+                cell2 = bookGrid[row, col];
+                pos2 = new Vector2Int(col, row);
+                Debug.Log($"Encontrado {book2.name} na posição [{row},{col}]");
+            }
+        }
+    }
+
+    if (cell1 != null && cell2 != null)
+    {
+        Debug.Log($"Executando troca entre posições [{pos1.y},{pos1.x}] e [{pos2.y},{pos2.x}]");
         
-        // Remover o livro da posição original
-        bookGrid[fromPos.y, fromPos.x] = null;
+        // Trocar os livros
+        BookItem tempBook = cell1.Book;
+        Debug.Log($"Guardando {tempBook.name} temporariamente");
         
-        // Colocar na nova posição
-        bookGrid[toPos.y, toPos.x] = movedBook;
+        cell1.SetBook(cell2.Book);
+        Debug.Log($"Movendo {cell2.Book.name} para [{pos1.y},{pos1.x}]");
         
-        Debug.Log($"[BOOKSHELF PUZZLE] Livro movido de [{fromPos.y},{fromPos.x}] para [{toPos.y},{toPos.x}]");
+        cell2.SetBook(tempBook);
+        Debug.Log($"Movendo {tempBook.name} para [{pos2.y},{pos2.x}]");
+
+        // Atualizar lastKnownGridPosition
+        if (book1 != null)
+        {
+            book1.lastKnownGridPosition = pos2;
+            Debug.Log($"Atualizando lastKnownGridPosition de {book1.name} para [{pos2.y},{pos2.x}]");
+        }
+        if (book2 != null)
+        {
+            book2.lastKnownGridPosition = pos1;
+            Debug.Log($"Atualizando lastKnownGridPosition de {book2.name} para [{pos1.y},{pos1.x}]");
+        }
+    }
+    else
+    {
+        Debug.LogError("Não foi possível encontrar uma ou ambas as células para troca!");
+    }
+
+    // Mostrar estado final do grid
+    Debug.Log("Estado final do grid:");
+    for (int row = 0; row < rowCount; row++)
+    {
+        for (int col = 0; col < colCount; col++)
+        {
+            var content = bookGrid[row, col].Book != null ? bookGrid[row, col].Book.name : "vazio";
+            Debug.Log($"Grid[{row},{col}] = {content}");
+        }
     }
     
-    // Atualiza a matriz após trocar dois livros
-    private void UpdateBookGridAfterSwap(BookItem book1, BookItem book2)
-    {
-        Vector2Int pos1 = FindGridPosition(book1);
-        Vector2Int pos2 = FindGridPosition(book2);
-        
-        if (pos1.x < 0 || pos2.x < 0) return; // Posição inválida
-        
-        // Trocar os livros na matriz
-        bookGrid[pos1.y, pos1.x] = book2;
-        bookGrid[pos2.y, pos2.x] = book1;
-        
-        Debug.Log($"[BOOKSHELF PUZZLE] Trocados livros entre [{pos1.y},{pos1.x}] e [{pos2.y},{pos2.x}]");
-    }
+    Debug.Log("=== FIM DA TROCA DE GRID ===");
+}
     
     // Verifica se o puzzle foi resolvido corretamente
     public void CheckSolution()
@@ -1104,6 +1209,9 @@ public class BookshelfPuzzleManager : MonoBehaviour
         // Esconder ícone de interação
         if (interactionKeyIcon != null)
             interactionKeyIcon.SetActive(false);
+
+        if (Light != null)
+            Light.SetActive(true);    
         
         // Desativar o jogador e componentes relacionados
         PlayerController playerController = FindFirstObjectByType<PlayerController>();
@@ -1142,6 +1250,7 @@ public class BookshelfPuzzleManager : MonoBehaviour
         
         // Inicializar cursor no primeiro livro
         cursorPosition = new Vector2Int(0, 0);
+        UpdateSuitUIHighlights();
         UpdateHighlightedItem();
     }
     
@@ -1153,6 +1262,9 @@ public class BookshelfPuzzleManager : MonoBehaviour
         // Mostrar ícone de interação se ainda não resolvido
         if (interactionKeyIcon != null && playerInRange && !puzzleSolved)
             interactionKeyIcon.SetActive(true);
+
+        if (Light != null)
+            Light.SetActive(false);    
         
         // Esconder visualização prévia
         if (previewObject != null)
@@ -1185,6 +1297,10 @@ public class BookshelfPuzzleManager : MonoBehaviour
         if (puzzleUI != null)
         {
             puzzleUI.SetActive(false);
+            spadesUIHighlight.SetActive(false);
+            clubsUIHighlight.SetActive(false);
+            diamondsUIHighlight.SetActive(false);
+            heartsUIHighlight.SetActive(false);
             Debug.Log("[BOOKSHELF PUZZLE] UI de interação desativada");
         }
         
@@ -1209,6 +1325,41 @@ public class BookshelfPuzzleManager : MonoBehaviour
         }
     }
     
+    private IEnumerator MoveBookshelfSmoothly()
+    {
+        Vector3 startPosition = transform.position;
+        // Calcular a posição final relativa à posição atual
+        Vector3 endPosition = startPosition + new Vector3(-40.8f, 0f, 0f);
+        float elapsedTime = 0;
+        float duration = 8f;
+        
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float progress = elapsedTime / duration;
+            
+            // Usar curva de suavização para movimento mais natural
+            float smoothProgress = Mathf.SmoothStep(0, 1, progress);
+            
+            // Usar Lerp para interpolação linear entre as posições
+            transform.position = Vector3.Lerp(startPosition, endPosition, smoothProgress);
+            
+            yield return null;
+        }
+        
+        // Garantir que chegue exatamente na posição final
+        transform.position = endPosition;
+        
+        DoorController doorController = FindFirstObjectByType<DoorController>();
+        if (doorController != null)
+        {
+            doorController.EnableTransition();
+            Debug.Log("[BOOKSHELF PUZZLE] Porta aberta após movimento da estante");
+        }
+
+        Debug.Log($"Movimento concluído. Posição inicial X: {startPosition.x}, Posição final X: {endPosition.x}");
+    }
+
     // Chamado quando o puzzle é resolvido
     private void PuzzleSolved()
     {
@@ -1220,6 +1371,9 @@ public class BookshelfPuzzleManager : MonoBehaviour
         
         Debug.Log("[BOOKSHELF PUZZLE] Puzzle resolvido! Completando interação.");
         
+        // Iniciar movimento suave da estante
+        StartCoroutine(MoveBookshelfSmoothly());
+
         // Fechar interação
         StopPuzzleInteraction();
     }

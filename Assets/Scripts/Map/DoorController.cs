@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 
 public class DoorController : MonoBehaviour
 {
@@ -34,7 +35,24 @@ public class DoorController : MonoBehaviour
     [SerializeField] private Color gizmoColor = Color.yellow;
     [SerializeField] private int gizmoSegments = 32; // Número de segmentos para o desenho do gizmo
     [SerializeField] private bool showPlayerPosition = true; // Mostrar posição do jogador no gizmo
+
+    [Header("Configurações de Porta com Chave")]
+    [SerializeField] private bool requiresKey = false;        // Indica se esta porta precisa de chave
+    [SerializeField] private GameObject lockedUI;             // Referência para o painel de UI de porta trancada
+    [SerializeField] private GameObject keyUseUI;             // Referência para o painel de UI de usar chave
+    [SerializeField] private Text lockedMessageText;          // Texto para mensagem de porta trancada
+    [SerializeField] private Text useKeyPromptText;           // Texto para a pergunta de usar chave
+    [SerializeField] private Image useKeyImage;               // Imagem da opção "Usar Chave"
+    [SerializeField] private Color highlightColor = new Color(1f, 0.8f, 0.2f); // Cor de destaque para opção selecionada
+    [SerializeField] private Color normalColor = Color.white; // Cor normal para opção
     
+    [Header("Configurações de Porta de Transição")]
+    [SerializeField] private bool isTransitionDoor = false;       // Indica se esta é uma porta de transição
+    [SerializeField] private bool transitionEnabled = false;      // Indica se a transição está ativada (puzzle completo)
+    [SerializeField] private GameObject endGamePanel;             // Painel de fim de jogo/demo
+    [SerializeField] private float transitionDelay = 0f;        // Atraso antes de mostrar a tela de fim
+    [SerializeField] private GameObject transitionLight; 
+
     // Referências de componentes
     private SpriteRenderer spriteRenderer;
     private Transform player;
@@ -43,15 +61,25 @@ public class DoorController : MonoBehaviour
     private Light2D doorOpenLightComponent;    // Componente da luz de porta aberta
     private Light2D doorClosedLightComponent;  // Componente da luz de porta fechada
     private AudioSource audioSource;           // Componente para tocar sons
+
+    private InventoryManager inventoryManager;  // Referência para o sistema de inventário
+    private bool isUIOpen = false;      // Indica se qualquer UI está aberta
+    private PlayerController playerController; // Referência ao controlador do jogador
     
     // Para debug
     private bool debugMode = true;
     
     private void Start()
     {
+        // Obter referência ao PlayerController
+        playerController = FindFirstObjectByType<PlayerController>();
+
         // Obter referências dos componentes
         spriteRenderer = GetComponent<SpriteRenderer>();
         
+        if (transitionLight != null)
+        transitionLight.SetActive(false);
+
         // Configurar ou adicionar AudioSource para sons da porta
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
@@ -84,10 +112,9 @@ public class DoorController : MonoBehaviour
                     collider.enabled = false;
             }
         }
-        else if (debugMode)
-        {
-            Debug.LogWarning("Colliders para porta aberta não configurados!");
-        }
+
+        if (endGamePanel != null)
+        endGamePanel.SetActive(false);
         
         // Desativa o EdgeCollider da porta aberta inicialmente
         if (openDoorEdgeCollider != null)
@@ -179,6 +206,18 @@ public class DoorController : MonoBehaviour
         {
             Debug.LogWarning("Som de porta fechando não configurado!");
         }
+
+        inventoryManager = FindFirstObjectByType<InventoryManager>();
+        if (inventoryManager == null && debugMode)
+            Debug.LogWarning("InventoryManager não encontrado na cena!");
+
+
+        // Garantir que os painéis de UI estão desativados inicialmente
+        if (lockedUI != null)
+            lockedUI.SetActive(false);
+            
+        if (keyUseUI != null)
+            keyUseUI.SetActive(false);
     }
     
     private void Update()
@@ -199,7 +238,7 @@ public class DoorController : MonoBehaviour
             if (debugMode && wasInRange != playerInRange)
             {
                 Debug.Log($"Estado de proximidade alterado: {(playerInRange ? "Dentro" : "Fora")} do alcance. " +
-                         $"Distância: {distanceToPlayer}, Limite: {interactionDistance}");
+                        $"Distância: {distanceToPlayer}, Limite: {interactionDistance}");
             }
             
             // Atualizar visibilidade dos indicadores baseado na proximidade
@@ -212,21 +251,71 @@ public class DoorController : MonoBehaviour
             }
             
             // Verificar entrada do jogador se estiver no alcance
-            if (playerInRange && Input.GetKeyDown(interactionKey))
+            if (isUIOpen)
             {
-                if (isOpen)
+                // Se a UI de porta trancada estiver aberta
+                if (lockedUI != null && lockedUI.activeSelf && Input.GetKeyDown(interactionKey))
                 {
+                    CloseLockedUI();
+                }
+                // Se a UI de usar chave estiver aberta
+                else if (keyUseUI != null && keyUseUI.activeSelf)
+                {
+                    // Confirmar usar chave com Enter
+                    if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+                    {
+                        UseKey();
+                    }
+                    // Voltar com a tecla E
+                    else if (Input.GetKeyDown(interactionKey))
+                    {
+                        CloseKeyUseUI();
+                    }
+                }
+            }
+            // Verificar entrada do jogador se estiver no alcance e nenhuma UI estiver aberta
+            else if (playerInRange && Input.GetKeyDown(interactionKey))
+            {
+
+                if (isTransitionDoor && !transitionEnabled)
+                {
+                    // Opcionalmente, você pode mostrar alguma dica visual ou mensagem
                     if (debugMode)
-                        Debug.Log("Tecla " + interactionKey + " pressionada! Fechando a porta.");
+                        Debug.Log("Porta de transição não está habilitada ainda");
                     
-                    CloseDoor();
+                    return; // Não faz nada com a porta
+                }
+
+                // Se a porta requer chave e está fechada
+                if (requiresKey && !isOpen)
+                {
+                    // Verificar se o jogador tem a chave
+                    if (inventoryManager != null && inventoryManager.HasItem(PuzzleItemType.Key))
+                    {
+                        ShowKeyUseUI();
+                    }
+                    else
+                    {
+                        ShowLockedUI();
+                    }
                 }
                 else
                 {
-                    if (debugMode)
-                        Debug.Log("Tecla " + interactionKey + " pressionada! Abrindo a porta.");
-                    
-                    OpenDoor();
+                    // Comportamento normal para portas sem chave ou já destrancadas
+                    if (isOpen)
+                    {
+                        if (debugMode)
+                            Debug.Log("Tecla " + interactionKey + " pressionada! Fechando a porta.");
+                        
+                        CloseDoor();
+                    }
+                    else
+                    {
+                        if (debugMode)
+                            Debug.Log("Tecla " + interactionKey + " pressionada! Abrindo a porta.");
+                        
+                        OpenDoor();
+                    }
                 }
             }
         }
@@ -326,6 +415,15 @@ public class DoorController : MonoBehaviour
             
             if (debugMode)
                 Debug.Log("Som de porta abrindo reproduzido");
+        }
+
+        // Se for uma porta de transição e a transição estiver habilitada, iniciar a transição de fim de jogo
+        if (isTransitionDoor && transitionEnabled)
+        {
+            transitionLight.SetActive(true);
+
+            if (debugMode)
+                Debug.Log("Porta de transição aberta - preparando fim de jogo/demo");
         }
         
         isOpen = true;
@@ -444,6 +542,186 @@ public class DoorController : MonoBehaviour
             
             previousPoint = currentPoint;
             angle += angleStep;
+        }
+    }
+
+    // Mostrar UI de porta trancada
+    private void ShowLockedUI()
+    {
+        if (lockedUI != null)
+        {
+            lockedUI.SetActive(true);
+            isUIOpen = true;
+            
+            // Disable player movement and interaction
+            if (playerController != null)
+            {
+                playerController.SetMovementEnabled(false);
+            }
+                
+            if (debugMode)
+                Debug.Log("UI de porta trancada exibida");
+        }
+    }
+
+    // Fechar UI de porta trancada
+    private void CloseLockedUI()
+    {
+        if (lockedUI != null)
+        {
+            lockedUI.SetActive(false);
+            isUIOpen = false;
+            
+            // Reativar movimento do jogador
+            if (playerController != null)
+            {
+                playerController.SetMovementEnabled(true);
+            }
+                
+            if (debugMode)
+                Debug.Log("UI de porta trancada fechada");
+        }
+    }
+
+    // Mostrar UI de usar chave
+    private void ShowKeyUseUI()
+    {
+        if (keyUseUI != null)
+        {
+            keyUseUI.SetActive(true);
+            isUIOpen = true;
+            
+            // Destacar a opção "Usar Chave"
+            if (useKeyImage != null)
+            {
+                useKeyImage.color = highlightColor;
+            }
+            
+            // Disable player movement and interaction
+            if (playerController != null)
+            {
+                playerController.SetMovementEnabled(false);
+                
+                // Desativar também o InteractorController
+                InteractorController interactor = playerController.GetComponent<InteractorController>();
+                if (interactor != null)
+                    interactor.enabled = false;
+            }
+                
+            if (debugMode)
+                Debug.Log("UI de usar chave exibida");
+        }
+    }
+
+    // Fechar UI de usar chave
+    private void CloseKeyUseUI()
+    {
+        if (keyUseUI != null)
+        {
+            keyUseUI.SetActive(false);
+            isUIOpen = false;
+            
+            // Reativar movimento do jogador
+            if (playerController != null)
+            {
+                playerController.SetMovementEnabled(true);
+            }
+                
+            if (debugMode)
+                Debug.Log("UI de usar chave fechada");
+        }
+    }
+
+    // Usar a chave para abrir a porta
+    private void UseKey()
+    {
+        if (inventoryManager != null && inventoryManager.HasItem(PuzzleItemType.Key))
+        {
+            // Remover chave do inventário
+            inventoryManager.RemoveItem(PuzzleItemType.Key);
+            
+            // Fechar UI
+            CloseKeyUseUI();
+            
+            // Desativar requisito de chave para esta porta
+            requiresKey = false;
+            
+            // Abrir a porta
+            OpenDoor();
+            
+            if (debugMode)
+                Debug.Log("Chave usada para abrir a porta");
+        }
+    }
+
+    // Método para iniciar a transição de fim de jogo
+    private void TriggerEndGameTransition()
+    {
+        if (debugMode)
+            Debug.Log("Iniciando transição de fim de jogo/demo");
+        
+        // Desativar o jogador durante a transição
+        if (playerController != null)
+        {
+            playerController.SetMovementEnabled(false);
+        }
+        
+        // Mostrar o painel de fim de jogo após um pequeno atraso
+        StartCoroutine(ShowEndGamePanel());
+    }
+
+    // Coroutine para mostrar o painel de fim de jogo após um atraso
+    private IEnumerator ShowEndGamePanel()
+    {
+        yield return new WaitForSeconds(transitionDelay);
+        
+        if (endGamePanel != null)
+        {
+            endGamePanel.SetActive(true);
+            if (debugMode)
+                Debug.Log("Painel de fim de jogo/demo exibido");
+        }
+        else if (debugMode)
+        {
+            Debug.LogWarning("endGamePanel não está atribuído no Inspector!");
+        }
+    }
+
+    // Método público para ativar a porta de transição (chamado quando o puzzle for completado)
+    public void EnableTransition()
+    {
+        if (isTransitionDoor)
+        {
+            transitionEnabled = true;
+
+             if (transitionLight != null)
+            {
+                transitionLight.SetActive(true);
+                
+                if (debugMode)
+                    Debug.Log("Luz da porta de transição ativada");
+            }
+
+            if (debugMode)
+                Debug.Log("Transição habilitada para porta de transição");
+            
+            // Opcionalmente, você pode abrir a porta automaticamente
+            if (!isOpen)
+            {
+                OpenDoor();
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // Verifica se o objeto que colidiu é o jogador e se esta é uma porta de transição habilitada
+        if (isTransitionDoor && transitionEnabled && other.CompareTag("Player"))
+        {
+            if (debugMode)
+                Debug.Log("Jogador passou pela porta de transição");
+            
+            TriggerEndGameTransition();
         }
     }
 }

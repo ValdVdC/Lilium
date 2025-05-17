@@ -6,7 +6,8 @@ public enum PuzzleItemType
 {
     Empty,
     Dagger,
-    Shield
+    Shield,
+    Key
 }
 
 public enum PuzzleState
@@ -25,6 +26,10 @@ public class PuzzleManager : MonoBehaviour
     public TableInteraction tableInteraction;
     public GameObject keyObject;
     public KeyAnimation keyAnimation;
+    public PuzzleAudioManager audioManager;
+    public GameObject tilemapToDisable;
+    public GameObject torchToDisable;
+    public InventoryManager inventoryManager;
     
     [Header("Puzzle Items")]
     public List<PuzzleItemType> inventory = new List<PuzzleItemType>();
@@ -36,6 +41,7 @@ public class PuzzleManager : MonoBehaviour
     public bool puzzleSolved = false;
     
     private PlayerController playerController;
+    private HashSet<string> collectedItems = new HashSet<string>();
     
     private void Start()
     {
@@ -47,8 +53,28 @@ public class PuzzleManager : MonoBehaviour
     
     public void AddItemToInventory(PuzzleItemType itemType)
     {
-        inventory.Add(itemType);
-        Debug.Log("Added " + itemType + " to inventory. Count: " + inventory.Count);
+        // Primeiro verifica se este item já está no inventário
+        if (!inventory.Contains(itemType))
+        {
+            inventory.Add(itemType);
+            Debug.Log("PuzzleManager: Added " + itemType + " to inventory. Count: " + inventory.Count);
+            
+            // Sincronizar com o inventário visual, só se ainda não foi adicionado
+            if (inventoryManager != null)
+            {
+                // Note que não usamos AddItem aqui para evitar duplicação
+                // O método que chamou esta função já deveria ter adicionado o item ao inventoryManager
+                Debug.Log("PuzzleManager: Item já adicionado ao inventoryManager anteriormente.");
+            }
+            else
+            {
+                Debug.LogWarning("PuzzleManager: inventoryManager é nulo!");
+            }
+        }
+        else
+        {
+            Debug.Log("PuzzleManager: Item " + itemType + " já estava no inventário.");
+        }
     }
     
     public bool HasItemInInventory(PuzzleItemType itemType)
@@ -61,6 +87,13 @@ public class PuzzleManager : MonoBehaviour
         if (inventory.Contains(itemType))
         {
             inventory.Remove(itemType);
+            
+            // Sincronizar com o inventário visual
+            if (inventoryManager != null)
+            {
+                inventoryManager.RemoveItem(itemType);
+            }
+            
             Debug.Log("Removed " + itemType + " from inventory. Count: " + inventory.Count);
         }
     }
@@ -140,14 +173,41 @@ public class PuzzleManager : MonoBehaviour
         currentState = PuzzleState.Completed;
         puzzleSolved = true;
 
-        // Ativar a chave e iniciar a animação
-        if (keyAnimation != null)
+        // Tocar som de puzzle completado imediatamente quando resolver
+        if (audioManager != null)
         {
-            keyAnimation.ResetAnimation();
-            keyAnimation.PlayAppearAnimation();
+            Debug.Log("Tocando som de puzzle resolvido");
+            audioManager.PlayPuzzleSolved();
+            
+            // Opcionalmente mudar a música de fundo
+            audioManager.PlaySolvedMusic();
         }
 
-        yield return null; // A animação é controlada pelo KeyAnimation agora
+        // Desativar o tilemap especificado
+        if (tilemapToDisable != null)
+        {
+            tilemapToDisable.SetActive(false);
+            Debug.Log("Tilemap desativado após completar o puzzle");
+        }
+
+        // Ativar a tocha
+        if (torchToDisable != null)
+        {
+            torchToDisable.SetActive(true);
+            Debug.Log("Tocha ativada após completar o puzzle");
+        }
+        
+        // Fechar o puzzle automaticamente
+        if (tableInteraction != null)
+        {
+            // Iniciar a coroutine de fechamento automático
+            tableInteraction.StartCoroutine(tableInteraction.AutoClosePuzzleView());
+            
+            // Desativar permanentemente a capacidade de interação com a mesa
+            tableInteraction.interactionEnabled = false;
+        }
+
+        yield return null;
     }
     
     public void CollectKey()
@@ -167,7 +227,6 @@ public class PuzzleManager : MonoBehaviour
             keyObject.SetActive(false);
         }
     }
-    private HashSet<string> collectedItems = new HashSet<string>();
 
     public void MarkItemCollected(string itemId)
     {
