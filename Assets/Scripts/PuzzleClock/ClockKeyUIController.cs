@@ -16,7 +16,7 @@ public class ClockKeyUIController : MonoBehaviour
     
     private Image highlightImage;
     private ClockPuzzleManager clockPuzzleManager;
-    
+    [SerializeField] private CursorController cursorController;
     private void Awake()
     {
         // Obter referência ao gerenciador do puzzle
@@ -140,6 +140,8 @@ public class ClockKeyUIController : MonoBehaviour
         {
             Debug.LogError("[CLOCK KEY UI] keyHighlight é nulo em ShowKeyInteractionUI");
         }
+        cursorController.ShowCursor();
+        cursorController.SetInteractiveCursor();
     }
     
     // Desativa a UI de interação da chave
@@ -156,6 +158,7 @@ public class ClockKeyUIController : MonoBehaviour
             clickIndicator.SetActive(false);
             DebugLog("Indicador de clique desativado");
         }
+        cursorController.HideCursor();
     }
     
     // Método para logs de debug condicional

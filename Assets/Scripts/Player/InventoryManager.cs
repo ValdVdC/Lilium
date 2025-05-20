@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
-public class InventoryManager : MonoBehaviour
+public class InventoryManager : MonoBehaviour, ISaveable
 {
     [Header("UI References")]
     public GameObject inventoryPanel;
@@ -29,6 +30,36 @@ public class InventoryManager : MonoBehaviour
     private Coroutine flashCoroutine;
     private Coroutine fadeCoroutine;
     
+    [Serializable]
+    public class SaveData
+    {
+        public string currentItem; // Armazenado como string do enum
+    }
+
+    // Implementar a interface ISaveable
+    public object GetSaveData()
+    {
+        SaveData data = new SaveData
+        {
+            currentItem = currentItem.ToString()
+        };
+        return data;
+    }
+
+    public void LoadFromSaveData(object saveData)
+    {
+        if (saveData is SaveData data)
+        {
+            // Converter de string para enum
+            if (Enum.TryParse(data.currentItem, out PuzzleItemType itemType))
+            {
+                currentItem = itemType;
+                // Atualizar a UI
+                UpdateInventoryUI();
+            }
+        }
+    }
+
     void Start()
     {
         // Inicializar o estado do inventário

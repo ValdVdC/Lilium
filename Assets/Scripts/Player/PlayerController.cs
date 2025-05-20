@@ -1,6 +1,7 @@
 using UnityEngine;
+using System;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, ISaveable
 {
     [Header("Movement Settings")]
     public float moveSpeed = 5f;
@@ -44,6 +45,38 @@ public class PlayerController : MonoBehaviour
     public int currentFrame = 0;
     private float frameRate = 0.15f;
     public bool isMoving = false;
+
+    [Serializable]
+    public class SaveData
+    {
+        public Vector3 position;
+        public string direction;
+        public int currentFrame;
+    }
+
+    public object GetSaveData()
+    {
+        SaveData data = new SaveData
+        {
+            position = transform.position,
+            direction = currentDirection.ToString(),
+            currentFrame = currentFrame
+        };
+        return data;
+    }
+
+    public void LoadFromSaveData(object saveData)
+    {
+        if (saveData is SaveData data)
+        {
+            transform.position = data.position;
+            if (Enum.TryParse(data.direction, out FacingDirection direction))
+            {
+                currentDirection = direction;
+            }
+            currentFrame = data.currentFrame;
+        }
+    }
 
     void Start()
     {
@@ -196,7 +229,7 @@ public class PlayerController : MonoBehaviour
     {
         if (footstepClips.Length > 0 && footstepAudioSource != null)
         {
-            int index = Random.Range(0, footstepClips.Length);
+            int index = UnityEngine.Random.Range(0, footstepClips.Length);
             footstepAudioSource.PlayOneShot(footstepClips[index]);
         }
     }

@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 [System.Serializable]
 public class LightAnchorPoint
@@ -12,7 +13,7 @@ public class LightAnchorPoint
     public Vector2 offset; // Offset relativo ao centro do personagem
 }
 
-public class FlashlightController : MonoBehaviour
+public class FlashlightController : MonoBehaviour, ISaveable
 {
     [Header("Referencias")]
     public Transform flashlightTransform; // Objeto da luz da lanterna
@@ -27,7 +28,35 @@ public class FlashlightController : MonoBehaviour
     
     private Vector2 currentOffset = Vector2.zero;
     private Vector2 targetOffset = Vector2.zero;
-    
+
+    [Serializable]
+    public class SaveData
+    {
+        public Vector2 currentOffset;
+        public Vector2 targetOffset;
+    }
+    public object GetSaveData()
+    {
+        SaveData data = new SaveData
+        {
+            currentOffset = this.currentOffset,
+            targetOffset = this.targetOffset
+        };
+        return data;
+    }
+
+    public void LoadFromSaveData(object saveData)
+    {
+        if (saveData is SaveData data)
+        {
+            currentOffset = data.currentOffset;
+            targetOffset = data.targetOffset;
+            // Atualizar posição da lanterna imediatamente
+            UpdateFlashlightPosition();
+            UpdateFlashlightRotation();
+        }
+    }
+
     void Start()
     {
         // Verificação de referências

@@ -3,9 +3,220 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Rendering.Universal;
+using System;
 
-public class BookshelfPuzzleManager : MonoBehaviour
+public class BookshelfPuzzleManager : MonoBehaviour, ISaveable
 {   
+        [Serializable]
+    public class BookData
+    {
+        public string bookName;
+        public Vector3 position;
+        public int gridRow;
+        public int gridCol;
+        public string currentSlotName; // Nome do slot atual, null se não estiver em slot
+    }
+    
+    [Serializable]
+    public class SlotData
+    {
+        public string slotName;
+        public string currentBookName; // Nome do livro atual no slot, null se vazio
+    }
+    
+    [Serializable]
+    public class SaveData
+    {
+        public bool puzzleActive;
+        public bool puzzleSolved;
+        public List<BookData> books = new List<BookData>();
+        public List<SlotData> slots = new List<SlotData>();
+        public Vector2Int cursorPosition;
+        public string selectedBookName; // Nome do livro selecionado, null se nenhum
+    }
+
+    public object GetSaveData()
+    {
+        SaveData data = new SaveData
+        {
+            puzzleActive = this.puzzleActive,
+            puzzleSolved = this.puzzleSolved,
+            cursorPosition = this.cursorPosition,
+            selectedBookName = selectedBook != null ? selectedBook.name : null,
+            books = new List<BookData>(),
+            slots = new List<SlotData>()
+        };
+        
+        // Salvar dados de todos os livros
+        foreach (BookItem book in allBooks)
+        {
+            BookData bookData = new BookData
+            {
+                bookName = book.name,
+                position = book.transform.position,
+                currentSlotName = book.currentSlot != null ? book.currentSlot.name : null
+            };
+            
+            // Encontrar posição na grade
+            Vector2Int gridPos = FindGridPosition(book);
+            bookData.gridRow = gridPos.y;
+            bookData.gridCol = gridPos.x;
+            
+            data.books.Add(bookData);
+        }
+        
+        // Salvar dados de todos os slots
+        foreach (BookSlot slot in allSlots)
+        {
+            SlotData slotData = new SlotData
+            {
+                slotName = slot.name,
+                currentBookName = slot.CurrentBook != null ? slot.CurrentBook.name : null
+            };
+            
+            data.slots.Add(slotData);
+        }
+        
+        return data;
+    }
+
+    public void LoadFromSaveData(object saveData)
+    {
+        SaveData data = saveData as SaveData;
+        if (data == null) return;
+        
+        // Restaurar estado do puzzle
+        puzzleActive = data.puzzleActive;
+        puzzleSolved = data.puzzleSolved;
+        cursorPosition = data.cursorPosition;
+        
+        // Certificar-se de que a grade está inicializada
+        if (bookGrid == null)
+        {
+            InitializeBookGrid();
+        }
+        
+        // Limpar o estado atual da grade
+        ClearBookGrid();
+        
+        // Restaurar posições dos livros
+        foreach (BookData bookData in data.books)
+        {
+            BookItem book = FindBookByExactName(bookData.bookName);
+            if (book != null)
+            {
+                // Restaurar posição física
+                book.transform.position = bookData.position;
+                
+                // Restaurar posição na grade se válida
+                if (bookData.gridRow >= 0 && bookData.gridRow < rowCount && 
+                    bookData.gridCol >= 0 && bookData.gridCol < colCount)
+                {
+                    bookGrid[bookData.gridRow, bookData.gridCol].SetBook(book);
+                }
+            }
+        }
+        
+        // Restaurar estados dos slots
+        foreach (SlotData slotData in data.slots)
+        {
+            BookSlot slot = FindSlotByName(slotData.slotName);
+            if (slot != null && !string.IsNullOrEmpty(slotData.currentBookName))
+            {
+                BookItem book = FindBookByExactName(slotData.currentBookName);
+                if (book != null)
+                {
+                    slot.SetBook(book);
+                }
+            }
+        }
+        
+        // Restaurar livro selecionado
+        selectedBook = null;
+        if (!string.IsNullOrEmpty(data.selectedBookName))
+        {
+            selectedBook = FindBookByExactName(data.selectedBookName);
+            if (selectedBook != null)
+            {
+                selectedBook.SetSelected(true);
+            }
+        }
+        
+        // Atualizar todas as referências
+        UpdateBookSlotReferences();
+        
+        // Atualizar UI e configurações visuais
+        UpdateHighlightedItem();
+        
+        // Se o puzzle estava ativo, restaurar o estado de interação
+        if (puzzleActive)
+        {
+            // Ativar UI do puzzle
+            if (puzzleUI != null)
+                puzzleUI.SetActive(true);
+                
+            if (Light != null)
+                Light.SetActive(true);
+                
+            // Configurar câmera
+            if (cameraController != null && bookshelfPosition != null)
+            {
+                cameraController.ActivateShelfPuzzleCamera(bookshelfPosition, puzzleCameraSize);
+            }
+        }
+        else
+        {
+            // Mostrar ícone de interação se necessário
+            if (interactionKeyIcon != null && playerInRange && !puzzleSolved)
+                interactionKeyIcon.SetActive(true);
+                
+            if (Light != null)
+                Light.SetActive(false);
+                
+            if (puzzleUI != null)
+                puzzleUI.SetActive(false);
+        }
+        
+        // Se o puzzle foi resolvido, mostrar feedback
+        if (puzzleSolved && successFeedback != null)
+        {
+            successFeedback.SetActive(true);
+            
+            MoveBookshelfSmoothly(0f);
+        }
+    }
+    
+    // Método helper para limpar o estado atual da grade
+    private void ClearBookGrid()
+    {
+        for (int row = 0; row < rowCount; row++)
+        {
+            for (int col = 0; col < colCount; col++)
+            {
+                // Não remover a referência ao slot
+                BookSlot currentSlot = bookGrid[row, col].Slot;
+                bookGrid[row, col].SetBook(null);
+                
+                // Manter os slots na última linha
+                if (row == 2 && currentSlot != null)
+                {
+                    bookGrid[row, col].SetSlot(currentSlot);
+                }
+            }
+        }
+    }
+    
+    // Método helper para encontrar um slot pelo nome
+    private BookSlot FindSlotByName(string slotName)
+    {
+        foreach (BookSlot slot in allSlots)
+        {
+            if (slot.name == slotName)
+                return slot;
+        }
+        return null;
+    }
+
     [System.Serializable]
     private class GridCell
     {
@@ -13,39 +224,39 @@ public class BookshelfPuzzleManager : MonoBehaviour
         public BookItem Book { get; private set; }    
         public Vector3 WorldPosition { get; private set; }    
 
-public GridCell(Transform bookshelfTransform, Vector2 localOffset)
-{
-    // Converte posição local para mundial baseada no transform da estante
-    WorldPosition = bookshelfTransform.TransformPoint(new Vector3(localOffset.x, localOffset.y, 0));
-    Slot = null;
-    Book = null;
-}
-
-public void SetSlot(BookSlot slot)
-{
-    Slot = slot;
-    if (slot != null)
-    {
-        // Usar posição local em relação à estante
-        slot.transform.position = WorldPosition;
-    }
-}
-
-public void SetBook(BookItem book)
-{
-    Book = book;
-    if (book != null)
-    {
-        // Usar posição local em relação à estante
-        book.transform.position = WorldPosition;
-        
-        if (Slot != null)
+        public GridCell(Transform bookshelfTransform, Vector2 localOffset)
         {
-            Slot._currentBook = book;
-            book.currentSlot = Slot;
+            // Converte posição local para mundial baseada no transform da estante
+            WorldPosition = bookshelfTransform.TransformPoint(new Vector3(localOffset.x, localOffset.y, 0));
+            Slot = null;
+            Book = null;
         }
-    }
-}
+
+        public void SetSlot(BookSlot slot)
+        {
+            Slot = slot;
+            if (slot != null)
+            {
+                // Usar posição local em relação à estante
+                slot.transform.position = WorldPosition;
+            }
+        }
+
+        public void SetBook(BookItem book)
+        {
+            Book = book;
+            if (book != null)
+            {
+                // Usar posição local em relação à estante
+                book.transform.position = WorldPosition;
+                
+                if (Slot != null)
+                {
+                    Slot._currentBook = book;
+                    book.currentSlot = Slot;
+                }
+            }
+        }
 
         public bool IsEmpty()
         {
@@ -1325,13 +1536,12 @@ private void UpdateBookGridAfterSwap(BookItem book1, BookItem book2)
         }
     }
     
-    private IEnumerator MoveBookshelfSmoothly()
+    private IEnumerator MoveBookshelfSmoothly(float duration = 8f)
     {
         Vector3 startPosition = transform.position;
         // Calcular a posição final relativa à posição atual
         Vector3 endPosition = startPosition + new Vector3(-40.8f, 0f, 0f);
         float elapsedTime = 0;
-        float duration = 8f;
         
         while (elapsedTime < duration)
         {

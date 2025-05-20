@@ -2,9 +2,95 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.Rendering.Universal;
+using System;
 
-public class ClockPuzzleManager : MonoBehaviour
+public class ClockPuzzleManager : MonoBehaviour, ISaveable
 {
+    [Serializable]
+    public class SaveData
+    {
+        // Estado principal do puzzle
+        public bool bookHasBeenRead;
+        public bool puzzleSolved;
+        public bool keyCollected;
+        
+        // Estado dos ponteiros
+        public int[] savedPositions = new int[3];
+        public Direction[] savedDirections = new Direction[3];  
+        public bool[] handConfirmed = new bool[3];
+        
+        // Ponteiro atual selecionado
+        public int currentActiveHandIndex;
+    }
+
+    public object GetSaveData()
+    {
+        SaveData data = new SaveData
+        {
+            // Estado principal
+            bookHasBeenRead = this.bookHasBeenRead,
+            puzzleSolved = this.puzzleSolved,
+            keyCollected = this.keyCollected,
+            
+            // Estado dos ponteiros
+            savedPositions = this.savedPositions, // Cria uma cópia
+            handConfirmed = this.handConfirmed,   // Cria uma cópia
+            currentActiveHandIndex = this.currentActiveHandIndex
+        };
+        
+        // Como Direction é um enum, precisamos converter para uma forma serializável
+        data.savedDirections = new Direction[3];
+        for (int i = 0; i < 3; i++)
+        {
+            data.savedDirections[i] = this.savedDirections[i];
+        }
+        
+        return data;
+    }
+
+    public void LoadFromSaveData(object saveData)
+    {
+        if (saveData is SaveData data)
+        {
+            // Estado principal
+            this.bookHasBeenRead = data.bookHasBeenRead;
+            this.puzzleSolved = data.puzzleSolved;
+            this.keyCollected = data.keyCollected;
+            
+            // Estado dos ponteiros
+            for (int i = 0; i < 3; i++)
+            {
+                if (i < data.savedPositions.Length)
+                    this.savedPositions[i] = data.savedPositions[i];
+                
+                if (i < data.savedDirections.Length)
+                    this.savedDirections[i] = (Direction)data.savedDirections[i];
+                
+                if (i < data.handConfirmed.Length)
+                    this.handConfirmed[i] = data.handConfirmed[i];
+            }
+            
+            this.currentActiveHandIndex = data.currentActiveHandIndex;
+            
+            // Desativar ponteiros quando o puzzle estiver resolvido
+            if (this.puzzleSolved)
+            {
+                foreach (var hand in hands)
+                {
+                    if (hand != null)
+                        hand.SetActive(false);
+                }
+                
+                // Mostrar ou esconder a recompensa dependendo se foi coletada
+                if (rewardObject != null)
+                    rewardObject.SetActive(!this.keyCollected);
+                    
+                // Iniciar animação apenas depois que todos os outros estados estiverem configurados
+                StartClockAnimation();
+            }
+        }
+    }
+
     [Header("Estado do Puzzle")]
     public bool bookHasBeenRead = false;       // Indica se o livro foi lido
     public bool puzzleSolved = false;          // Indica se o puzzle foi resolvido
@@ -32,6 +118,7 @@ public class ClockPuzzleManager : MonoBehaviour
     public SpriteRenderer clockSpriteRenderer;    // Referência ao SpriteRenderer do relógio
     public Sprite[] clockAnimationSprites;        // Array de sprites para a animação
     public float animationSpeed = 0.2f;           // Velocidade da animação (segundos por frame)
+    private Coroutine clockAnimationCoroutine;
     
     [Header("Feedback")]
     public GameObject successFeedback;         // Objeto/Efeito para feedback de sucesso
@@ -543,7 +630,7 @@ public class ClockPuzzleManager : MonoBehaviour
         Debug.Log("[CLOCK PUZZLE] Puzzle resolvido! Iniciando sequência de recompensa.");
         
         // Iniciar a animação do relógio
-        StartCoroutine(AnimateClockAfterSolved());
+        StartClockAnimation();
         
         // Primeiro ativar a recompensa
         if (rewardObject != null)
@@ -803,6 +890,19 @@ public class ClockPuzzleManager : MonoBehaviour
         }
     }
 
+    private void StartClockAnimation()
+    {
+        // Garantir que qualquer animação existente seja interrompida primeiro
+        if (clockAnimationCoroutine != null)
+        {
+            StopCoroutine(clockAnimationCoroutine);
+            clockAnimationCoroutine = null;
+        }
+        
+        // Iniciar nova animação
+        clockAnimationCoroutine = StartCoroutine(AnimateClockAfterSolved());
+    }
+
     private IEnumerator AnimateClockAfterSolved()
     {
         if (clockSpriteRenderer == null || clockAnimationSprites == null || clockAnimationSprites.Length < 2)
@@ -813,7 +913,12 @@ public class ClockPuzzleManager : MonoBehaviour
         
         Debug.Log("[CLOCK PUZZLE] Iniciando animação do relógio");
         
+        // Garantir que o sprite inicial seja configurado corretamente
         int currentSpriteIndex = 0;
+        clockSpriteRenderer.sprite = clockAnimationSprites[currentSpriteIndex];
+        
+        yield return new WaitForSeconds(0.1f); // Pequena pausa para sincronização
+        
         bool goingForward = true;
         
         while (true) // Loop infinito para animação contínua

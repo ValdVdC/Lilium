@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public enum PuzzleItemType
 {
@@ -19,7 +20,7 @@ public enum PuzzleState
     Completed        // Puzzle foi resolvido
 }
 
-public class PuzzleManager : MonoBehaviour
+public class PuzzleManager : MonoBehaviour, ISaveable
 {
     [Header("References")]
     public Camera mainCamera;
@@ -43,6 +44,62 @@ public class PuzzleManager : MonoBehaviour
     private PlayerController playerController;
     private HashSet<string> collectedItems = new HashSet<string>();
     
+    [Serializable]
+    public class SaveData
+    {
+        public bool puzzleSolved;
+        public List<PuzzleItemType> inventory;
+        public PuzzleState currentState;
+        public HashSet<string> collectedItems;
+    }
+
+    public object GetSaveData()
+    {
+        SaveData data = new SaveData
+        {
+            puzzleSolved = this.puzzleSolved,
+            inventory = new List<PuzzleItemType>(this.inventory),
+            currentState = this.currentState,
+            collectedItems = new HashSet<string>(this.collectedItems)
+        };
+        return data;
+    }
+
+
+    public void LoadFromSaveData(object saveData)
+    {
+        if (saveData is SaveData data)
+        {
+            this.puzzleSolved = data.puzzleSolved;
+            
+            this.inventory = data.inventory != null 
+                ? new List<PuzzleItemType>(data.inventory) 
+                : new List<PuzzleItemType>();
+                
+            this.currentState = data.currentState;
+
+            this.collectedItems = data.collectedItems != null 
+                ? new HashSet<string>(data.collectedItems) 
+                : new HashSet<string>();
+            
+            // Atualizar o inventário visual
+            if (inventoryManager != null)
+            {
+                foreach (var item in inventory)
+                {
+                    inventoryManager.AddItem(item);
+                }
+            }
+            
+            // Se o puzzle já foi resolvido, desativar a mesa
+            if (puzzleSolved && tableInteraction != null)
+            {
+                tableInteraction.interactionEnabled = false;
+                tableInteraction.ClosePuzzleView();
+            }
+        }
+    }
+
     private void Start()
     {
         playerController = FindFirstObjectByType<PlayerController>();

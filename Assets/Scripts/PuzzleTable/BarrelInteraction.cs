@@ -1,9 +1,46 @@
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
+using System;
 
-public class BarrelInteraction : MonoBehaviour, IInteractable
+public class BarrelInteraction : MonoBehaviour, IInteractable , ISaveable
 {
+    [Serializable]
+    public class SaveData
+    {
+        public bool isOpen;
+        public bool isItemCollected;
+    }
+
+    public object GetSaveData()
+    {
+        SaveData data = new SaveData
+        {
+            isOpen = this.isOpen,
+            isItemCollected = this.IsItemCollected
+        };
+        return data;
+    }
+
+    public void LoadFromSaveData(object saveData)
+    {
+        if (saveData is SaveData data)
+        {
+            this.isOpen = data.isOpen;
+            if (this.isOpen)
+            {
+                OpenBarrel();
+            }
+            
+            // Se o item já foi coletado, desativá-lo
+            if (data.isItemCollected && puzzleItem != null)
+            {
+                puzzleItem.SetActive(false);
+                puzzleManager.MarkItemCollected(gameObject.name);
+            }
+        }       
+    }
+
     [Header("References")]
     public Transform barrelCameraPosition;
     public float barrelCameraSize = 2.0f;
@@ -25,9 +62,12 @@ public class BarrelInteraction : MonoBehaviour, IInteractable
     public float iconYOffset = 1.5f;
 
     public bool isOpen = false;
+    public bool IsItemCollected => puzzleManager.IsItemCollected(gameObject.name);
     private PlayerController playerController;
     private GameObject interactionIcon;
     private bool isHoveringOverItem = false;
+
+    [SerializeField] private CursorController cursorController;
 
     private void Start()
     {
@@ -122,6 +162,9 @@ public class BarrelInteraction : MonoBehaviour, IInteractable
         // Ocultar o ícone de interação quando abrir o barril
         if (interactionIcon != null)
             interactionIcon.SetActive(false);
+
+        cursorController.ShowCursor();
+        cursorController.SetInteractiveCursor();
 
         // Disable player movement and interaction
         if (playerController != null)
@@ -232,6 +275,8 @@ public class BarrelInteraction : MonoBehaviour, IInteractable
     public void CloseBarrel()
     {
         isOpen = false;
+
+        cursorController.HideCursor();
 
         if (playerController != null)
         {

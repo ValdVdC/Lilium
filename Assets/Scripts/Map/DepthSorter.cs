@@ -11,6 +11,7 @@ public class DepthSorter : MonoBehaviour
     [SerializeField] private bool useBottomAsReference = false; // Usar a base do sprite como referência
     [SerializeField] private bool applyToChildren = true; // Aplicar aos objetos filhos
     [SerializeField] private bool runOnlyOnce = false; // Se deve executar apenas uma vez
+    [SerializeField] private float depthFactor = 10f; // Fator de escala para o cálculo de profundidade (reduzido de 100 para 10)
 
     // Offset para objetos filhos em relação ao principal
     [SerializeField] private int childrenOrderOffset = 1; // Offset de ordem para filhos (positivo = na frente do pai)
@@ -41,12 +42,12 @@ public class DepthSorter : MonoBehaviour
         {
             // Calcula a distância entre o pivot e a parte inferior do sprite
             float pivotToBottom = (bounds.center.y - bounds.extents.y) - transform.position.y;
-            autoOffset = pivotToBottom * 100f;
+            autoOffset = pivotToBottom * depthFactor; // Usa o fator configurável
         }
         else
         {
             // Usa metade da altura do sprite como offset padrão
-            autoOffset = bounds.size.y * 50f;
+            autoOffset = bounds.size.y * (depthFactor / 2); // Ajusta proporcionalmente
         }
     }
 
@@ -56,8 +57,8 @@ public class DepthSorter : MonoBehaviour
 
         float offsetToUse = useAutoOffset ? autoOffset : manualOffset;
         
-        // Calcula o sorting order base para este objeto
-        int calculatedOrder = (int)(sortingOrderBase - transform.position.y * 100 + offsetToUse);
+        // Calcula o sorting order base para este objeto com fator reduzido
+        int calculatedOrder = Mathf.RoundToInt(sortingOrderBase - transform.position.y * depthFactor + offsetToUse);
         
         // Aplica ao sprite principal
         mainSpriteRenderer.sortingOrder = calculatedOrder;

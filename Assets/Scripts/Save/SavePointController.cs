@@ -33,14 +33,26 @@ public class SavePointController : MonoBehaviour
     [SerializeField] private Color gizmoColor = Color.cyan;
     [SerializeField] private bool showPlayerPosition = true;
     
+    [Header("Configurações do Menu de Save")]
+    [SerializeField] private SaveMenuUI saveMenuUI;
+
+    [Header("Configurações de Save Point")]
+    [SerializeField] private string savePointDisplayName = "";
+
     // Referências de componentes
     private SpriteRenderer spriteRenderer;
     private Transform player;
+    private PlayerController playerController;
     private bool playerInRange = false;
     private Light2D outlineLightComponent;
     private int currentSpriteIndex = 0;
     private float animationTimer = 0f;
     private bool isSaving = false;
+    
+    // Controle de estado do menu
+    private bool menuIsOpen = false;
+    private float interactionCooldown = 0.25f;
+    private float lastInteractionTime = 0f;
     
     // Para debug
     private bool debugMode = true;
@@ -94,6 +106,18 @@ public class SavePointController : MonoBehaviour
         else if (debugMode)
         {
             Debug.LogWarning("interactionIcon não está atribuído no Inspector!");
+        }
+        
+        // Verificar se temos referência para o menu
+        if (saveMenuUI == null)
+        {
+            // Tentar encontrar o SaveMenuUI na cena
+            saveMenuUI = FindFirstObjectByType<SaveMenuUI>();
+            
+            if (saveMenuUI == null && debugMode)
+            {
+                Debug.LogError("SaveMenuUI não encontrado na cena! Configure-o no inspector.");
+            }
         }
     }
     
@@ -149,6 +173,15 @@ public class SavePointController : MonoBehaviour
         // Verificar a distância do jogador
         if (player != null)
         {
+            // Verificar estado do menu ANTES de qualquer interação
+            if (menuIsOpen && saveMenuUI != null && !saveMenuUI.gameObject.activeSelf)
+            {
+                if (debugMode)
+                    Debug.Log("Fechando menu de salvamento - detectado fechamento");
+                    
+                menuIsOpen = false;
+            }
+            
             // Calcular o centro de interação
             Vector2 interactionCenter = (Vector2)transform.position + interactionOffset;
             
@@ -165,18 +198,19 @@ public class SavePointController : MonoBehaviour
                          $"Distância: {distanceToPlayer}, Limite: {interactionDistance}");
             }
             
-            // Atualizar visibilidade dos indicadores baseado na proximidade
-            UpdateVisualIndicators(playerInRange);
+            // Atualizar visibilidade dos indicadores baseado na proximidade e no estado do menu
+            UpdateVisualIndicators(playerInRange && !menuIsOpen);
             
-            // Verificar entrada do jogador se estiver no alcance
-            if (playerInRange && Input.GetKeyDown(interactionKey) && !isSaving)
+            // Verificar entrada do jogador e respeitar o cooldown
+            if (Input.GetKeyDown(interactionKey) && Time.time - lastInteractionTime > interactionCooldown)
             {
-                StartSaving();
+                lastInteractionTime = Time.time;
+                HandleInteraction();
             }
         }
         
-        // Animar a intensidade da luz se o jogador estiver próximo
-        if (playerInRange && outlineLightComponent != null)
+        // Animar a intensidade da luz se o jogador estiver próximo e o menu não estiver aberto
+        if (playerInRange && !menuIsOpen && outlineLightComponent != null)
         {
             float pulse = Mathf.Sin(Time.time * pulseSpeed) * pulseAmount;
             outlineLightComponent.intensity = lightIntensity + pulse;
@@ -184,8 +218,69 @@ public class SavePointController : MonoBehaviour
             // Sempre atualizar o sprite da luz para corresponder ao sprite atual
             UpdateLightSprite();
         }
+        
+        // Manter controle do estado do menu (se foi fechado por outros meios)
+        if (saveMenuUI != null && !saveMenuUI.gameObject.activeSelf)
+        {
+            menuIsOpen = false;
+        }
     }
     
+    // Processa a interação com o ponto de salvamento com base no contexto atual
+    private void HandleInteraction()
+    {
+        if (saveMenuUI == null) return;
+        
+        // Se o menu não estiver aberto e o jogador estiver no alcance, abrir o menu
+        if (!menuIsOpen && playerInRange && !isSaving)
+        {
+            StartSaving();
+            menuIsOpen = true;
+            return;
+        }
+        
+        // Se o menu estiver aberto, verificar os painéis internos
+        if (menuIsOpen)
+        {
+            // Se o painel de confirmação estiver aberto, não fazer nada (a lógica é tratada pelo SaveMenuUI)
+            if (saveMenuUI.isConfirmationOpen)
+            {
+                return;
+            }
+            
+            // Se as opções de slot estiverem abertas, não fazer nada (a lógica é tratada pelo SaveMenuUI)
+            if (saveMenuUI.isSlotOptionsOpen)
+            {
+                return;
+            }
+            
+            // Se estiver apenas no menu principal, fechar
+            CloseSaveMenu();
+            menuIsOpen = false;
+        }
+    }
+    
+    // Fechamento explícito do menu de salvamento
+    private void CloseSaveMenu()
+    {
+        if (saveMenuUI != null)
+        {
+            if (debugMode)
+                Debug.Log("Fechando menu de salvamento");
+                
+            saveMenuUI.CloseSaveMenu();
+            menuIsOpen = false;
+        }
+    }
+
+    public void OnSaveMenuClosed()
+    {
+        if (debugMode)
+            Debug.Log("Fechando menu de salvamento - callback recebido");
+            
+        menuIsOpen = false;
+    }
+
     private void AnimateSavePoint()
     {
         if (savePointSprites.Length <= 1)
@@ -222,18 +317,18 @@ public class SavePointController : MonoBehaviour
     }
     
     // Atualiza os indicadores visuais com base na proximidade do jogador
-    private void UpdateVisualIndicators(bool playerNearby)
+    private void UpdateVisualIndicators(bool showIndicators)
     {
         // Controle da luz de contorno
         if (outlineLightComponent != null)
         {
-            outlineLightComponent.intensity = playerNearby ? lightIntensity : 0f;
+            outlineLightComponent.intensity = showIndicators ? lightIntensity : 0f;
         }
         
         // Mostrar ou esconder o ícone de interação
         if (interactionIcon != null)
         {
-            interactionIcon.gameObject.SetActive(playerNearby);
+            interactionIcon.gameObject.SetActive(showIndicators);
         }
     }
     
@@ -241,9 +336,20 @@ public class SavePointController : MonoBehaviour
     private void StartSaving()
     {
         if (debugMode)
-            Debug.Log("Iniciando processo de salvamento...");
+            Debug.Log($"Abrindo menu de salvamento com nome: '{savePointDisplayName}'");
+        
+        // Verificar se temos referência para o menu
+        if (saveMenuUI == null)
+        {
+            // Tentar encontrar o SaveMenuUI na cena
+            saveMenuUI = FindFirstObjectByType<SaveMenuUI>();
             
-        isSaving = true;
+            if (saveMenuUI == null)
+            {
+                Debug.LogError("SaveMenuUI não encontrado na cena! Configure-o no inspector.");
+                return;
+            }
+        }
         
         // Tocar som de início de salvamento
         if (audioSource != null && saveStartSound != null)
@@ -253,15 +359,20 @@ public class SavePointController : MonoBehaviour
             audioSource.Play();
         }
         
-        // Exemplo: aumentar a intensidade da luz durante o salvamento
+        // Exemplo: aumentar a intensidade da luz durante a interação
         if (outlineLightComponent != null)
         {
             outlineLightComponent.intensity = lightIntensity * 2f;
-            outlineLightComponent.color = Color.white;  // Mudar para branco durante o salvamento
+            outlineLightComponent.color = Color.white;
         }
         
-        // Iniciar a coroutine de salvamento (para simular o tempo de salvamento)
-        StartCoroutine(SaveGameCoroutine());
+        // Verificar se o nome do savePoint está vazio e usar nome do objeto como fallback
+        string displayName = string.IsNullOrEmpty(savePointDisplayName) ? gameObject.name : savePointDisplayName;
+        Debug.Log($"Nome final do savePoint para o menu: '{displayName}'");
+        
+        // Abrir o menu de salvamento
+        saveMenuUI.OpenSaveMenu(displayName);
+        menuIsOpen = true;
     }
     
     // Coroutine para simular o tempo de salvamento e executar o salvamento

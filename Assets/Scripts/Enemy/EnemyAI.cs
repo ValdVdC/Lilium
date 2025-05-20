@@ -1,9 +1,71 @@
 using UnityEngine;
 using Pathfinding;
 using System.Collections;
+using System;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : MonoBehaviour, ISaveable
 {
+    [Serializable]
+    public class SaveData
+    {
+        // Posição atual do inimigo
+        public Vector3 position;
+        
+        // Estado atual do inimigo
+        public EnemyState currentState;
+        
+        // Direção atual que o inimigo está enfrentando
+        public FacingDirection currentDirection;
+        
+        // Tempo desde o último ataque, importante para o cooldown
+        public float lastAttackTime;
+        
+        // Flag se está se movendo
+        public bool isMoving;
+        
+        // Tempo fora do alcance - importante para o comportamento de retorno
+        public float timeOutOfRange;
+        
+        // Flag se está retornando à posição inicial
+        public bool isReturning;
+    }
+
+    public object GetSaveData()
+    {
+        SaveData data = new SaveData
+        {
+            position = transform.position,
+            currentState = currentState,
+            currentDirection = currentDirection,
+            lastAttackTime = lastAttackTime,
+            isMoving = isMoving,
+            timeOutOfRange = timeOutOfRange,
+            isReturning = isReturning
+        };
+        
+        return data;
+    }
+
+    public void LoadFromSaveData(object saveData)
+    {
+        if (saveData is SaveData data)
+        {
+            transform.position = data.position;
+            currentState = data.currentState;
+            currentDirection = data.currentDirection;
+            lastAttackTime = data.lastAttackTime;
+            isMoving = data.isMoving;
+            timeOutOfRange = data.timeOutOfRange;
+            isReturning = data.isReturning;
+            // Se estiver salvando o caminho (path), seria necessário recalculá-lo aqui
+            if (isMoving || isReturning)
+            {
+                Vector3 target = isReturning ? startPosition : player.position;
+                seeker.StartPath(transform.position, target, OnPathComplete);
+            }
+        }
+    }
+
     [Header("Referências e Movimento")]
     public Transform player;
     public float moveSpeed = 2f;
@@ -137,7 +199,7 @@ public class EnemyAI : MonoBehaviour
                     else
                     {
                         // Adiciona um pequeno offset aleatório à posição do jogador para tentar um caminho diferente
-                        Vector2 randomOffset = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * 0.5f;
+                        Vector2 randomOffset = new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)).normalized * 0.5f;
                         seeker.StartPath(transform.position, player.position + (Vector3)randomOffset, OnPathComplete);
                     }
                     

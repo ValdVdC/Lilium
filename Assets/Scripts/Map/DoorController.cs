@@ -3,9 +3,55 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
+using System;
 
-public class DoorController : MonoBehaviour
+public class DoorController : MonoBehaviour, ISaveable
 {
+    [Serializable]
+    public class SaveData
+    {
+        public bool isOpen;           // Estado da porta (aberta/fechada)
+        public bool requiresKey;      // Se a porta ainda requer chave
+        public bool transitionEnabled; // Se a transição está habilitada
+    }
+
+    public object GetSaveData()
+    {
+        SaveData data = new SaveData
+        {
+            isOpen = isOpen,
+            requiresKey = requiresKey,
+            transitionEnabled = transitionEnabled
+        };
+        
+        return data;
+    }
+
+    public void LoadFromSaveData(object saveData)
+    {
+        if (saveData is SaveData data)
+        {
+            // Restaurar estado da porta
+            if (data.isOpen && !isOpen)
+                OpenDoor();
+            else if (!data.isOpen && isOpen)
+                CloseDoor();
+            
+            // Restaurar estado do requisito de chave
+            requiresKey = data.requiresKey;
+            
+            // Restaurar estado da transição
+            if (isTransitionDoor)
+            {
+                transitionEnabled = data.transitionEnabled;
+                
+                // Atualizar visual da porta de transição se necessário
+                if (transitionEnabled && transitionLight != null)
+                    transitionLight.SetActive(true);
+            }
+        }
+    }
+
     [Header("Sprites")]
     [SerializeField] private Sprite doorClosedSprite;
     [SerializeField] private Sprite doorOpenSprite;
@@ -677,7 +723,21 @@ public class DoorController : MonoBehaviour
         
         if (endGamePanel != null)
         {
-            endGamePanel.SetActive(true);
+            // Versão básica:
+            // endGamePanel.SetActive(true);
+            
+            // Versão avançada (usando o novo controller):
+            EndGamePanelController panelController = endGamePanel.GetComponent<EndGamePanelController>();
+            if (panelController != null)
+            {
+                panelController.Show();
+            }
+            else
+            {
+                // Fallback para a versão simples se não encontrar o controller
+                endGamePanel.SetActive(true);
+            }
+            
             if (debugMode)
                 Debug.Log("Painel de fim de jogo/demo exibido");
         }

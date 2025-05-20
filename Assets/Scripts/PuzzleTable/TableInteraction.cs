@@ -3,9 +3,186 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI; // Adicionado para elementos UI
+using System;
 
-public class TableInteraction : MonoBehaviour, IInteractable
+public class TableInteraction : MonoBehaviour, IInteractable, ISaveable
 {
+    [Serializable]
+    public class TableInteractionSaveData
+    {
+        // Posição do espaço vazio
+        public int emptySlotX;
+        public int emptySlotY;
+        
+        // Estado de cada slot no puzzle
+        public SlotSaveData[] slots = new SlotSaveData[9];
+        
+        // Estado atual do puzzle
+        public int puzzleState;
+        
+        // Indica se a interação está habilitada
+        public bool interactionEnabled;
+        
+        // Indica se o puzzle está aberto
+        public bool isPuzzleOpen;
+    }
+
+    // Dados para salvar um único slot
+    [Serializable]
+    public class SlotSaveData
+    {
+        public int x;
+        public int y;
+        public int currentType;        // Valor do enum PuzzleItemType
+        public int currentDirection;   // Valor do enum PuzzleDirection
+        public int solutionType;       // Valor do enum PuzzleItemType para solução
+        public int solutionDirection;  // Valor do enum PuzzleDirection para solução
+    }
+
+    [Serializable]
+    public class SaveData
+    {
+        public TableInteractionSaveData tableData;
+    }
+
+    public object GetSaveData()
+    {
+        SaveData data = new SaveData
+        {
+            tableData = new TableInteractionSaveData
+            {
+                emptySlotX = emptySlotPosition.x,
+                emptySlotY = emptySlotPosition.y,
+                puzzleState = (int)puzzleManager.currentState,
+                interactionEnabled = interactionEnabled,
+                isPuzzleOpen = isPuzzleOpen
+            }
+        };
+        
+        // Salvar dados de cada slot
+        for (int i = 0; i < 9; i++)
+        {
+            int x = i % 3;
+            int y = i / 3;
+            
+            PuzzleSlot slot = puzzleSlots[x, y];
+            if (slot != null)
+            {
+                data.tableData.slots[i] = new SlotSaveData
+                {
+                    x = slot.position.x,
+                    y = slot.position.y,
+                    currentType = (int)slot.currentType,
+                    currentDirection = (int)slot.currentDirection,
+                    solutionType = (int)slot.solutionType,
+                    solutionDirection = (int)slot.solutionDirection
+                };
+            }
+        }
+        
+        return data;
+    }
+
+    public void LoadFromSaveData(object saveData)
+    {
+        if (saveData is SaveData data && data.tableData != null)
+        {
+            // Restaurar estado geral
+            emptySlotPosition = new Vector2Int(data.tableData.emptySlotX, data.tableData.emptySlotY);
+            interactionEnabled = data.tableData.interactionEnabled;
+            isPuzzleOpen = data.tableData.isPuzzleOpen;
+            
+            // Restaurar estado do PuzzleManager
+            if (puzzleManager != null)
+            {
+                puzzleManager.currentState = (PuzzleState)data.tableData.puzzleState;
+            }
+            
+            // Restaurar slots do puzzle
+            for (int i = 0; i < data.tableData.slots.Length; i++)
+            {
+                SlotSaveData slotData = data.tableData.slots[i];
+                if (slotData != null)
+                {
+                    PuzzleSlot slot = puzzleSlots[slotData.x, slotData.y];
+                    if (slot != null)
+                    {
+                        slot.currentType = (PuzzleItemType)slotData.currentType;
+                        slot.currentDirection = (PuzzleDirection)slotData.currentDirection;
+                        slot.solutionType = (PuzzleItemType)slotData.solutionType;
+                        slot.solutionDirection = (PuzzleDirection)slotData.solutionDirection;
+                    }
+                }
+            }
+            
+            // Atualizar visuais do puzzle
+            UpdateAllSlotVisuals();
+            
+            // Configurar corretamente o estado da UI
+            if (isPuzzleOpen)
+            {
+                // Abrir o puzzle sem executar a lógica completa
+                puzzleBoard.SetActive(true);
+                
+                if (playerController != null)
+                {
+                    playerController.enabled = false;
+                    playerController.spriteRenderer.enabled = false;
+                    
+                    InteractorController interactor = playerController.GetComponent<InteractorController>();
+                    if (interactor != null)
+                        interactor.enabled = false;
+                }
+                
+                // Atualizar câmera
+                if (cameraController != null)
+                {
+                    cameraController.ActivateTablePuzzleCamera(puzzleCameraPosition, puzzleCameraSize);
+                }
+                
+                // Mostrar UI adequada baseada no estado atual
+                if (puzzleManager.currentState == PuzzleState.Collection || 
+                    puzzleManager.currentState == PuzzleState.InitialSetup)
+                {
+                    ShowPlacementHighlights();
+                }
+                else if (puzzleManager.currentState == PuzzleState.Solving)
+                {
+                    ShowKeyboardUI();
+                }
+                
+                // Garantir que o ícone de interação esteja oculto
+                if (interactionIcon != null)
+                    interactionIcon.SetActive(false);
+            }
+            else
+            {
+                // Se o puzzle está fechado mas deve ser mostrado
+                if (puzzleManager.currentState != PuzzleState.Completed)
+                {
+                    puzzleBoard.SetActive(true);
+                }
+                
+                // Garantir que o jogador esteja ativo se o puzzle não estiver aberto
+                if (playerController != null)
+                {
+                    playerController.enabled = true;
+                    playerController.spriteRenderer.enabled = true;
+                    
+                    InteractorController interactor = playerController.GetComponent<InteractorController>();
+                    if (interactor != null)
+                        interactor.enabled = true;
+                }
+                
+                // Garantir que a câmera principal esteja ativada
+                if (cameraController != null)
+                {
+                    cameraController.ReturnToMainCamera();
+                }
+            }
+        }
+    }
+
     [Header("References")]
     public Transform puzzleCameraPosition;
     public float puzzleCameraSize = 2.0f;
@@ -586,7 +763,7 @@ public class TableInteraction : MonoBehaviour, IInteractable
         
         // Melhorias no algoritmo de embaralhamento:
         // 1. Aumentar número de movimentos
-        int shuffleMoves = Random.Range(minShuffleMoves, maxShuffleMoves + 1);
+        int shuffleMoves = UnityEngine.Random.Range(minShuffleMoves, maxShuffleMoves + 1);
         
         // 2. Evitar movimentos redundantes (retornar à posição anterior)
         Vector2Int lastMove = Vector2Int.zero;
@@ -620,7 +797,7 @@ public class TableInteraction : MonoBehaviour, IInteractable
                     preferredMoves = possibleMoves;
                 
                 // Escolher um movimento aleatório entre os preferidos
-                int moveIndex = Random.Range(0, preferredMoves.Count);
+                int moveIndex = UnityEngine.Random.Range(0, preferredMoves.Count);
                 Vector2Int movePos = preferredMoves[moveIndex];
                 
                 // Registrar a direção deste movimento para evitar reverter no próximo passo
@@ -653,7 +830,7 @@ public class TableInteraction : MonoBehaviour, IInteractable
                 List<Vector2Int> possibleMoves = GetValidMoves();
                 if (possibleMoves.Count > 0)
                 {
-                    int moveIndex = Random.Range(0, possibleMoves.Count);
+                    int moveIndex = UnityEngine.Random.Range(0, possibleMoves.Count);
                     SwapWithEmptySlot(possibleMoves[moveIndex]);
                     yield return new WaitForSeconds(shuffleSpeed);
                 }
